@@ -1,0 +1,21 @@
+.bs-header{
+  padding:0 0 3px 0;
+  margin-bottom: 15px;
+  color: #333;
+  border-bottom: 1px solid #e2e2e2;
+  line-height: 32px;
+  .bs-title{
+    display: inline-block;
+    font-weight: 400;
+    height: 32px;
+    overflow: hidden;
+    margin-right: 15px;
+    font-size: 16px;
+    vertical-align: middle;
+  }
+  .bs-back-btn{
+    float: right;
+    margin-top: 2px;
+    min-width: 60px;
+  }
+}

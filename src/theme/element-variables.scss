@@ -1,0 +1,9 @@
+/* 改变主题色变量 */
+//$--color-primary: #444D58;
+//$--color-success: #009a61;
+$--font-size-base: 14px !default;
+$--size-base: 14px !default;
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '../../node_modules/element-ui/lib/theme-chalk/fonts';
+
+@import "../../node_modules/element-ui/packages/theme-chalk/src/index";

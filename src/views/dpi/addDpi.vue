@@ -1,0 +1,104 @@
+<template>
+  <div class="page-content">
+    <div class="bs-header">
+      <div class="bs-title">新增分辨率</div>
+    </div>
+    <div>
+      <el-row :gutter="20">
+        <el-col :span="16">
+          <el-form ref="ruleForm" :model="form" label-width="110px">
+            <el-row :gutter="20">
+              <el-col :span="8">
+                <el-form-item label="分辨率编码" prop="code" :rules="commonRule">
+                  <el-input v-model="form.code" style="width: 500px" size="small"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="8">
+                <el-form-item label="分辨率名称" prop="name" :rules="commonRule">
+                  <el-input v-model="form.name" style="width: 500px" size="small"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="8">
+                <el-form-item label="宽度" prop="width" :rules="commonRule">
+                  <el-input v-model="form.width" style="width: 500px" size="small"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="8">
+                <el-form-item label="长度" prop="length" :rules="commonRule">
+                  <el-input v-model="form.length" style="width: 500px" size="small"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+
+            <el-form-item label="描述">
+              <el-input type="textarea" size="small" style="width: 500px" v-model="form.description"></el-input>
+            </el-form-item>
+            <el-form-item>
+
+              <el-button
+                type="primary"
+                size="small"
+                @click="onSubmit('ruleForm')">保存</el-button>
+              <el-button
+                size="small"
+                type="info"
+                @click="recurrenc">返回</el-button>
+            </el-form-item>
+          </el-form>
+        </el-col>
+      </el-row>
+    </div>
+  </div>
+</template>
+<script type="text/ecmascript-6">
+  import API from '../../api'
+  export default {
+    data   : function() {
+      return {
+
+        form: {
+          name  : '',
+          companyId:'',
+          description   : ''
+        },
+        commonRule: [
+          {required: true, message: '该项不能为空'}
+        ],
+        rules: {
+        }
+      }
+    },
+    mounted(){
+
+    },
+
+    methods: {
+      onSubmit(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            API.dpi.add(this.form).then(res=>{
+              this.$message({
+                message: '创建成功！',
+                type: 'success'
+              });
+              this.$router.push({path: '/device/dpi/list'});
+            })
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      recurrenc(){
+        this.$router.push({path: '/device/dpi/list'});
+      },
+    }
+  }
+</script>

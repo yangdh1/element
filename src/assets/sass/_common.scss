@@ -1,0 +1,51 @@
+body{
+  font-family: "microsoft yahei", "Helvetica Neue", Helvetica, Arial, sans-serif!important;
+  //font-size: 12px!important;
+  margin: 0;
+  padding:0;
+  font-size: 14px;
+
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: " ";
+}
+.clearfix:after{
+  clear: both;
+}
+
+@for $i from 1 to 40 {
+  .space-#{$i} {
+    height: 1px;
+    margin: #{$i}px 0;
+  }
+}
+.page-content{
+  padding:15px 20px;
+}
+a{
+  color:$a-color;
+}
+a:hover{
+  color:$a-color-hover;
+}
+.green-ztree{
+  .el-tree-node__expand-icon{
+    color: #fff;
+  }
+  >.el-tree-node{
+    >.el-tree-node__content{
+      background-image: -webkit-gradient(linear, left top, right top, from(#29c3ac), to(#fff));
+      background-image: linear-gradient(to right, #29c3ac, #fff);
+      border-radius: 0 0 20px 0;
+      padding: 3px 12px;
+      border: 1px solid #f1f1f1;
+    }
+  }
+  .el-checkbox__input.is-checked .el-checkbox__inner,
+  .el-checkbox__input.is-indeterminate .el-checkbox__inner{
+    border-color: #086752;;
+  }
+}
