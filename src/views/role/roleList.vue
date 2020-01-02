@@ -17,7 +17,7 @@
       </el-form>
 
       <div class="table-wrap" v-loading.body="loading">
-        <el-table highlight-current-row :data="tableData"  border style="width: 100%" stripe :header-cell-style="headercellSstyle" :key="Math.random()">
+        <el-table highlight-current-row :data="tableData"  border style="width: 100%" stripe :header-cell-style="headercellSstyle" :key="$root.$children[0].keyRand">
           <el-table-column prop="name" label="角色" min-width="15%"></el-table-column>
           <el-table-column prop="description" label="备注" min-width="20%"></el-table-column>
           <el-table-column label="操作" min-width="55%">

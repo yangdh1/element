@@ -13,7 +13,7 @@
         </el-form-item>
       </el-form>
       <div class="table-wrap" v-loading.body="loading">
-        <el-table highlight-current-row :data="tableData" width="100%" border stripe :header-cell-style="headercellSstyle" :key="Math.random()">
+        <el-table highlight-current-row :data="tableData" width="100%" border stripe :header-cell-style="headercellSstyle" :key="$root.$children[0].keyRand">
           <el-table-column
             prop="name"
             label="真实姓名"
