@@ -5,7 +5,7 @@
     </div>
     <div>
       <el-form :inline="true" :model="pars" class="demo-form-inline">
-        <el-form-item label="">
+        <el-form-item>
           <el-input v-model="pars.commonColumn"   clearable size="small" style="width: 350px" prefix-icon="el-icon-search" placeholder="请输入关键字"></el-input>
         </el-form-item>
         <!-- <el-form-item label="角色">
@@ -29,17 +29,25 @@
         </el-form-item>
       </el-form>
       <div class="table-wrap" v-loading.body="loading">
-        <el-table highlight-current-row :data="tableData" width="100%" border stripe :header-cell-style="headercellSstyle" :key="Math.random()">
+        <el-table highlight-current-row :data="tableData" width="100%" border stripe :header-cell-style="headercellSstyle">
           <el-table-column
-            prop="serviceTypeName"
+            align="center"
+            type="index"
+            label="序号"
+            width="80"/>
+          <el-table-column
+            align="center"
+            prop="oneServiceTypeName"
             label="服务类型名称"
-            min-width="15%"/>
+            min-width="50%"/>
           <el-table-column
+            align="center"
             prop="servicePriceUnit"
             label="服务计价单位"
-            min-width="15%"/>
+            min-width="20%"/>
           <el-table-column
-            label="操作" min-width="20%">
+            align="center"
+            label="操作" min-width="30%">
             <template slot-scope="scope">
               <el-button
                 icon="el-icon-view"
@@ -81,8 +89,8 @@
           pageSize    : this.GLOBAL.PAGE_COG.PAGESIZE,
           pageNum     : this.GLOBAL.PAGE_COG.PAGENUM,
           total       : this.GLOBAL.PAGE_COG.TOTAL,
-          id:''
-         // commonColumn : '',
+          id:'',
+          commonColumn : '',
 
         }
       }

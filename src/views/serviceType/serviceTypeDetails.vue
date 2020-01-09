@@ -11,7 +11,7 @@
           <el-row :gutter="20">
             <el-col :span="8">
               <el-form-item label="服务类型名称" prop="serviceTypeName" >
-                <el-input v-model="form.serviceTypeName" size="small" style="width: 250px"></el-input>
+                <el-input v-model="form.oneServiceTypeName" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">

@@ -11,8 +11,8 @@
         <el-row>
           <el-row :gutter="20">
             <el-col :span="8">
-              <el-form-item label="服务类型名称" prop="serviceTypeName" :rules="commonRule">
-                <el-input v-model="form.serviceTypeName" size="small" style="width: 250px"></el-input>
+              <el-form-item label="服务类型名称" prop="oneServiceTypeName" :rules="commonRule">
+                <el-input v-model="form.oneServiceTypeName" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
@@ -53,8 +53,10 @@
       return {
         serviceTypeArr: [],
         form: {
-          adminFlag:false,
-          status:'1'
+            oneServiceTypeName: '',
+            servicePriceUnit: '',
+          // adminFlag:false,
+          // status:'1'
         },
         commonRule: [
           {required: true, message: '该项不能为空'}
