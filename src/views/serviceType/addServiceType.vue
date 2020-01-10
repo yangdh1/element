@@ -9,8 +9,8 @@
                label-width="110px">
         <el-row :gutter="20">
           <el-col :span="7">
-            <el-form-item label="服务类型名称" prop="serviceTypeName" :rules="commonRule">
-              <el-input v-model="form.serviceTypeName" style="width: 217px"></el-input>
+            <el-form-item label="服务类型名称" prop="oneServiceTypeName" :rules="commonRule">
+              <el-input v-model="form.oneServiceTypeName" style="width: 217px"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
@@ -47,11 +47,11 @@
         departmentList: [],
         floorArr:[],
         form: {
-          // serviceTypeName: '',
-          // servicePriceUnit: ''
+          oneServiceTypeName: '',
+          servicePriceUnit: ''
         },
         commonRule: [
-          {required: true, message: '该项不能为空'}
+          {required: true, message: '该项不能为空'},
         ],
       }
     },
@@ -64,14 +64,20 @@
       onSubmit(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            if(this.form.internalFlag===false){
-              this.form.personnelId='';
-              /*     this.form.compoundId = res.compoundId;
-                   this.form.buildingId = res.buildingId;
-                   this.form.floorId = res.floorId;*/
-              console.log( this.form.floorId );
-              console.log("=================================");
+            if (Number.isNaN(this.form.servicePriceUnit)) {
+                this.$message({
+                    type: 'warning',
+                    message: '请填写数字',
+                })
             }
+            // if(this.form.internalFlag===false){
+            //   this.form.personnelId='';
+            //   /*     this.form.compoundId = res.compoundId;
+            //        this.form.buildingId = res.buildingId;
+            //        this.form.floorId = res.floorId;*/
+            //   console.log( this.form.floorId );
+            //   console.log("=================================");
+            // }
             API.serviceType.add(this.form).then(res => {
               this.$message({
                 message: '保存成功！',
