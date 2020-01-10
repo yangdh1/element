@@ -12,6 +12,9 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.3",
     "babel-polyfill": "^6.26.0",
+    "@tinymce/tinymce-vue": "^1.1.0",
+    "tinymce": "^4.9.2",
+    "tinymce-imageupload": "^1.0.5",
     "echarts": "^3.7.2",
     "jquery": "^3.3.1",
     "js-cookie": "^2.2.0",

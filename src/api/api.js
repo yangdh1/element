@@ -124,6 +124,38 @@ export default {
     saveResource:  params => { return axios.post(`${base}/role/saveResource`,  params); },
     delete:  params => { return axios.post(`${base}/role/delete/`+params.id); }
   },
+  carouselFigureManager: {
+    add: params => {
+      return axios.post(`${base}/carouselFigureManager/addOA`, params)
+    },
+    list: params => {
+      return axios.post(`${base}/carouselFigureManager/listOA`, params)
+    },
+    detail: params => {
+      return axios.post(`${base}/carouselFigureManager/detail`, params)
+    },
+    update: params => {
+      return axios.post(`${base}/carouselFigureManager/update`, params)
+    },
+    addAppLawyer: params => {
+      return axios.post(`${base}/carouselFigureManager/addAppLawyer`, params)
+    },
+    listAppLawyer: params => {
+      return axios.post(`${base}/carouselFigureManager/listAppLawyer`, params)
+    },
+    addAppGeneralUser: params => {
+      return axios.post(`${base}/carouselFigureManager/addAppGeneralUser`, params)
+    },
+    listAppGeneralUser: params => {
+      return axios.post(`${base}/carouselFigureManager/listAppGeneralUser`, params)
+    },
+    listByType: params => {
+      return axios.post(`${base}/carouselFigureManager/listByType`, params)
+    },
+    delete: params => {
+      return axios.post(`${base}/carouselFigureManager/delete/` + params.id)
+    },
+  },
   user:{
     login: params =>{ return axios.post(`${base}/login`, params); },
     logout: params =>{ return axios.post(`${base}/logout`, params); },

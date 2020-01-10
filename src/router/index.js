@@ -57,6 +57,7 @@ export const asyncMenus = [
       { path: 'details/:id', name:'获取业务类型详情', component: _import('skillType/skillTypeDetails') ,hidden:true},
     ]
   },
+
   {
     path: '/ordinaryVip',
     component: Layout,
@@ -123,7 +124,17 @@ export const asyncMenus = [
       { path: 'role/add', name:'添加角色', component: _import('role/addRole') ,hidden:true},
       { path: 'role/edit/:id', name:'编辑角色', component: _import('role/editRole') ,hidden:true},
       { path: 'role/roleResource/:id', name:'编辑角色', component: _import('role/roleResource') ,hidden:true},
-
+      { path: 'oaIndex/list',icon: '', menuId: '999003', name: 'web轮播管理',  component: _import('oaIndex/list') },
+      { path: 'oaIndex/addImg', name: '新增web轮播', component: _import('oaIndex/addImg'), hidden: true},
+      { path: 'oaIndex/editImg/:id', name: '编辑web轮播', component: _import('oaIndex/editImg'), hidden: true},
+      { path: 'appLawyerIndex/list',icon: '', menuId: '999004', name: '律师APP轮播管理',  component: _import('appLawyerIndex/list') },
+      { path: 'appLawyerIndex/addImg', name: '新增律师APP轮播', component: _import('appLawyerIndex/addImg'), hidden: true},
+      { path: 'appLawyerIndex/editImg/:id', name: '编辑律师APP轮播', component: _import('appLawyerIndex/editImg'), hidden: true},
+      { path: 'appLawyerIndex/appcarouselFigureDetail/:id', name: '律师APP轮播详情', component: _import('appLawyerIndex/appcarouselFigureDetail'), hidden: true},
+      { path: 'appGeneralUserIndex/list',icon: '', menuId: '999005', name: '普通用户轮播管理',  component: _import('appGeneralUserIndex/list') },
+      { path: 'appGeneralUserIndex/addImg', name: '新增普通用户轮播', component: _import('appGeneralUserIndex/addImg'), hidden: true},
+      { path: 'appGeneralUserIndex/editImg/:id', name: '编辑普通用户轮播', component: _import('appGeneralUserIndex/editImg'), hidden: true},
+      { path: 'appGeneralUserIndex/appcarouselFigureDetail/:id', name: '普通用户轮播详情', component: _import('appGeneralUserIndex/appcarouselFigureDetail'), hidden: true},
     ]
   },
   { path: '*', redirect: '/404', hidden: true, is404: true }

@@ -1,10 +1,13 @@
 <template>
   <div class="navbar">
-    <a href="#/index" class="navbar-logo">
+    <!--<a href="#/index" class="navbar-logo">
       <img src="static/imgs/logo.png" alt="">
+    </a>-->
+    <a href="#/index" class="navbarUrl">
+      微沙管理平台
     </a>
     <div class="user-info">
-      <span class="name">{{userName}}</span>
+      <span class="name">{{name}}</span>
       <span class="navbar-split-line">|</span>
 
       <a href="javascript:void(0)" @click="diaVisible = true">修改密码</a>
@@ -32,10 +35,11 @@ export default {
     }
   },
   mounted(){
+    console.log(this.$store.getters.userInfo)
   },
   computed:{
-    userName:  function () {
-      return this.$store.getters.userInfo.userName
+    name:  function () {
+      return this.$store.getters.userInfo.name
     }
   },
   methods: {
@@ -85,6 +89,12 @@ export default {
         height: 33px;
         margin-top: 2px;
       }
+    }
+    .navbarUrl{
+      float: left;
+      line-height: 40px;
+      color: #ffffff;
+      font-size: 20px;
     }
     .user-info{
       float: right;
