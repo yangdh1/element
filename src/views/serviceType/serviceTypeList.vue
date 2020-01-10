@@ -48,7 +48,7 @@
           <el-table-column
             align="center"
             label="操作" min-width="30%">
-            <template slot-scope="scope">
+        <!--    <template slot-scope="scope">
               <el-button
                 icon="el-icon-view"
                 title="查看详情"
@@ -61,7 +61,7 @@
                 v-power="'serviceType_update'"
                 @click="handleEdit(scope.$index, scope.row)"></el-button>
               <el-button icon="el-icon-delete" size="small" title="删除" type="danger" plain  v-power="'serviceType_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>
-            </template>
+            </template>-->
           </el-table-column>
         </el-table>
         <div class="block pagination">
