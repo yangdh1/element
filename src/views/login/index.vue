@@ -2,9 +2,9 @@
   <div class="login-container" :style="loginContainerStyle">
 
     <div class="login-box">
-     <!-- <div class="login-right">
+      <div class="login-right">
         <img class="login-right-img" src="static/imgs/login-r-img.jpg" alt="">
-      </div>-->
+      </div>
       <div class="login-left">
         <br>
         <div class="login-type-box">
