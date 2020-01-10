@@ -30,7 +30,7 @@
 
         </el-form>
         <div class="left-copy">
-          <p>@版权所有：东方金朔</p>
+          <p>@版权所有：微沙</p>
         </div>
       </div>
 
@@ -203,7 +203,6 @@ export default {
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
       color: #333;
-      height: 47px;
     }
     .el-input {
       display: inline-block;
@@ -233,11 +232,9 @@ export default {
     }
     .el-form-item  input{
       border: 1px solid #ddd;
-      padding: 6px 5px 6px 15px;
       background: #f5fcf2;
       border-radius: 5px;
       color: #454545;
-      height: 35px;
     }
     .show-pwd {
       position: absolute;
