@@ -571,7 +571,7 @@ export default {
   stockVip:{
     list:params => {return axios.post(`${base}/userStockHistory/listVipHistory`, params)},
     listVip:params => {return axios.post(`${base}/userAccount/listUserStock`, params)},
-    details:params => {return axios.post(`${base}/user/userDetail/`+params.id)},
+    details:params => {return axios.post(`${base}/userAccount/detail`, params)},
   },
   money:{
     list:params => {return axios.post(`${base}/userMoneyHistory/listMoneyHistory`, params)},

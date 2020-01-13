@@ -17,11 +17,11 @@
           <el-table-column
             prop="accounts"
             label="帐号"
-            min-width="15%"/>
+            min-width="10%"/>
           <el-table-column
             prop="nickName"
             label="昵名"
-            min-width="15%"/>
+            min-width="10%"/>
           <el-table-column
             prop="enterpriseName"
             label="企业名称"
@@ -29,7 +29,7 @@
           <el-table-column
             prop="enterpriseCode"
             label="企业信用代码"
-            min-width="15%"/>
+            min-width="10%"/>
           <el-table-column
             prop="company"
             label="单位"
@@ -43,13 +43,13 @@
             label="简介"
             min-width="15%"/>
           <el-table-column
-            label="操作" min-width="20%">
+            label="操作" min-width="10%">
             <template slot-scope="scope">
               <el-button
                 icon="iconfont icon-shenpi"
                 title="审核"
                 size="small"
-                @click="handleEdit(scope.$index, scope.row)"></el-button>
+                @click="handleAudit(scope.$index, scope.row)"></el-button>
                </template>
           </el-table-column>
         </el-table>
@@ -110,16 +110,28 @@
         this.loadData();
       },
       //审核
-      handleEdit(index, row){
-          API.lawyer.toExamine({id: row.id}).then(res=> {
-            this.pars.total--;
-            this.tableData.splice(index, 1);
-            this.$message({
-              type   : 'success',
-              message: '审核通过!'
-            });
-            this.loadData();
-          })
+      handleAudit(index, row){
+          this.$confirm('确认是否通过审核', '是否继续?', '提示', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
+          }).then(() => {
+              API.lawyer.toExamine({id: row.id}).then(res=> {
+                  this.pars.total--;
+                  this.tableData.splice(index, 1);
+                  this.$message({
+                      type   : 'success',
+                      message: '审核通过!'
+                  });
+                  this.loadData();
+              })
+          }).catch(() => {
+              this.$message({
+                  type: 'info',
+                  message: '已取消审核'
+              });
+          });
+
       },
 
       //页面改变回传函数
