@@ -119,6 +119,7 @@ export const asyncMenus = [
       { path: 'principalStatus/list', menuId: '108001', name:'当事人诉讼类型管理', component: _import('principalStatus/list')},
       { path: 'principalStatus/add', name:'添加当事人诉讼类型', component: _import('principalStatus/add'),hidden:true},
       { path: 'principalStatus/edit/:id', name:'编辑当事人诉讼类型', component: _import('principalStatus/edit') ,hidden:true},
+      { path: 'lawsuitProcedure/list', menuId: '108002', name:'诉讼程序关系的列表', component: _import('lawsuitProcedure/list')},
     ]
   },
   {

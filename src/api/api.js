@@ -568,6 +568,9 @@ export default {
     delete:params => {return axios.post(`${base}/skillType/deleteSkillType`, params)},
     details:params => {return axios.post(`${base}/principalStatus/getPrincipalStatus`, params)},
   },
+  lawsuitProcedure:{
+    list:params => {return axios.post(`${base}/lawsuitProcedure/list`, params)},
+  },
 
 
   ordinaryVip:{
