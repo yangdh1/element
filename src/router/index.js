@@ -109,6 +109,19 @@ export const asyncMenus = [
     ]
   },
   {
+    path: '/type',
+    component: Layout,
+    name: '类型管理',
+    menuId: '112',
+    icon: 'iconfont icon-gupiaohuiyuanchongzhijilu',
+    hasSub: true,
+    children: [
+      { path: 'principalStatus/list', menuId: '108001', name:'当事人诉讼类型管理', component: _import('principalStatus/list')},
+      { path: 'principalStatus/add', name:'添加当事人诉讼类型', component: _import('principalStatus/add'),hidden:true},
+      { path: 'principalStatus/edit/:id', name:'编辑当事人诉讼类型', component: _import('principalStatus/edit') ,hidden:true},
+    ]
+  },
+  {
     path: '/system',
     component: Layout,
     name: '系统管理',

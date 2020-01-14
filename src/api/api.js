@@ -561,6 +561,14 @@ export default {
     delete:params => {return axios.post(`${base}/skillType/deleteSkillType`, params)},
     details:params => {return axios.post(`${base}/skillType/getSkillType`, params)},
   },
+  principalStatus:{
+    list:params => {return axios.post(`${base}/principalStatus/list`, params)},
+    add:params => {return axios.post(`${base}/principalStatus/add`, params)},
+    update:params => {return axios.post(`${base}/principalStatus/update`, params)},
+    delete:params => {return axios.post(`${base}/skillType/deleteSkillType`, params)},
+    details:params => {return axios.post(`${base}/principalStatus/getPrincipalStatus`, params)},
+  },
+
 
   ordinaryVip:{
     list:params => {return axios.post(`${base}/userOrdinaryHistory/listVipHistory`, params)},
