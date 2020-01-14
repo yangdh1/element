@@ -28,11 +28,9 @@
             </el-col>
             <el-col :span="8">
               <el-form-item label="性别" prop="sex">
-
                   <el-input v-if="form.sex == 1" value="男" size="small" style="width: 250px"></el-input>
                   <el-input v-else-if="form.sex == 2" value="女" size="small" style="width: 250px"></el-input>
                   <el-input v-else value="保密" size="small" style="width: 250px"></el-input>
-
               </el-form-item>
             </el-col>
           </el-row>

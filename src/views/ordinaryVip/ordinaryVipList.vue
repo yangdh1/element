@@ -27,9 +27,27 @@
             label="手机号"
             min-width="15%"/>
           <el-table-column
-            prop="ordinaryBalancePrecision"
+            prop="sex"
+            label="性别"
+            min-width="5%">
+            <template slot-scope="scope">
+              <span v-if="scope.row.sex == 1">男</span>
+              <span v-else>女</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="stockBalancePrecision"
             label="余额"
             min-width="15%"/>
+          <el-table-column
+            prop="stockVipJoinTime"
+            label="加入时间"
+            min-width="10%">
+            <template slot-scope="scope">
+              <span v-if="scope.row.stockVipJoinTime == null"></span>
+              <span v-else>{{new Date(scope.row.stockVipJoinTime).Format('yyyy-MM-dd HH:mm:ss')}}</span>
+            </template>
+          </el-table-column>
           <el-table-column
             label="操作" min-width="20%">
             <template slot-scope="scope">

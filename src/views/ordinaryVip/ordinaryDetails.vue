@@ -10,96 +10,59 @@
         <el-row>
           <el-row :gutter="20">
             <el-col :span="8">
-              <el-form-item label="真实姓名" prop="name" >
+              <el-form-item label="真实姓名" prop="name">
                 <el-input v-model="form.name" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="昵称" prop="nickName" >
+              <el-form-item label="昵称" prop="nickName">
                 <el-input v-model="form.nickName" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
-
           <el-row :gutter="20">
             <el-col :span="8">
-              <el-form-item label="年龄" prop="age" >
+              <el-form-item label="年龄" prop="age">
                 <el-input v-model="form.age" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="性别" prop="gender" >
-                <el-input v-model="form.gender" size="small" style="width: 250px"></el-input>
+              <el-form-item label="性别" prop="sex">
+                <el-input v-if="form.sex == 1" value="男" size="small" style="width: 250px"></el-input>
+                <el-input v-else-if="form.sex == 2" value="女" size="small" style="width: 250px"></el-input>
+                <el-input v-else value="保密" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="20">
             <el-col :span="8">
-              <el-form-item label="生日" prop="birthDayDate" >
-                <el-input v-model="form.birthDayDate" size="small" style="width: 250px"></el-input>
+              <el-form-item label="生日" prop="birthDay">
+                <el-input type="datetime" v-model="form.birthDay" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="身份证" prop="idCard" >
+              <el-form-item label="身份证" prop="idCard">
                 <el-input v-model="form.idCard" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="20">
             <el-col :span="8">
-              <el-form-item label="创建时间" prop="createTimeDate" >
-                <el-input v-model="form.createTimeDate" size="small" style="width: 250px"></el-input>
+              <el-form-item label="加入时间" prop="stockVipJoinTime">
+                <el-input type="datetime" v-model="form.stockVipJoinTime" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="地址" prop="address" >
+              <el-form-item label="地址" prop="address">
                 <el-input v-model="form.address" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
+
           <el-row :gutter="20">
             <el-col :span="8">
-              <el-form-item label="省份" prop="provinceName" >
-                <el-input v-model="form.provinceName" size="small" style="width: 250px"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="城市" prop="cityName" >
-                <el-input v-model="form.cityName" size="small" style="width: 250px"></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="20">
-            <el-col :span="8">
-              <el-form-item label="区" prop="districtName" >
-                <el-input v-model="form.districtName" size="small" style="width: 250px"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="手机号" prop="mobile" >
+              <el-form-item label="手机号" prop="mobile">
                 <el-input v-model="form.mobile" size="small" style="width: 250px"></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="20">
-            <el-col :span="8">
-              <el-form-item label="角色" prop="roleName" >
-                <el-input v-model="form.roleName" size="small" style="width: 250px"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="管理员">
-                <el-switch
-                  v-model="form.adminFlag"
-                  disabled>
-                </el-switch>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="20">
-            <el-col :span="8">
-              <el-form-item label="头像" prop="url" >
-                <img :src="form.url" style="width:75px;height:100px"/>
               </el-form-item>
             </el-col>
           </el-row>
@@ -108,7 +71,8 @@
               <el-button
                 size="small"
                 type="info"
-                @click="revertingg">返回</el-button>
+                @click="revertingg">返回
+              </el-button>
             </el-form-item>
 
           </el-col>
@@ -118,52 +82,59 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import API from '../../api'
-  import ElOption from "../../../node_modules/element-ui/packages/select/src/option.vue";
-  import ElCol from "element-ui/packages/col/src/col";
-  import ElRow from "element-ui/packages/row/src/row";
-  // import { Navbar, Sidebar, AppMain } from 'views/layout'
-  export default {
-    components: {
-      ElRow,
-      ElCol,
-      ElOption
-    },
-    data: function () {
-      return {
-        form: {
-          adminFlag:false,
-          status:'1',
+    import API from '../../api'
+    import ElOption from "../../../node_modules/element-ui/packages/select/src/option.vue";
+    import ElCol from "element-ui/packages/col/src/col";
+    import ElRow from "element-ui/packages/row/src/row";
+    // import { Navbar, Sidebar, AppMain } from 'views/layout'
+    export default {
+        components: {
+            ElRow,
+            ElCol,
+            ElOption
         },
-      }
-    },
-    mounted() {
-      this.form.id = this.$route.params.userId;
-      console.log(this.form.id);
+        data: function () {
+            return {
+                form: {
+                    adminFlag: false,
+                    status: '1',
+                },
+            }
+        },
+        mounted() {
+            this.form.id = this.$route.params.userId;
+            console.log(this.form.id);
 
-      //加载编辑信息
-      this.loadEditData();
-    },
-    methods: {
-      revertingg(){
-        this.$router.push({path: '/ordinaryVip/listVip'});
-      },
-      loadEditData() {
-        let obj = {id: this.form.id};
-        API.ordinaryVip.details(obj).then(res => {
-          this.form = res;
-          console.log(res);
-        });
-      },
+            //加载编辑信息
+            this.loadEditData();
+        },
+        methods: {
+            revertingg() {
+                this.$router.push({path: '/ordinaryVip/listVip'});
+            },
+            loadEditData() {
+                let obj = {id: this.form.id};
+                API.ordinaryVip.details(obj).then(res => {
+                    this.convertData(res);
+                    console.log(res);
+                });
+            },
+            convertData(data) {
+                if (data != null) {
+                    data.stockVipJoinTime = new Date(data.stockVipJoinTime).Format('yyyy-MM-dd HH:mm:ss');
+                    data.birthDay = new Date(data.birthDay).Format('yyyy-MM-dd HH:mm:ss');
+                    this.form = data;
+                }
+            },
 
 
-      // submitUpload() {
-      //   this.$refs.upload.submit();
-      // }
+            // submitUpload() {
+            //   this.$refs.upload.submit();
+            // }
 
-    },
+        },
 
-  }
+    }
 
 </script>
 
