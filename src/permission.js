@@ -1,5 +1,6 @@
 import router from './router'
 import store from './store'
+import { Message } from 'element-ui';
 import NProgress from 'nprogress' // Progress 进度条
 import 'nprogress/nprogress.css'// Progress 进度条样式
 import { getToken } from './utils/auth' // 验权
@@ -55,8 +56,16 @@ router.beforeEach((to, from, next) => {
 			} else {
 				if (store.getters.syncMenus.length === 0) { // 判断当前用户是否已拉取完 user_info 信息
 					store.dispatch('GetUserInfo').then(res => { // 拉取 info
-						router.addRoutes(store.getters.syncMenus); // 动态添加可访问路由表
-						next({ ...to }); // hack 方法 确保 addRoutes 已完成
+					  if (store.getters.syncMenus.length !== 0) {
+              router.addRoutes(store.getters.syncMenus); // 动态添加可访问路由表
+              next({ ...to }); // hack 方法 确保 addRoutes 已完成
+            }else {
+              Message({
+                message: '无权限,请联系管理员!',
+                type: 'error'
+              });
+              next('/login');
+            }
 					}).catch(err => {
 					  console.log(err)
 						if(err == 'token校验失败'){
