@@ -97,7 +97,32 @@ export const BaseAPI = base;
 export const MultipartAPI = multipartUrl;
 
 export default {
-
+  appVersionManager: {
+    list: params => {
+      return axios.post(`${base}/appVersionManager/list`, params)
+    },
+    allappType: params => {
+      return axios.post(`${base}/appVersionManager/allappType`, params)
+    },
+    allClientTypeEnum: params => {
+      return axios.post(`${base}/appVersionManager/allClientTypeEnum`, params)
+    },
+    add: params => {
+      return axios.post(`${base}/appVersionManager/add`, params)
+    },
+    detail: params => {
+      return axios.post(`${base}/appVersionManager/detail/` + params.id);
+    },
+    delete: params => {
+      return axios.post(`${base}/appVersionManager/delete/` + params.id);
+    },
+    compulsory: params => {
+      return axios.post(`${base}/appVersionManager/compulsory/` + params.id);
+    },
+    update: params => {
+      return axios.post(`${base}/appVersionManager/update`, params)
+    }
+  },
   schedule:{
     index: params =>{ return axios.post(`${base}/schedule/index`, params); },
     add: params =>{ return axios.post(`${base}/schedule/add`, params); },

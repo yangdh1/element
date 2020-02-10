@@ -149,6 +149,12 @@ export const asyncMenus = [
       { path: 'appGeneralUserIndex/addImg', name: '新增普通用户轮播', component: _import('appGeneralUserIndex/addImg'), hidden: true},
       { path: 'appGeneralUserIndex/editImg/:id', name: '编辑普通用户轮播', component: _import('appGeneralUserIndex/editImg'), hidden: true},
       { path: 'appGeneralUserIndex/appcarouselFigureDetail/:id', name: '普通用户轮播详情', component: _import('appGeneralUserIndex/appcarouselFigureDetail'), hidden: true},
+
+      { path: 'edition/list', menuId: '999006', name: '应用版本管理',  component: _import('edition/list') },
+      { path: 'edition/add',  name: '添加应用版本管理',  component: _import('edition/add'),hidden: true },
+      { path: 'edition/edit/:id', name: '编辑应用版本管理',  component: _import('edition/edit'),hidden: true },
+      { path: 'edition/qrPage', name: '二维码下载链接',  component: _import('edition/qrPage'),hidden: true },
+
     ]
   },
   { path: '*', redirect: '/404', hidden: true, is404: true }
