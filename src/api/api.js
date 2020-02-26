@@ -619,6 +619,10 @@ export default {
     list:params => {return axios.post(`${base}/lawyer/list`, params)},
     toExamine:params => {return axios.post(`${base}/lawyer/toExamine/`+ params.id)},
     updateLawyerStatus:params => {return axios.post(`${base}/lawyer/updateLawyerStatus`, params)},
+  },
+  orderEvaluate:{
+    list:params => {return axios.post(`${base}/orderEvaluate/list`, params)},
+    detail:params => {return axios.post(`${base}/orderEvaluate/detail/`+ params.id)},
+    delete:params => {return axios.post(`${base}/orderEvaluate/delete/`+ params.id)},
   }
-
 }

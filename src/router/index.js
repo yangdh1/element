@@ -155,6 +155,8 @@ export const asyncMenus = [
       { path: 'edition/edit/:id', name: '编辑应用版本管理',  component: _import('edition/edit'),hidden: true },
       { path: 'edition/qrPage', name: '二维码下载链接',  component: _import('edition/qrPage'),hidden: true },
 
+      { path: 'orderEvaluate/orderEvaluate', menuId: '999003', name:'订单管理', component: _import('orderEvaluate/orderEvaluate') },
+      { path: 'orderEvaluate/detail/:id', name:'查看详情', component: _import('orderEvaluate/orderEvaluateDetail') ,hidden:true},
     ]
   },
   { path: '*', redirect: '/404', hidden: true, is404: true }
