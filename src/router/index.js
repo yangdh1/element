@@ -123,6 +123,17 @@ export const asyncMenus = [
     ]
   },
   {
+    path: '/config',
+    component: Layout,
+    name: '系统数据管理',
+    menuId: '113',
+    icon: 'iconfont icon-gupiaohuiyuanchongzhijilu',
+    hasSub: true,
+    children: [
+      { path: 'list', menuId: '108003', name:'系统数据', component: _import('config/list')},
+    ]
+  },
+  {
     path: '/system',
     component: Layout,
     name: '系统管理',

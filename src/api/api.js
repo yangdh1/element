@@ -149,6 +149,10 @@ export default {
     saveResource:  params => { return axios.post(`${base}/role/saveResource`,  params); },
     delete:  params => { return axios.post(`${base}/role/delete/`+params.id); }
   },
+  config:{
+    listAll	: params => { return axios.post(`${base}/config/listAll`); },
+    edit:  params => { return axios.post(`${base}/config/update`, params); },
+  },
   carouselFigureManager: {
     add: params => {
       return axios.post(`${base}/carouselFigureManager/addOA`, params)
