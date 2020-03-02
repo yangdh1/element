@@ -67,14 +67,14 @@
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="省份" prop="provinceCode" :rules="commonRule">
-                <el-select v-model="form.provinceCode"
+              <el-form-item label="省份" prop="upOneName" :rules="commonRule">
+                <el-select v-model="form.upOneName"
                            placeholder="请选择省份"
                            size="small" style="width: 250px"  @change="loadProvince">
-                  <el-option v-for="item in provincrAll"
+                  <el-option v-for="item in provinceArr"
                              :key="item.id"
-                             :label="item.name"
-                             :value="item.provinceCode">
+                             :label="item.upOneName"
+                             :value="item.upOneName">
                   </el-option>
                 </el-select>
               </el-form-item>
@@ -82,40 +82,45 @@
           </el-row>
           <el-row :gutter="20">
             <el-col :span="8">
-              <el-form-item label="城市" prop="cityCode" :rules="commonRule">
-                <el-select v-model="form.cityCode"
-                           placeholder="请选择城市"   @change="loadDistrict"
+              <el-form-item label="城市" prop="addressCode" :rules="commonRule">
+                <el-select v-model="form.addressCode"
+                           placeholder="请选择城市"
                            size="small" style="width: 250px" >
                   <el-option v-for="item in cityAll"
-                             :key="item.cityCode"
+                             :key="item.id"
                              :label="item.name"
-                             :value="item.cityCode">
+                             :value="item.code">
                   </el-option>
                 </el-select>
               </el-form-item>
             </el-col>
-            <el-col :span="8">
-              <el-form-item label="区" prop="districtCode" :rules="commonRule">
-                <el-select v-model="form.districtCode"
-                           placeholder="请选择区"
-                           size="small" style="width: 250px" >
-                  <el-option v-for="item in districtAll"
-                             :key="item.districtCode"
-                             :label="item.name"
-                             :value="item.districtCode">
-                  </el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-
-          </el-row>
-          <el-row :gutter="20">
             <el-col :span="8">
               <el-form-item label="地址" prop="address">
                 <el-input v-model="form.address" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
+<!--            <el-col :span="8">-->
+<!--              <el-form-item label="区" prop="districtCode" :rules="commonRule">-->
+<!--                <el-select v-model="form.districtCode"-->
+<!--                           placeholder="请选择区"-->
+<!--                           size="small" style="width: 250px" >-->
+<!--                  <el-option v-for="item in districtAll"-->
+<!--                             :key="item.districtCode"-->
+<!--                             :label="item.name"-->
+<!--                             :value="item.districtCode">-->
+<!--                  </el-option>-->
+<!--                </el-select>-->
+<!--              </el-form-item>-->
+<!--            </el-col>-->
+
           </el-row>
+<!--          <el-row :gutter="20">-->
+<!--            <el-col :span="8">-->
+<!--              <el-form-item label="地址" prop="address">-->
+<!--                <el-input v-model="form.address" size="small" style="width: 250px"></el-input>-->
+<!--              </el-form-item>-->
+<!--            </el-col>-->
+<!--          </el-row>-->
 
           <el-row :gutter="20">-->
             <el-col :span="8">
@@ -135,6 +140,30 @@
               </el-form-item>
             </el-col>
          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="8">
+              <el-form-item label="账户余额" prop="moneyBalance" >
+                <el-input v-model="form.moneyBalance" size="small" style="width: 250px" ></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="359共享基金" prop="ordinaryBalance" >
+                <el-input v-model="form.ordinaryBalance" size="small" style="width: 250px" ></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="8">
+              <el-form-item label="股票共享基金" prop="stockBalance" >
+                <el-input v-model="form.stockBalance" size="small" style="width: 250px" ></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="心币" prop="coinBalance" >
+                <el-input v-model="form.coinBalance" size="small" style="width: 250px" ></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
           <el-col :span="24">
 
             <el-form-item>
@@ -168,6 +197,7 @@
         roleArr: [],
         bureauList: [],
         cityAll: [],
+        city:{},
         provincrAll: [],
         districtAll:[],
         companyAll: [],
@@ -188,35 +218,41 @@
       API.role.listAll().then(res => {
         this.roleArr = res
       });
-
-
       // API.company.companyAll().then(res => {
       //   this.companyAll = res
       // });
       //加载编辑信息
       this.loadEditData();
-
-      this.loadProvinc();
     },
     methods: {
-      loadProvinc() {
-        API.province.provinceList().then(res => {
-          this.provincrAll = res
-        });
-      },
-      loadDistrict(){
-        let obj = {cityCode: this.form.cityCode};
-        API.district.getDistrictAll(obj).then(res => {
-          this.districtAll = res;
-        });
-      },
       revertingg(){
         this.$router.push({path: '/system/user/list'});
       },
       loadProvince() {
-        let obj = {provinceCode: this.form.provinceCode};
-        API.city.getCityAll(obj).then(res => {
-          this.cityAll = res
+        API.province.provinceList({}).then(res => {
+          this.provinceArr = res;
+          console.log("000000000000000000000000000000000===="+JSON.stringify(this.provinceArr))
+        });
+      },
+      loadCity() {
+        let obj = {upOneName: this.form.upOneName};
+        API.province.provinceList(obj).then(res => {
+          this.cityAll = res;
+          console.log("111111111111111111111111111111="+JSON.stringify(this.cityArr))
+        });
+      },
+      loadCityByCode() {
+        this.loadProvince();
+        let obj = {code: this.form.addressCode};
+        API.province.getCityByCode(obj).then(res => {
+          this.city = res;
+          if(this.city != null){
+            this.form.upOneName = this.city.upOneName;
+            this.loadCity();
+          }else{
+            this.form.upOneName = this.provinceArr[0].upOneName;
+            this.loadCity();
+          }
         });
       },
       loadEditData() {
@@ -225,11 +261,8 @@
           this.form = res;
           console.log(res);
           this.form.sex=res.sex.toString();
-          this.form.provinceCode = res.provinceCode;
-          this.loadProvince();
-          this.form.cityCode = res.cityCode;
-          this.form.districtCode=res.districtCode;
-          this.loadDistrict();
+          this.form.addressCode=res.addressCode;
+          this.loadCityByCode();
           if (res.status == null) {
             this.form.status = res.status;
           } else {

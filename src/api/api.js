@@ -418,6 +418,7 @@ export default {
   },
   province:{
     provinceList:params => {return axios.post(`${base}/province/provinceAll`, params)},
+    getCityByCode:params => {return axios.post(`${base}/province/getCityByCode`, params)},
     getCityAll:params => {return axios.post(`${base}/province/getCityAll/`+params.provinceCode);},
   },
   phonemodel:{

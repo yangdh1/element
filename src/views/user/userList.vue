@@ -62,7 +62,8 @@
           <el-button type="primary" icon="el-icon-search" @click="search" size="small">查询</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="success" icon="el-icon-plus" @click="addDev" size="small" v-power="'user_add'">新增</el-button>
+<!--          <el-button type="success" icon="el-icon-plus" @click="addDev" size="small" v-power="'user_add'">新增</el-button>-->
+          <el-button type="success" icon="el-icon-plus" @click="export" size="small" v-power="'user_add'">导出</el-button>
         </el-form-item>
       </el-form>
       <div class="table-wrap" v-loading.body="loading">
@@ -223,6 +224,24 @@
           this.pars.pageSize = res.pageSize;
           this.loading = false;
           this.tableData = res.list;
+        });
+      },
+      export(){
+        API.vehicle.vehiclelistall(this.pars).then(res => {
+          this.pars.total = res.total;
+          this.pars.pageNum = res.pageNum;
+          this.pars.pageSize = 10;
+          this.loading = false;
+          this.tableDataAll = res.list;
+          console.log(res.list);
+          require.ensure([], () => {
+            const { export_json_to_excel } = require('../../excel/Export2Excel');
+            const tHeader = ['序号','昵称','真实姓名', '手机号','账户余额','账户收益','心币','关注人数','服务次数','注册日期','认证状态'];
+            const filterVal = ['id','nickName','name', 'mobile','moneyBalance','lawyerEarningsBalance','coinBalance','followNum','serviceNum','createTimeDate','whetherAutonym'];
+            const list = this.tableDataAll;
+            const data = this.formatJson(filterVal, list);
+            export_json_to_excel(tHeader, data, '车辆档案');
+          })
         });
       },
       search(){
