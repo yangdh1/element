@@ -196,6 +196,7 @@ export default {
     detail: params =>{ return axios.post(`${base}/user/userDetail/`+params.id); },
     delete: params =>{ return axios.post(`${base}/user/delete/`+params.id); },
     update:params=>{return axios.post(`${base}/user/update/`,params)},
+    exports:params=>{return axios.post(`${base}/user/export/`,params)},
   },
   visitor:{
     addAgain : params => { return axios.post(`${base}/visitor/common/complete`, params); },

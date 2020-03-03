@@ -143,24 +143,24 @@
           <el-row :gutter="20">
             <el-col :span="8">
               <el-form-item label="账户余额" prop="moneyBalance" >
-                <el-input v-model="form.moneyBalance" size="small" style="width: 250px" ></el-input>
+                <el-input v-model="form.moneyBalance" size="small" disabled style="width: 250px" ></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item label="359共享基金" prop="ordinaryBalance" >
-                <el-input v-model="form.ordinaryBalance" size="small" style="width: 250px" ></el-input>
+                <el-input v-model="form.ordinaryBalance" size="small" disabled style="width: 250px" ></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="20">
             <el-col :span="8">
               <el-form-item label="股票共享基金" prop="stockBalance" >
-                <el-input v-model="form.stockBalance" size="small" style="width: 250px" ></el-input>
+                <el-input v-model="form.stockBalance" size="small" disabled style="width: 250px" ></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item label="心币" prop="coinBalance" >
-                <el-input v-model="form.coinBalance" size="small" style="width: 250px" ></el-input>
+                <el-input v-model="form.coinBalance" size="small"  disabled style="width: 250px" ></el-input>
               </el-form-item>
             </el-col>
           </el-row>

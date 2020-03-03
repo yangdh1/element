@@ -63,7 +63,7 @@
         </el-form-item>
         <el-form-item>
 <!--          <el-button type="success" icon="el-icon-plus" @click="addDev" size="small" v-power="'user_add'">新增</el-button>-->
-          <el-button type="success" icon="el-icon-plus" @click="export" size="small" v-power="'user_add'">导出</el-button>
+          <el-button type="success" icon="el-icon-plus" @click="exportFile" size="small" v-power="'user_add'">导出</el-button>
         </el-form-item>
       </el-form>
       <div class="table-wrap" v-loading.body="loading">
@@ -113,14 +113,10 @@
             min-width="15%">
           </el-table-column>
           <el-table-column
-            prop="whetherAutonym"
+            prop="whetherAutonymStr"
             fixed="right"
             label="认证状态"
             min-width="15%">
-            <template slot-scope="scope">
-              <span v-if="scope.row.whetherAutonym === 1">未实名认证</span>
-              <span v-else>已实名认证</span>
-            </template>
           </el-table-column>
           <el-table-column
             fixed="right"
@@ -152,6 +148,8 @@
   import API from '../../api'
   import PageCache from '../../utils/pageCache'
   import ioPagination from '../../components/ioPagination.vue'
+  import axios from "axios";
+  import {BaseAPI, MultipartAPI} from '../../api/api'
   export default {
     components: {
       ioPagination
@@ -226,23 +224,26 @@
           this.tableData = res.list;
         });
       },
-      export(){
-        API.vehicle.vehiclelistall(this.pars).then(res => {
-          this.pars.total = res.total;
-          this.pars.pageNum = res.pageNum;
-          this.pars.pageSize = 10;
-          this.loading = false;
-          this.tableDataAll = res.list;
-          console.log(res.list);
-          require.ensure([], () => {
-            const { export_json_to_excel } = require('../../excel/Export2Excel');
-            const tHeader = ['序号','昵称','真实姓名', '手机号','账户余额','账户收益','心币','关注人数','服务次数','注册日期','认证状态'];
-            const filterVal = ['id','nickName','name', 'mobile','moneyBalance','lawyerEarningsBalance','coinBalance','followNum','serviceNum','createTimeDate','whetherAutonym'];
-            const list = this.tableDataAll;
-            const data = this.formatJson(filterVal, list);
-            export_json_to_excel(tHeader, data, '车辆档案');
-          })
+      exportFile(){
+        axios.post(BaseAPI + `/user/export`, this.pars, {
+          responseType: 'blob'
+        }).then(res => {
+          if (true) {
+            if ('msSaveBlob' in navigator) { // 对IE和Edge的兼容
+              console.log(res.headers['content-disposition']);
+              window.navigator.msSaveBlob(res.data, decodeURI(res.headers['content-disposition'].split('filename=')[1]))
+            } else {
+              let blob = new Blob([res.data], {type: 'application/x-xls'});
+              let link = document.createElement('a');
+              link.href = window.URL.createObjectURL(blob);
+              link.download = new Date().getTime() + '.xls';
+              link.click();
+            }
+          }
         });
+      },
+      formatJson(filterVal, jsonData) {
+        return jsonData.map(v => filterVal.map(j => v[j]))
       },
       search(){
         this.pars.pageNum=1;
