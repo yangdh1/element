@@ -144,6 +144,7 @@ export const asyncMenus = [
       { path: 'user/list', menuId: '999001', name:'用户管理', component: _import('user/userList') },
       { path: 'user/add', name:'添加用户', component: _import('user/addUser') ,hidden:true},
       { path: 'user/edit/:id', name:'编辑用户', component: _import('user/editUser') ,hidden:true},
+      { path: 'user/transactionRecord/:id', name:'交易记录', component: _import('user/transactionRecord') ,hidden:true},
       { path: 'user/detail/:id', name:'查看用户信息', component: _import('user/userDetail') ,hidden:true},
       { path: 'user/attestationDetail/:id', name:'查看用户认证信息', component: _import('user/attestationDetail') ,hidden:true},
       { path: 'role/list', menuId: '999002', name:'角色管理', component: _import('role/roleList') },

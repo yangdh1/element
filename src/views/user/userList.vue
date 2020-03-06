@@ -120,7 +120,7 @@
           </el-table-column>
           <el-table-column
             fixed="right"
-            label="操作" min-width="30%">
+            label="操作" min-width="35%">
             <template slot-scope="scope">
               <el-button
                 icon="el-icon-view"
@@ -134,6 +134,8 @@
                 v-power="'service_updateServiceType'"
                 @click="handleEdit(scope.$index, scope.row)"></el-button>
               <el-button icon="el-icon-delete" size="small" title="删除" type="danger" plain  v-power="'service_deleteServiceType'" @click="handleDelete(scope.$index, scope.row)"></el-button>
+              <el-button icon="el-icon-tickets" size="small" title="交易记录" plain  v-power="'service_deleteServiceType'"
+                         @click="handleTransactionRecord(scope.$index, scope.row)"></el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -262,6 +264,11 @@
       },
       addDev(){
         this.$router.push({path: 'add'});
+      },
+      //交易记录
+      handleTransactionRecord(index, row){
+        PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
+        this.$router.push({path: 'transactionRecord/' + row.id});
       },
       //编辑
       handleEdit(index, row){
