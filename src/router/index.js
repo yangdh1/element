@@ -96,7 +96,18 @@ export const asyncMenus = [
       { path: 'listMoney', menuId: '111002', name:'查询充值记录', component: _import('money/moneyHistoryList')},
     ]
   },
-
+  {
+    path: '/order',
+    component: Layout,
+    name: '订单管理',
+    menuId: '114',
+    icon: 'iconfont icon-orderGuanLi',
+    hasSub: true,
+    children: [
+      { path: 'orderList', menuId: '114001', name:'查询订单列表', component: _import('order/orderList')},
+      { path: 'orderDetail', name:'orderDetail', component: _import('order/orderDetail') ,hidden:true},
+    ]
+  },
   {
     path: '/list',
     component: Layout,
@@ -168,7 +179,7 @@ export const asyncMenus = [
       { path: 'edition/edit/:id', name: '编辑应用版本管理',  component: _import('edition/edit'),hidden: true },
       { path: 'edition/qrPage', name: '二维码下载链接',  component: _import('edition/qrPage'),hidden: true },
 
-      { path: 'orderEvaluate/orderEvaluate', menuId: '999003', name:'订单管理', component: _import('orderEvaluate/orderEvaluate') },
+      { path: 'orderEvaluate/orderEvaluate', menuId: '999003', name:'订单评价管理', component: _import('orderEvaluate/orderEvaluate') },
       { path: 'orderEvaluate/detail/:id', name:'查看详情', component: _import('orderEvaluate/orderEvaluateDetail') ,hidden:true},
     ]
   },

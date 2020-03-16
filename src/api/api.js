@@ -630,5 +630,10 @@ export default {
     list:params => {return axios.post(`${base}/orderEvaluate/list`, params)},
     detail:params => {return axios.post(`${base}/orderEvaluate/detail/`+ params.id)},
     delete:params => {return axios.post(`${base}/orderEvaluate/delete/`+ params.id)},
+  },
+
+  orderManage:{
+    list:params => {return axios.post(`${base}/order/list`, params)},
+    detail:params => {return axios.post(`${base}/order/detail/`+ params.id)},
   }
 }

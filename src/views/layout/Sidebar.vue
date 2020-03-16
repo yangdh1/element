@@ -58,7 +58,7 @@
       }
     },
     mounted(){
-      console.log(this.syncMenus);
+      console.log("菜单列表",this.syncMenus);
       window.addEventListener('scroll', this.handleScroll)
     },
     computed: {
