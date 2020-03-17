@@ -13,45 +13,72 @@
         </el-form-item>
       </el-form>
       <div class="table-wrap" v-loading.body="loading">
-        <el-table highlight-current-row :data="tableData" width="100%" border stripe :header-cell-style="headercellSstyle" :key="$root.$children[0].keyRand">
+
+        <el-table class="el-table" highlight-current-row :data="tableData" width="100%" border stripe :header-cell-style="headercellSstyle" :key="$root.$children[0].keyRand">
+       <!--订单类型 8-->
+          <el-table-column
+            prop="serviceTypeName"
+            label="订单类型"
+            align="center"
+            min-width="8%"/>
+       <!--订单号 15-->
           <el-table-column
             prop="orderCode"
             label="订单号"
             align="center"
-            min-width="20%"/>
+            min-width="15%"/>
+     <!--用户8-->
+          <el-table-column
+            prop="creatorUserName"
+            align="center"
+            label="撰写用户"
+            min-width="8%"/>
+        <!--律师8-->
+          <el-table-column
+            prop="lawyerName"
+            align="center"
+            label="被评价律师"
+            min-width="8%"/>
+         <!--专业评分 6-->
+          <el-table-column
+            prop="professionalGrade"
+            label="专业评分"
+            align="center"
+            min-width="6%"/>
+         <!--态度评分 6-->
+          <el-table-column
+            prop="attitudeGrade"
+            label="态度评分"
+            align="center"
+            min-width="6%"/>
+         <!--效率评分 6-->
+          <el-table-column
+            prop="efficiencyGrade"
+            label="效率评分"
+            align="center"
+            min-width="6%"/>
+<!--          综合评分 6-->
+          <el-table-column
+            prop="syntheticalGrade"
+            label="综合评分"
+            align="center"
+            min-width="6%"/>
+ <!--评价内容 15-->
           <el-table-column
             prop="evaluateContent"
             label="评价内容"
             align="center"
-            min-width="20%"/>
-          <el-table-column
-            prop="avgGrade"
-            label="综合评分"
-            align="center"
-            min-width="10%"/>
-          <el-table-column
-            prop="createName"
-            align="center"
-            label="撰写人"
             min-width="15%"/>
-          <el-table-column
-            prop="toName"
-            align="center"
-            label="被评价人"
-            min-width="15%"/>
-          <el-table-column
-            prop="serviceType"
-            label="订单类型"
-            align="center"
-            min-width="15%"/>
+  <!--评价时间 8-->
           <el-table-column
             prop="createTimeStr"
             label="评价时间"
             align="center"
-            min-width="15%"/>
+            min-width="8%"/>
+        <!--操作8-->
           <el-table-column
             align="center"
-            label="操作" min-width="20%">
+            label="操作" min-width="8%">
             <template slot-scope="scope">
               <el-button
                 icon="el-icon-view"

@@ -81,7 +81,7 @@
           this.pars.total = res.total;
           this.pars.pageNum = res.pageNum;
           this.loading = false;
-          this.tableData = res.list;
+          this.tableData = res.lawyerList;
           console.log("================");
           console.log('this.tableData');
         });

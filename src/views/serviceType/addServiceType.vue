@@ -83,7 +83,7 @@
                 message: '保存成功！',
                 type: 'success'
               });
-              this.$router.push({path: 'list'});
+              this.$router.push({path: 'lawyerList.vue'});
             });
           } else {
             console.log('error submit!!');

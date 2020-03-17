@@ -23,4 +23,8 @@ export default {
   position: relative;
   height: 100%;
 }
+
+ body .el-table th.gutter{
+  display: table-cell!important;
+}
 </style>

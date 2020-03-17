@@ -188,15 +188,14 @@
         this.pars.payStatus="";
         this.pars.creatTimeDuring=[];
         this.pars.commonColumn="";
+        this.pars.startTime="";
+        this.pars.endTime="";
         this.loadData()
       },
       //具体信息
       handleView(index, row){
-        console.log("查询订单详情",row);
-        console.log("this.$route.path",this.$route.path);
         PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-       // this.$router.push({path: '/order/orderDetail/' + row.orderId});
-        this.$router.push({name:'orderDetail', params: {orderInfo: row}})
+        this.$router.push({path: '/order/orderDetail/' + row.orderId});
       },
       //删除该行
       handleDelete(index, row){

@@ -2,7 +2,7 @@
   <div class="page-content">
     <div class="bs-header">
       <div class="bs-title">
-        <span>订单详情</span>
+        <span>订单详情:</span>
       </div>
       <div  style="float: right;margin-right: 10px">
         <i class="el-icon-d-arrow-right"></i>
@@ -13,19 +13,20 @@
     <div>
       <el-form ref="ruleForm" :model="orderInfo"
                size="medium" style="" label-position="left"
-               label-width="200px" >
+               label-width="200px" v-loading.body="loading">
+      <!--基本信息-->
         <el-row>
           <el-row :gutter="20">
             <!--单号-->
             <el-col :span="8">
               <el-form-item label="订单号" prop="orderCode" >
-                <el-input v-model="orderInfo.orderCode" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.orderCode" size="medium" style="width: 350px"></el-input>
               </el-form-item>
             </el-col>
             <!--订单类型-->
             <el-col :span="8">
               <el-form-item label="订单类型" prop="serviceType" >
-                <el-input v-model="orderInfo.businessTypeName" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.businessTypeName" size="medium" style="width: 350px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -33,13 +34,13 @@
          <!--支付费用-->
             <el-col :span="8">
               <el-form-item label="订单金额(余额/三方)" prop="totalFee" >
-                <el-input v-model="orderInfo.totalFee" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.totalFee" size="medium" style="width: 350px"></el-input>
               </el-form-item>
             </el-col>
            <!--心币费用-->
             <el-col :span="8">
               <el-form-item label="心币金额" prop="coinFee" >
-                <el-input v-model="orderInfo.coinFee" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.coinFee" size="medium" style="width: 350px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -47,13 +48,13 @@
             <!--支付方式-->
             <el-col :span="8">
               <el-form-item label="支付方式" prop="paymentWay" >
-                <el-input v-model="orderInfo.paymentWay" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.paymentWay" size="medium" style="width: 350px"></el-input>
               </el-form-item>
             </el-col>
             <!--订单状态-->
             <el-col :span="8">
               <el-form-item label="订单状态" prop="payStatusStr" >
-                <el-input v-model="orderInfo.payStatusStr" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.payStatusStr" size="medium" style="width: 350px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -61,13 +62,27 @@
             <!--下单人-->
             <el-col :span="8">
               <el-form-item label="下单人" prop="userName" >
-                <el-input v-model="orderInfo.userName" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.userName" size="medium" style="width: 350px"></el-input>
               </el-form-item>
             </el-col>
             <!--下单人手机-->
             <el-col :span="8">
               <el-form-item label="下单人手机" prop="userMobile" >
-                <el-input v-model="orderInfo.userMobile" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly"  v-model="orderInfo.userMobile" size="medium" style="width: 350px"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <!--接单人-->
+            <el-col :span="8">
+              <el-form-item label="接单人" prop="lawyerName" >
+                <el-input :readonly="isReadOnly" v-model="orderInfo.lawyerName" size="medium" style="width: 350px"></el-input>
+              </el-form-item>
+            </el-col>
+            <!--接单人手机-->
+            <el-col :span="8">
+              <el-form-item label="下单人手机" prop="lawyerTel" >
+                <el-input :readonly="isReadOnly"  v-model="orderInfo.lawyerTel" size="medium" style="width: 350px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -75,29 +90,104 @@
             <!--创建时间-->
             <el-col :span="8">
               <el-form-item label="创建时间" prop="createTimeStr" >
-                <el-input v-model="orderInfo.createTimeStr" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.createTimeStr" size="medium" style="width: 350px"></el-input>
               </el-form-item>
             </el-col>
             <!--创建终端IP-->
             <el-col :span="8">
               <el-form-item label="下单终端IP" prop="evaluateStatus" >
-                <el-input v-model="orderInfo.clientIP" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.clientIP" size="medium" style="width: 350px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="20">
             <el-col :span="8">
               <el-form-item label="三方交易流水号" prop="outTradeNo" >
-                <el-input v-model="orderInfo.outTradeNo" size="medium" style="width: 350px"/>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.outTradeNo" size="medium" style="width: 350px"/>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="三方交易描述" prop="orderDesc" >
+              <el-form-item :readonly="isReadOnly" label="三方交易描述" prop="orderDesc" >
                 <el-input v-model="orderInfo.orderDesc" type="textarea" />
               </el-form-item>
             </el-col>
           </el-row>
         </el-row>
+        <div class="bs-header bs-title">
+          <span>{{orderInfo.businessTypeName}}服务详情:</span>
+        </div>
+      <!--业务信息-->
+        <el-row>
+          <el-row :gutter="20">
+            <!--案件类型-->
+            <el-col :span="8">
+              <el-form-item label="案件类型" prop="caseTypeName_business" >
+                <el-input :readonly="isReadOnly" v-model="orderInfo.caseTypeName_business==null?'---':orderInfo.caseTypeName_business" size="medium" style="width: 350px"></el-input>
+              </el-form-item>
+            </el-col>
+            <!--业务状态-->
+            <el-col :span="8">
+              <el-form-item label="业务状态" prop="statusDesc_business" >
+                <el-input :readonly="isReadOnly" v-model="orderInfo.statusDesc_business==null?'---':orderInfo.statusDesc_business" size="medium" style="width: 350px"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+
+          <el-row :gutter="20">
+            <!--业务有效期-->
+            <el-col :span="8">
+              <el-form-item label="有效期(天)" prop="validityLimit_business" >
+                <el-input :readonly="isReadOnly" v-model="orderInfo.validityLimit_business==null?'---':orderInfo.validityLimit_business+'天'" size="medium" style="width: 350px"></el-input>
+              </el-form-item>
+            </el-col>
+            <!--服务时长-->
+            <el-col :span="8">
+              <el-form-item label="完成/过期时间" prop="overTime_business" >
+                <el-input :readonly="isReadOnly" v-model="orderInfo.overTime_business==null?'---':orderInfo.overTime_business" size="medium" style="width: 350px"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+
+          <el-row :gutter="20">
+            <!--业务单价-->
+            <el-col :span="8">
+              <el-form-item label="单价(每分钟/每次)" prop="price_business" >
+                <el-input :readonly="isReadOnly" v-model="orderInfo.price_business==null?'---':'¥'+orderInfo.price_business" size="medium" style="width: 350px"></el-input>
+              </el-form-item>
+            </el-col>
+            <!--服务时长-->
+            <el-col :span="8">
+              <el-form-item label="服务时长" prop="durationTime_business" >
+                <el-input :readonly="isReadOnly" v-model="orderInfo.durationTime_business==null?'---':orderInfo.durationTime_business" size="medium" style="width: 350px"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <!--业务请求期望-->
+          <el-row :gutter="20">
+            <el-col :span="16">
+              <el-form-item label="请求与期望" prop="expect_business" >
+                <el-input :readonly="isReadOnly" v-model="orderInfo.expect_business==null?'---':orderInfo.expect_business" size="medium" type="textarea"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <!--事实描述-->
+          <el-row :gutter="20">
+            <el-col :span="16">
+              <el-form-item label="事实描述" prop="factDesc_business" >
+                <el-input :readonly="isReadOnly" v-model="orderInfo.factDesc_business==null?'---':orderInfo.factDesc_business" size="medium" type="textarea"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <!--业务描述-->
+          <el-row :gutter="20">
+            <el-col :span="16">
+              <el-form-item label="业务描述" prop="description_business" >
+                <el-input :readonly="isReadOnly" v-model="orderInfo.description_business==null?'---':orderInfo.description_business" size="medium" type="textarea"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-row>
+
       </el-form>
     </div>
   </div>
@@ -116,29 +206,35 @@
     },
     data: function () {
       return {
-         orderInfo:{}
+         loading  : true,
+         orderInfo:{},
+         isReadOnly:true
       }
     },
     mounted() {
-      this.orderInfo = this.$route.params.orderInfo;
-      console.log("orderInfo",this.orderInfo);
+      this.orderInfo.orderId = this.$route.params.orderId;
+      console.log("orderId",this.orderInfo.orderId);
       //加载编辑信息
-     // this.loadEditData();
+      this.loadEditData();
     },
     methods: {
       revertingg(){
         this.$router.push({path: '/order/orderList'});
       },
       loadEditData() {
-        let obj = {id: this.form.id};
-        API.orderEvaluate.detail(obj).then(res => {
-          this.form = res;
-          console.log("=============================");
-          console.log(res);
+        this.loading=true;
+        let obj = {orderId: this.orderInfo.orderId};
+        API.orderManage.detail(obj).then(res => {
+          if (res!=null){
+            this.orderInfo = res.orderInfo;
+            console.log("===========this.orderInfo==================",this.orderInfo);
+          }else{
+             console.log("--------------加载订单详情信息失败---------------");
+          }
+          this.loading=false;
         });
+
       },
-
-
       // submitUpload() {
       //   this.$refs.upload.submit();
       // }
