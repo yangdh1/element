@@ -1,9 +1,8 @@
 <template>
   <div class="page-content">
     <div class="bs-header">
-      <div class="bs-title">用户心币交易记录</div>
+      <div class="bs-title"><span style="font-weight: bolder">用户心币交易记录</span></div>
     </div>
-
     <div>
       <!--      搜索查询参数表单-->
       <el-form :inline="true" :model="params" label-width="100px" size="small"  class="demo-form-inline">
@@ -44,7 +43,6 @@
         <el-form-item label="模糊查询">
           <el-input style="width: 300px"  v-model="params.commonColumn" placeholder="请输入订单号\手机号\用户名模糊查询"></el-input>
         </el-form-item>
-
         <el-form-item>
           <el-button type="primary" icon="el-icon-search" @click="searchHistory" size="small">查询</el-button>
         </el-form-item>
@@ -54,17 +52,47 @@
       </el-form>
     <!--查询结果-->
       <div class="table-wrap" v-loading.body="loading">
-        <el-table class="el-table" highlight-current-row :data="tableData" width="100%" border stripe :header-cell-style="headercellSstyle" :key="$root.$children[0].keyRand">
+        <!--列表展示-->
+        <el-table  highlight-current-row
+                   border
+                   stripe
+                   show-summary
+                   :summary-method="getSummaries"
+                   :data="tableData"
+                   :default-sort = "{prop: 'createTimeStr', order: 'descending'}"
+                   style="width: 100%">
+          <el-table-column sortable prop="id" label="ID" align="center"  min-width="2%"></el-table-column>
+          <el-table-column label="交易用户" align="center"  min-width="5%">
+            <template slot-scope="scope">
+              <el-popover trigger="hover" placement="top">
+                <p>姓名: {{ scope.row.userName }}</p>
+                <p>电话: {{ scope.row.userTel==null?"---": scope.row.userTel }}</p>
+                <div slot="reference" class="name-wrapper">
+                  <el-tag size="medium">{{ scope.row.userName }}</el-tag>
+                </div>
+              </el-popover>
+            </template>
+          </el-table-column>
+          <el-table-column prop="roleName" align="center" label="用户角色"  min-width="5%"></el-table-column>
+          <el-table-column prop="paymentTypeName"  align="center" label="收支类型"  min-width="5%"></el-table-column>
+          <el-table-column prop="amount"  align="center" label="交易数量"  min-width="5%"></el-table-column>
+          <el-table-column prop="serviceTypeName" align="center"  label="业务类型" min-width="5%"></el-table-column>
+          <el-table-column  align="center" label="交易单号"  min-width="15%">
+            <template slot-scope="scope">
+              <p>{{ scope.row.orderCode==null?"非业务订单,无交易单号":scope.row.orderCode }}</p>
+            </template>
+          </el-table-column>
+          <el-table-column prop="createTimeStr"   sortable  align="center" label="交易时间" min-width="8%"></el-table-column>
+          <el-table-column prop="tradingDescription"  align="center" label="交易描述"  min-width="15%"></el-table-column>
           <!--操作8-->
-          <el-table-column
-            align="center"
-            label="操作" min-width="8%">
+          <el-table-column  align="center"  label="操作" min-width="8%">
             <template slot-scope="scope">
               <el-button icon="el-icon-view" title="查看详情" size="small"  @click="handleView(scope.$index, scope.row)"></el-button>
-              <el-button icon="el-icon-delete" size="small" title="删除" type="danger" plain  v-power="'orderEvaluate_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>
+              <el-button icon="el-icon-delete" size="small" title="删除" type="danger" plain  @click="handleDelete(scope.$index, scope.row)"></el-button>
             </template>
           </el-table-column>
         </el-table>
+        <!--分页展示-->
         <div class="block pagination">
           <io-pagination :pars="params" @change="handlePageChange"></io-pagination>
         </div>
@@ -92,7 +120,7 @@
           roleType    :'-1',   //1用户  2律师
           paymentType :'-1',   // 0收入  1支出
           businessTypeCode:'-1', //业务类型代号
-          creatTimeDuring:'',  //起止时间
+          creatTimeDuring:[],  //起止时间
           commonColumn:''
         }
       }
@@ -120,8 +148,8 @@
       searchHistory(){
         this.params.pageNum=1;
         if (this.params.creatTimeDuring.length>0){
-          let  startTime=  this.pars.creatTimeDuring[0].valueOf()
-          let  endTime=this.pars.creatTimeDuring[1].valueOf();
+          let  startTime=  this.params.creatTimeDuring[0].valueOf()
+          let  endTime=this.params.creatTimeDuring[1].valueOf();
           this.params.startTime=startTime;
           this.params.endTime=endTime;
           console.log("--------startTime------"+startTime+",---endTime---"+endTime);
@@ -142,7 +170,6 @@
         this.params.endTime="";
         this.loadData();
       },
-
       //删除该行
       handleDelete(index, row){
         this.$confirm('确认是否删除?', '提示', {
@@ -150,7 +177,8 @@
           cancelButtonText : '取消',
           type             : 'warning'
         }).then(() => {
-          API.orderEvaluate.delete({id: row.id}).then(res=> {
+          let delParam={id: row.id,type:1};
+          API.tradeRecord.deleteHistoryTradeRecord(delParam).then(res=> {
             this.params.total--;
             this.tableData.splice(index, 1);
             this.$message({
@@ -162,13 +190,36 @@
 
         });
       },
+      //当前页数据统计
+      getSummaries(param) {
+        const { columns, data } = param;
+        const sums = [];
+        columns.forEach((column, index) => {
+          if (index === 0) {
+            sums[index] = '合计';
+            return;
+          }
+          const values = data.map(item => Number(item[column.property]));
+          if (!values.every(value => isNaN(value))) {
+            sums[index] = values.reduce((prev, curr) => {
+              const value = Number(curr);
+              if (!isNaN(value)) {
+                return prev + curr;
+              } else {
+                return prev;
+              }
+            }, 0);
+            sums[index] += '(元/个)';
+          } else {
+            sums[index] = 'N/A';
+          }
+        });
+        return sums;
+      },
       //页面改变回传函数
       handlePageChange(newVal){
         this.params = newVal;
         this.loadData();
-      },
-      headercellSstyle({row, rowIndex}) {
-        return 'text-align:center;';
       }
     }
   }

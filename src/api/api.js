@@ -225,5 +225,7 @@ export default {
     userMoneyHistories:params =>  {return axios.post(`${base}/tradeRecord/listUserMoneyHistories`, params)},
     platCoinHistories:params =>  {return axios.post(`${base}/tradeRecord/listPlatCoinHistories`, params)},
     platMoneyHistories:params =>  {return axios.post(`${base}/tradeRecord/listPlatMoneyHistories`, params)},
+    deleteHistoryTradeRecord:params =>  {return axios.post(`${base}/tradeRecord/deleteHistoryTradeRecord`, params)},
+    historyTradeDetail:params =>  {return axios.post(`${base}/tradeRecord/historyTradeDetail`, params)},
   }
 }
