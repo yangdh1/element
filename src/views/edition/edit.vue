@@ -30,19 +30,6 @@
             </el-form-item>
           </el-col>
           <el-col :span="7">
-            <el-form-item label="客户端类型" prop="clientType" :rules="commonRule">
-              <el-select v-model="form.clientType" placeholder="请选择应用类型" style="width: 240px" size="small">
-                <el-option v-for="item in clientList"
-                           :key="item.type"
-                           :label="item.name"
-                           :value="item.type">
-                </el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20">
-          <el-col :span="8">
             <el-form-item label="是否强制更新" prop="forceUpdateFlag" :rules="commonRule">
               <el-switch v-model="form.forceUpdateFlag" ></el-switch>
             </el-form-item>

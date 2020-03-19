@@ -6,7 +6,7 @@
     <div>
       <el-form :inline="true" :model="pars" class="demo-form-inline"  @submit.native.prevent>
         <el-form-item >
-          <el-input v-model="pars.commonColumn"  size="small" style="width: 450px" prefix-icon="el-icon-search" clearable></el-input>
+          <el-input v-model="pars.condition"  size="small" style="width: 450px" prefix-icon="el-icon-search" clearable></el-input>
         </el-form-item>
 
         <el-form-item>
@@ -37,18 +37,6 @@
               <p v-if="scope.row.appType == 1">android</p>
               <p v-if="scope.row.appType == 2">ios</p>
               <p v-if="scope.row.appType == 3">windows</p>
-            </template>
-          </el-table-column>
-
-          <el-table-column
-            prop="clientType"
-            label="客户端类型"
-            min-width="15%">
-            <template slot-scope="scope">
-              <p v-if="scope.row.clientType == 1">普通用户端</p>
-              <p v-if="scope.row.clientType == 2">律师用户端</p>
-              <!--<p v-if="scope.row.clientType == 3">物业端</p>
-              <p v-if="scope.row.clientType == 4">智慧后勤</p>-->
             </template>
           </el-table-column>
           <el-table-column
@@ -106,7 +94,7 @@
           this.pars.pageNum = res.pageNum;
           this.pars.pageSize = res.pageSize;
           this.loading = false;
-          this.tableData = res.lawyerList;
+          this.tableData = res.list;
         });
       },
       search(){

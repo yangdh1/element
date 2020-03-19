@@ -58,7 +58,7 @@ export const asyncMenus = [
       //审核请求列表
       { path: 'authValidateList', menuId: '00201', name:'审核列表', component: _import('authValidateManage/authValidateList')},
       //详情并判定审核
-      { path: 'checkAuthValidate', menuId: '00202', name:'认证审核', component: _import('authValidateManage/checkAuthValidate'),hidden:true},
+      { path: 'checkAuthValidate/:id', menuId: '00202', name:'认证审核', component: _import('authValidateManage/checkAuthValidate'),hidden:true},
     ]
   },
   {
