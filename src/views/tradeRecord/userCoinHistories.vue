@@ -97,6 +97,20 @@
           <io-pagination :pars="params" @change="handlePageChange"></io-pagination>
         </div>
       </div>
+
+      <!--详情展示弹出层-->
+      <el-dialog   :visible.sync="tradeDetailData.isShow" width="85%">
+        <div slot="title" style="text-align: center;color: #409EFF;font-size: 22px">{{tradeDetailData.title}}</div>
+        <div>
+          <el-steps  space="100px" direction="vertical" :active="tradeDetailData.tradeData.length">
+            <el-step :title="'交易过程--'+(index+1)"
+                     :description="step.tradeDetailDesc"
+                     :status="step.id==tradeDetailData.recordId?'success':'finish'"
+                     v-for="(step,index) in tradeDetailData.tradeData" :key="index">
+            </el-step>
+          </el-steps>
+        </div>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -122,7 +136,16 @@
           businessTypeCode:'-1', //业务类型代号
           creatTimeDuring:[],  //起止时间
           commonColumn:''
-        }
+        },
+        tradeDetailData:{
+          isShow:false,
+          title:'交易明细',
+          tradeData:[
+            {id:1,tradingDescription:'步骤1的描述'},
+            {id:2,tradingDescription:'步骤2的描述'},
+            {id:3,tradingDescription:'步骤3的描述'},
+          ],
+        },
       }
     },
     mounted(){
@@ -170,6 +193,40 @@
         this.params.endTime="";
         this.loadData();
       },
+
+      //查询详情
+      //查询交易明细
+      handleView(index,row){
+        let that=this;
+        let orderCode=row.orderCode==null?"无":row.orderCode;
+        //余额交易明细查询参数
+        if (orderCode.length>4){
+          /*初始化数据*/
+          that.loading=true;
+          that.tradeDetailData.isShow=false;
+          that.tradeDetailData.tradeData=[];
+          that.tradeDetailData.recordId=row.id;
+          let detailParam = {orderCode:row.orderCode,tradeType:0};
+          API.tradeRecord.historyTradeDetail(detailParam).then(res => {
+            if (res!=null){
+              that.tradeDetailData.isShow=true;
+              that.tradeDetailData.title="订单:["+orderCode+"]交易明细";
+              that.tradeDetailData.tradeData=res.tradeData;
+            }else{
+              console.log("--------------加载交易详情信息失败---------------");
+            }
+            this.loading=false;
+          });
+        }
+        else{
+          that.$notify({
+            title: '提示',
+            message: '丢失交易单号,无法获取更多详情',
+            type: 'warning'
+          });
+        }
+      },
+
       //删除该行
       handleDelete(index, row){
         this.$confirm('确认是否删除?', '提示', {

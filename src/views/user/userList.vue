@@ -4,37 +4,18 @@
       <div class="bs-title">用户列表</div>
     </div>
     <div>
-      <el-form :inline="true" :model="pars" class="demo-form-inline">
-         <el-form-item label="">
-         <el-select v-model="pars.whetherLawyer"
-                    placeholder="请选择用户类型"
-                    size="small"
-                    clearable
-                    style="width: 120px">
-           <el-option v-for="item in whetherLawyerList"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.whetherLawyer">
-           </el-option>
-         </el-select>
-         </el-form-item>
-           <el-form-item label="认证状态">
-           <el-select v-model="pars.whetherAutonym"
-                      placeholder="请选择认证状态"
-                      size="small"
-                      clearable
-                      style="width: 120px">
-             <el-option v-for="item in whetherAutonymList"
-                        :key="item.id"
-                        :label="item.name"
-                        :value="item.whetherAutonym">
-             </el-option>
+      <el-form :inline="true" :model="pars" class="demo-form-inline" label-width="150px" size="medium" >
+        <el-form-item label="认证状态">
+           <el-select v-model="pars.authValidateStatus"  placeholder="请选择认证状态" size="medium">
+             <el-option label="全部" value="0"></el-option>
+             <el-option label="未实名认证" value="1"></el-option>
+             <el-option label="已经实名认证" value="2"></el-option>
            </el-select>
        </el-form-item>
         <el-form-item label="注册日期：">
           <div class="block">
             <el-date-picker
-              v-model="pars.timeString"
+              v-model="pars.creatTimeDuring"
               type="daterange"
               range-separator="至"
               start-placeholder="开始日期"
@@ -42,100 +23,62 @@
             </el-date-picker>
           </div>
         </el-form-item>
-        <el-form-item label="">
-          <el-input v-model="pars.commonColumn"   clearable size="small" style="width: 350px" prefix-icon="el-icon-search" placeholder="输入搜索关键字，多个关键字用空格分开"></el-input>
+        <el-form-item label="关键字">
+          <el-input v-model="pars.searchKeyWords"   clearable size="small" style="width: 350px" prefix-icon="el-icon-search" placeholder="输入搜索关键字模糊查询"></el-input>
         </el-form-item>
-       <!-- <el-form-item label="角色">
-          <el-select v-model="pars.roleId"
-                     placeholder="请选择角色"
-                     size="small"
-                     clearable
-                     style="width: 120px">
-            <el-option v-for="item in roleArr"
-                       :key="item.id"
-                       :label="item.name"
-                       :value="item.id">
-            </el-option>
-          </el-select>
-        </el-form-item>-->
         <el-form-item>
           <el-button type="primary" icon="el-icon-search" @click="search" size="small">查询</el-button>
         </el-form-item>
+
         <el-form-item>
-<!--          <el-button type="success" icon="el-icon-plus" @click="addDev" size="small" v-power="'user_add'">新增</el-button>-->
-          <el-button type="success" icon="el-icon-plus" @click="exportFile" size="small" v-power="'user_add'">导出</el-button>
+          <el-button type="info" icon="el-icon-refresh-right" @click="reset" size="small">重置</el-button>
+        </el-form-item>
+
+        <el-form-item >
+          <el-button type="success" icon="el-icon-position" @click="exportFile" size="small" >导出</el-button>
         </el-form-item>
       </el-form>
       <div class="table-wrap" v-loading.body="loading">
-        <el-table highlight-current-row :data="tableData" width="100%" border stripe :header-cell-style="headercellSstyle" :key="$root.$children[0].keyRand">
-          <el-table-column
-            prop="nickName"
-            fixed
-            label="昵称"
-            min-width="15%"/>
-          <el-table-column
-            prop="name"
-            fixed
-            label="真实姓名"
-            min-width="15%"/>
-          <el-table-column
-            prop="mobile"
-            label="手机号"
-            fixed
-            min-width="15%"/>
-<!--          <el-table-column-->
-<!--          prop="roleName"-->
-<!--          label="角色"-->
-<!--          min-width="15%"/>-->
-          <el-table-column
-            prop="moneyBalance"
-            label="账户余额"
-            min-width="15%"/>
-          <el-table-column
-            prop="lawyerEarningsBalance"
-            label="账户收益"
-            min-width="15%"/>
-          <el-table-column
-            prop="coinBalance"
-            label="心币"
-            min-width="15%"/>
-          <el-table-column
-            prop="followNum"
-            label="关注人数"
-            min-width="15%"/>
-          <el-table-column
-            prop="serviceNum"
-            label="服务次数"
-            min-width="15%"/>
-          <el-table-column
-            prop="createTimeDate"
-            label="注册日期"
-            min-width="15%">
+        <el-table highlight-current-row  border stripe
+                  :data="tableData"
+                  width="100%"
+                  :default-sort = "{prop: 'createTimeDate', order: 'descending'}">
+          <el-table-column  sortable  prop="id"  align="center"    label="序号" min-width="5%"/>
+          <el-table-column   align="center"  label="账户昵称"    min-width="10%">
+               <template slot-scope="scope">
+                    <p v-if="scope.row.nickName!=null&&scope.row.nickName.length>0">{{scope.row.nickName}}</p>
+                    <p v-else>---</p>
+               </template>
           </el-table-column>
-          <el-table-column
-            prop="whetherAutonymStr"
-            fixed="right"
-            label="认证状态"
-            min-width="15%">
-          </el-table-column>
-          <el-table-column
-            fixed="right"
-            label="操作" min-width="35%">
+          <el-table-column   prop="mobile"  align="center"    label="电话号码" min-width="10%"/>
+          <el-table-column    prop="name"   align="center"    label="真实姓名"  min-width="10%">
             <template slot-scope="scope">
-              <el-button
-                icon="el-icon-view"
-                title="查看详情"
-                size="small"
-                @click="handleView(scope.$index, scope.row)"></el-button>
-              <el-button
-                icon="el-icon-edit-outline"
-                title="编辑"
-                size="small"
-                v-power="'service_updateServiceType'"
-                @click="handleEdit(scope.$index, scope.row)"></el-button>
-              <el-button icon="el-icon-delete" size="small" title="删除" type="danger" plain  v-power="'service_deleteServiceType'" @click="handleDelete(scope.$index, scope.row)"></el-button>
-              <el-button icon="el-icon-tickets" size="small" title="交易记录" plain  v-power="'service_deleteServiceType'"
-                         @click="handleTransactionRecord(scope.$index, scope.row)"></el-button>
+              <p>{{scope.row.name==null||scope.row.name.length<1?'---':scope.row.name}}</p>
+            </template>
+          </el-table-column>
+          <el-table-column    align="center"    label="性别"  min-width="10%">
+            <template slot-scope="scope">
+                <p v-if="scope.row.sex==1">男</p>
+                <p v-else-if="scope.row.sex==2">女</p>
+                <p v-else>---</p>
+            </template>
+          </el-table-column>
+          <el-table-column  sortable prop="moneyBalance"  align="center"  label="账户余额"  min-width="10%"/>
+          <el-table-column  sortable prop="coinBalance"  align="center"  label="心币"  min-width="10%"/>
+          <el-table-column  sortable prop="createTimeDate"  align="center" label="注册日期"  min-width="10%" />
+          <el-table-column    align="center"     label="认证状态"   min-width="10%">
+              <template slot-scope="scope">
+                <p v-if="scope.row.whetherAutonym==1">未实名认证</p>
+                <p v-else-if="scope.row.whetherAutonym==2">已完成实名认证</p>
+                <p v-else>---</p>
+              </template>
+          </el-table-column>
+          <el-table-column  fixed="right"  align="center"  label="操作" min-width="15%">
+            <template slot-scope="scope">
+              <el-button icon="el-icon-view"  title="查看详情"   size="small"   @click="handleView(scope.$index, scope.row)"></el-button>
+              <el-button icon="el-icon-edit-outline"  title="编辑"  size="small"   @click="handleEdit(scope.$index, scope.row)"></el-button>
+         <!--     <el-button icon="el-icon-tickets" size="small" title="交易记录"    @click="handleTradeRecord(scope.$index, scope.row)"></el-button>-->
+              <el-button icon="el-icon-delete"  title="冻结" size="small"     @click="handleBlocked(scope.$index, scope.row)"></el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -159,75 +102,73 @@
     data: function() {
       return {
         tableData:[],
-        roleArr:[],
-        whetherLawyerList:[
-          {
-            name: '全部',
-            whetherAutonym: 0
-          },
-          {
-            name: '普通用户',
-            whetherLawyer: 1
-          },
-          {
-            name: '律师',
-            whetherLawyer: 2
-          },
-          {
-            name: '企业',
-            whetherLawyer: 3
-          }
-        ],
-        whetherAutonymList:[{
-          name: '全部',
-          whetherAutonym: 0
-        },{
-          name: '未实名认证',
-          whetherAutonym: 1
-        },{
-          name: '已实名认证',
-          whetherAutonym: 2
-        }],
         loading  : true,
         pars: {
           pageSize    : this.GLOBAL.PAGE_COG.PAGESIZE,
           pageNum     : this.GLOBAL.PAGE_COG.PAGENUM,
           total       : this.GLOBAL.PAGE_COG.TOTAL,
-          commonColumn: '',
-          whetherLawyer: 1,
-          whetherAutonym: 0,
-          timeString: '',
-          startDate: '',
+          searchKeyWords: '',
+          authValidateStatus: '',
+          creatTimeDuring: [],
+          startTime: '',
           endTime: ''
         },
-
       }
     },
     mounted(){
       //获取页面缓存
       this.pars = {...this.pars, ...PageCache.getPars(this.$route.path)};
       this.loadData();
-      //this.loadRole();
     },
     methods:{
-      // loadRole(){
-      //   API.role.listAll().then(res=>{
-      //     this.roleArr = res ;
-      //   });
-      // },
       loadData(){
         this.loading = true;
-        API.user.list(this.pars).then(res=> {
-          console.log(res);
-          this.pars.total = res.total;
-          this.pars.pageNum = res.pageNum;
-          this.pars.pageSize = res.pageSize;
+        console.log("获取用户列表的参数",this.pars);
+        API.user.userList(this.pars).then(res=> {
+          console.log("查询用户列表结果",res);
+          if (res!=null){
+            this.pars.total = res.total;
+            this.pars.pageNum = res.pageNum;
+            this.pars.pageSize = res.pageSize;
+            this.tableData = res.list;
+          }else{
+            this.pars.total = 0;
+            this.pars.pageNum =1;
+            this.pars.pageSize = 10;
+            this.tableData=[];
+          }
           this.loading = false;
-          this.tableData = res.lawyerList;
         });
       },
+      //当前页数据统计
+      getSummaries(param) {
+        const { columns, data } = param;
+        const sums = [];
+        columns.forEach((column, index) => {
+          if (index === 0) {
+            sums[index] = '合计';
+            return;
+          }
+          const values = data.map(item => Number(item[column.property]));
+          if (!values.every(value => isNaN(value))) {
+            sums[index] = values.reduce((prev, curr) => {
+              const value = Number(curr);
+              if (!isNaN(value)) {
+                return prev + curr;
+              } else {
+                return prev;
+              }
+            }, 0);
+            sums[index] += '(元/个)';
+          } else {
+            sums[index] = 'N/A';
+          }
+        });
+        return sums;
+      },
+      //导出
       exportFile(){
-        axios.post(BaseAPI + `/user/export`, this.pars, {
+        axios.post(BaseAPI + `/userManage/export`, this.pars, {
           responseType: 'blob'
         }).then(res => {
           if (true) {
@@ -244,77 +185,70 @@
           }
         });
       },
-      formatJson(filterVal, jsonData) {
-        return jsonData.map(v => filterVal.map(j => v[j]))
-      },
+      //搜索
       search(){
         this.pars.pageNum=1;
-        if(this.pars.timeString != null){
-          if(this.pars.timeString[0] != null){
-            this.pars.startDate = this.pars.timeString[0];
-          }
-          if(this.pars.timeString[1] != null){
-            this.pars.endTime = this.pars.timeString[1];
-          }
-        }else{
-          this.pars.startDate = '';
-          this.pars.endTime = '';
+        if (this.pars.creatTimeDuring.length>0){
+          let  startTime=  this.pars.creatTimeDuring[0].valueOf();
+          let  endTime=this.pars.creatTimeDuring[1].valueOf();
+          this.pars.startTime=startTime;
+          this.pars.endTime=endTime;
+          console.log("--------startTime------"+startTime+",---endTime---"+endTime);
         }
         this.loadData();
       },
-      addDev(){
-        this.$router.push({path: 'add'});
+      //重置搜索
+      reset(){
+        this.pars.total =this.GLOBAL.PAGE_COG.TOTAL;
+        this.pars.pageNum =this.GLOBAL.PAGE_COG.PAGENUM;
+        this.pars.pageSize = this.GLOBAL.PAGE_COG.PAGESIZE;
+        this.pars.creatTimeDuring=[];
+        this.pars.searchKeyWords="";
+        this.pars.authValidateStatus="";
+        this.pars.startTime="";
+        this.pars.endTime="";
+        this.loadData()
       },
       //交易记录
-      handleTransactionRecord(index, row){
+      handleTradeRecord(index, row){
         PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-        this.$router.push({path: 'transactionRecord/' + row.id});
-      },
-      //编辑
-      handleEdit(index, row){
-        PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-        this.$router.push({path: 'edit/' + row.id});
+        this.$router.push({path: 'tradeRecord/' + row.id});
       },
       //具体信息
       handleView(index, row){
         PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-        this.$router.push({path: 'detail/' + row.id});
+        this.$router.push({path: 'userDetail/' + row.id});
       },
+
+      //编辑
+      handleEdit(index, row){
+        PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
+        this.$router.push({path: 'editUser/' + row.id});
+      },
+
       //删除该行
-      handleDelete(index, row){
-        this.$confirm('确认是否删除?', '提示', {
+      handleBlocked(index, row){
+        this.$confirm('确认是否冻结该账户?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText : '取消',
           type             : 'warning'
         }).then(() => {
-          API.user.delete({id: row.id}).then(res=> {
+          API.user.blockedAccount({id: row.id}).then(res=> {
             this.pars.total--;
             this.tableData.splice(index, 1);
             this.$message({
               type   : 'success',
-              message: '删除成功!'
+              message: '账户已经冻结!'
             });
           })
         }).catch(() => {
 
         });
       },
-      handleGrant(index, row){
-        //保存页面条件
-        PageCache.savePars(this.$route.path, this.pars);
-        this.$router.push({ path: 'loadResource/' + row.id });
-      },
-      handlePosition(index, row){
-        PageCache.savePars(this.$route.path, this.pars);
-        this.$router.push({ path: 'positionResource/' + row.id });
-      },
       //页面改变回传函数
       handlePageChange(newVal){
         this.pars = newVal;
         this.loadData();
-      },
-      headercellSstyle({row, rowIndex}) {
-        return 'text-align:center;';
       }
     }
   }

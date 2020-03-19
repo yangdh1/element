@@ -99,11 +99,8 @@
             align="center"
             label="操作" min-width="20%">
             <template slot-scope="scope">
-              <el-button
-                icon="el-icon-view"
-                title="查看详情"
-                size="small"
-                @click="handleView(scope.$index, scope.row)"></el-button>
+              <el-button   icon="el-icon-view" title="查看详情" size="small" @click="handleView(scope.$index, scope.row)"></el-button>
+              <el-button   icon="el-icon-s-data" title="交易记录" size="small" @click="handleRecordView(scope.$index, scope.row)"></el-button>
               <el-button icon="el-icon-delete" size="small" title="删除" type="danger" plain  v-power="'orderEvaluate_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>
             </template>
           </el-table-column>
@@ -114,6 +111,20 @@
         </div>
       </div>
     </div>
+
+    <!--详情展示弹出层-->
+    <el-dialog   :visible.sync="tradeDetailData.isShow" width="85%">
+      <div slot="title" style="text-align: center;color: #409EFF;font-size: 22px">{{tradeDetailData.title}}</div>
+      <div>
+        <el-steps  space="100px" direction="vertical" :active="tradeDetailData.tradeData.length">
+          <el-step :title="'交易过程--'+(index+1)"
+                   :description="step.tradeDetailDesc"
+                   :status="step.id==tradeDetailData.recordId?'success':'finish'"
+                   v-for="(step,index) in tradeDetailData.tradeData" :key="index">
+          </el-step>
+        </el-steps>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -137,7 +148,16 @@
           payStatus   : '',
           creatTimeDuring:[],
           commonColumn:''
-        }
+        },
+        tradeDetailData:{
+          isShow:false,
+          title:'交易明细',
+          tradeData:[
+            {id:1,tradingDescription:'步骤1的描述'},
+            {id:2,tradingDescription:'步骤2的描述'},
+            {id:3,tradingDescription:'步骤3的描述'},
+          ],
+        },
       }
     },
     mounted(){
@@ -170,7 +190,7 @@
       searchOrder(){
         this.pars.pageNum=1;
         if (this.pars.creatTimeDuring.length>0){
-           let  startTime=  this.pars.creatTimeDuring[0].valueOf()
+           let  startTime=  this.pars.creatTimeDuring[0].valueOf();
            let  endTime=this.pars.creatTimeDuring[1].valueOf();
            this.pars.startTime=startTime;
            this.pars.endTime=endTime;
@@ -197,6 +217,38 @@
         PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
         this.$router.push({path: '/order/orderDetail/' + row.orderId});
       },
+      //交易记录明细
+      handleRecordView(index, row){
+        let that=this;
+        let orderCode=row.orderCode==null?"无":row.orderCode;
+        //余额交易明细查询参数
+        if (orderCode.length>4){
+          /*初始化数据*/
+          that.loading=true;
+          that.tradeDetailData.isShow=false;
+          that.tradeDetailData.tradeData=[];
+          that.tradeDetailData.recordId=row.id;
+          let detailParam = {orderCode:row.orderCode,tradeType:0};
+          API.tradeRecord.historyTradeDetail(detailParam).then(res => {
+            if (res!=null){
+              that.tradeDetailData.isShow=true;
+              that.tradeDetailData.title="订单:["+orderCode+"]交易明细";
+              that.tradeDetailData.tradeData=res.tradeData;
+            }else{
+              console.log("--------------加载交易详情信息失败---------------");
+            }
+            this.loading=false;
+          });
+        }
+        else{
+          that.$notify({
+            title: '提示',
+            message: '丢失交易单号,无法获取更多详情',
+            type: 'warning'
+          });
+        }
+      },
+
       //删除该行
       handleDelete(index, row){
         this.$confirm('确认是否删除?', '提示', {

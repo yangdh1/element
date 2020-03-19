@@ -1,17 +1,25 @@
 <template>
     <div class="page-content">
-      <div class="bs-header">
+      <div class="bs-header" style="text-align: center">
         <el-row>
-          <el-col :span="3">
-            <el-button type="text"  @click="$router.push({path:  '/system/user/detail/' + form.id})"><span
-              style="color: black">用户信息</span></el-button>
-          </el-col>
-          <el-col :span="3">
-            <el-button type="text" disabled @click="$router.push({path: 'attestationDetail/' + form.id})"><span  style="font-weight:bold;color:blue">认证信息</span>
+          <el-col :span="1">
+            <el-button type="text"
+                       @click="$router.push({path: '/userManage/userDetail/' + form.id})">
+              <span style="color: black">用户信息</span>
             </el-button>
+          </el-col>
+          <el-col :span="1">
+            <el-button type="text" disabled
+                       @click="$router.push({path: '/userManage/userAuthValidateInfo/' + form.id})">
+              <span  style="font-weight:bold;color:blue">认证信息</span>
+            </el-button>
+          </el-col>
+          <el-col :span="22" style="text-align: right">
+            <el-button  size="medium" type="primary" @click="revertingg">返回</el-button>
           </el-col>
         </el-row>
       </div>
+
       <el-form ref="ruleForm" :model="form"
                size="small"
                label-width="110px">
@@ -47,19 +55,8 @@
               </el-form-item>
             </el-col>
           </el-row>
-          <el-col :span="24">
-            <el-form-item>
-              <el-button
-                size="small"
-                type="info"
-                @click="revertingg">返回</el-button>
-            </el-form-item>
-
-          </el-col>
         </el-row>
       </el-form>
-    </div>
-  </div>
     </div>
 </template>
 
@@ -68,7 +65,6 @@
   import ElOption from "../../../node_modules/element-ui/packages/select/src/option.vue";
   import ElCol from "element-ui/packages/col/src/col";
   import ElRow from "element-ui/packages/row/src/row";
-  // import { Navbar, Sidebar, AppMain } from 'views/layout'
   export default {
     components: {
       ElRow,
@@ -93,7 +89,7 @@
     },
     methods: {
       revertingg(){
-        this.$router.push({path: '/system/user/list'});
+        this.$router.push({path: '/userManage/userList'});
       },
       loadEditData() {
         let obj = {id: this.form.id};

@@ -218,15 +218,12 @@
       API.role.listAll().then(res => {
         this.roleArr = res
       });
-      // API.company.companyAll().then(res => {
-      //   this.companyAll = res
-      // });
       //加载编辑信息
       this.loadEditData();
     },
     methods: {
       revertingg(){
-        this.$router.push({path: '/system/user/list'});
+        this.$router.push({path: '/userManage/userList'});
       },
       loadProvince() {
         API.province.provinceList({}).then(res => {

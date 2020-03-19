@@ -40,6 +40,7 @@ export const asyncMenus = [
       { path: 'addUser', menuId:'00100', name:'添加用户', component: _import('user/addUser') ,hidden:true},
       { path: 'userList', menuId: '00101', name:'用户列表', component: _import('user/userList')},
       { path: 'userDetail/:id', menuId: '0010101', name:'用户详情', component: _import('user/userDetail'),hidden:true},
+      { path: 'userAuthValidateInfo/:id', name:'查看用户认证信息', component: _import('user/attestationDetail') ,hidden:true},
       { path: 'editUser/:id', menuId: '0010102', name:'编辑用户信息', component: _import('user/editUser'),hidden:true},
       { path: 'lawyerList', menuId: '00102', name:'律师列表', component: _import('lawyer/lawyerList')},
       { path: 'lawyerDetail', menuId: '0010201', name:'律师详情', component: _import('lawyer/lawyerDetail'),hidden:true},
@@ -228,7 +229,7 @@ export const asyncMenus = [
     hasSub: true,
     children: [
       { path: 'user/transactionRecord/:id', name:'交易记录', component: _import('user/transactionRecord') ,hidden:true},
-      { path: 'user/attestationDetail/:id', name:'查看用户认证信息', component: _import('user/attestationDetail') ,hidden:true},
+
       { path: 'role/list', menuId: '999002', name:'角色管理', component: _import('role/roleList') },
       { path: 'role/add', name:'添加角色', component: _import('role/addRole') ,hidden:true},
       { path: 'role/edit/:id', name:'编辑角色', component: _import('role/editRole') ,hidden:true},

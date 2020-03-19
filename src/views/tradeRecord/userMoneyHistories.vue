@@ -104,7 +104,7 @@
           <el-steps  space="100px" direction="vertical" :active="tradeDetailData.tradeData.length">
             <el-step :title="'交易过程--'+(index+1)"
                      :description="step.tradeDetailDesc"
-                     status="finish"
+                     :status="step.id==tradeDetailData.recordId?'success':'finish'"
                      v-for="(step,index) in tradeDetailData.tradeData" :key="index">
             </el-step>
           </el-steps>
@@ -195,18 +195,18 @@
       handleView(index,row){
         let that=this;
         let orderCode=row.orderCode==null?"无":row.orderCode;
-        let userName=row.userName;
         //余额交易明细查询参数
         if (orderCode.length>4){
           /*初始化数据*/
           that.loading=true;
           that.tradeDetailData.isShow=false;
           that.tradeDetailData.tradeData=[];
-          let detailParam = {orderCode:row.orderCode,tradeType:2};
+          that.tradeDetailData.recordId=row.id;
+          let detailParam = {orderCode:row.orderCode,tradeType:0};
           API.tradeRecord.historyTradeDetail(detailParam).then(res => {
             if (res!=null){
               that.tradeDetailData.isShow=true;
-              that.tradeDetailData.title="余额交易明细:[ID:"+row.id+"],关联用户:["+userName+"],关联订单:["+orderCode+"]";
+              that.tradeDetailData.title="订单:["+orderCode+"]交易明细";
               that.tradeDetailData.tradeData=res.tradeData;
             }else{
               console.log("--------------加载交易详情信息失败---------------");
