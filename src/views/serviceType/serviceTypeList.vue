@@ -25,7 +25,7 @@
           <el-button type="primary" icon="el-icon-search" @click="search" size="small">查询</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="success" icon="el-icon-plus" @click="addDev" size="small" v-power="'serviceType_add'">新增</el-button>
+    <!--      <el-button type="success" icon="el-icon-plus" @click="addDev" size="small" v-power="'serviceType_add'">新增</el-button>-->
         </el-form-item>
       </el-form>
       <div class="table-wrap" v-loading.body="loading">
@@ -39,16 +39,16 @@
             align="center"
             prop="oneServiceTypeName"
             label="服务类型名称"
-            min-width="50%"/>
-          <el-table-column
-            align="center"
-            prop="servicePriceUnit"
-            label="服务计价单位"
             min-width="20%"/>
           <el-table-column
             align="center"
+            prop="twoServiceTypeCode"
+            label="服务类型的code"
+            min-width="20%"/>
+     <!--     <el-table-column
+            align="center"
             label="操作" min-width="30%">
-        <!--    <template slot-scope="scope">
+        &lt;!&ndash;    <template slot-scope="scope">
               <el-button
                 icon="el-icon-view"
                 title="查看详情"
@@ -61,8 +61,8 @@
                 v-power="'serviceType_update'"
                 @click="handleEdit(scope.$index, scope.row)"></el-button>
               <el-button icon="el-icon-delete" size="small" title="删除" type="danger" plain  v-power="'serviceType_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>
-            </template>-->
-          </el-table-column>
+            </template>&ndash;&gt;
+          </el-table-column>-->
         </el-table>
         <div class="block pagination">
           <io-pagination :pars="pars" @change="handlePageChange"></io-pagination>
