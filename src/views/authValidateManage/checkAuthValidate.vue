@@ -37,15 +37,15 @@
           <el-row :gutter="10"style="left: 140px;width: 900px">
             <el-col :span="7">
               <el-form-item label="身份证正面: ">
-                <div v-for="url in imageUrls">
-                  <img class="img_style" :src="url" alt="">
+                <div>
+                  <img class="img_style" :src="imageUrls" alt="">
                 </div>
               </el-form-item>
             </el-col>
             <el-col :span="7">
               <el-form-item label="身份证反面: ">
-                <div v-for="url in imageUrls">
-                  <img class="img_style" :src="url" alt="">
+                <div >
+                  <img class="img_style" :src="againstCardurl" alt="">
                 </div>
               </el-form-item>
             </el-col>
@@ -70,8 +70,8 @@
           <el-row :gutter="10"style="left: 140px">
             <el-col :span="7">
               <el-form-item label="学位证书副本: ">
-                <div v-for="url in imageUrls">
-                  <img class="img_style" :src="url" alt="">
+                <div >
+                  <img class="img_style" :src="certificatePathUrls" alt="">
                 </div>
               </el-form-item>
             </el-col>
@@ -85,20 +85,20 @@
             </el-col>
           </el-row>
           <el-row :gutter="10"style="left: 140px;width: 600px">
-              简;&nbsp;介：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{form.introduction}}
+              简&nbsp;介：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{form.introduction}}
           </el-row>
           <el-row :gutter="10"style="left: 140px">
             <el-col :span="7">
               <el-form-item label="执业证明: ">
-                <div v-for="url in imageUrls">
-                  <img class="img_style" :src="url" alt="">
+                <div >
+                  <img class="img_style" :src="onePractisingCertificatePathUrsl" alt="">
                 </div>
               </el-form-item>
             </el-col>
             <el-col :span="7">
               <el-form-item label="法律执业资格证书: ">
-                <div v-for="url in imageUrls">
-                  <img class="img_style" :src="url" alt="">
+                <div>
+                  <img class="img_style" :src="twoPractisingCertificatePathUrls" alt="">
                 </div>
               </el-form-item>
             </el-col>
@@ -175,6 +175,8 @@
   import ElOption from "../../../node_modules/element-ui/packages/select/src/option.vue";
   import ElCol from "element-ui/packages/col/src/col";
   import ElRow from "element-ui/packages/row/src/row";
+  import {MultipartAPI} from "../../api/api";
+  import {base64_encode} from "../../utils/base64Encode";
   // import { Navbar, Sidebar, AppMain } from 'views/layout'
   export default {
     components: {
@@ -187,9 +189,11 @@
         status:'2',
         loading  : true,
         imageUrls:'',
+        againstCardurl:'',
         reason:'',
         form: {
          name:'',
+          justCard:'',
           addressName:'',
           userCaseName:'',
           introduction:'',
@@ -209,6 +213,21 @@
       API.lawyer.detail({id:this.$route.params.id}).then(res=>{
         console.log("==============================================")
         console.log(res)
+        if (res !== null) {
+          this.convertUrls(res.justCard);
+        }
+        if (res !== null) {
+          this.twoPractisingCertificatePathUrls(res.twoPractisingCertificatePath);
+        }
+        if (res !== null) {
+          this.onePractisingCertificatePathUrsl(res.onePractisingCertificatePath);
+        }
+        if (res !== null) {
+          this.certificatePathUrls(res.certificatePath);
+        }
+        if (res !== null) {
+          this.againstCardUrls(res.againstCard);
+        }
         this.form.name =res.name;
         this.form.idCard =res.idCard;
         this.form.introduction =res.introduction;
@@ -224,6 +243,47 @@
       });
     },
     methods: {
+
+      convertUrls(imagePaths) {
+        if (imagePaths !== null && imagePaths !== '') {
+          let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
+          console.log("1111111111111111111111111111111111111111111");
+          console.log(url);
+          this.imageUrls=url;
+        }
+      },
+      twoPractisingCertificatePathUrls(imagePaths) {
+        if (imagePaths !== null && imagePaths !== '') {
+          let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
+          console.log("1111111111111111111111111111111111111111111");
+          console.log(url);
+          this.twoPractisingCertificatePathUrls=url;
+        }
+      },
+      onePractisingCertificatePathUrsl(imagePaths) {
+        if (imagePaths !== null && imagePaths !== '') {
+          let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
+          console.log("1111111111111111111111111111111111111111111");
+          console.log(url);
+          this.onePractisingCertificatePathUrsl=url;
+        }
+      },
+  certificatePathUrls(imagePaths) {
+    if (imagePaths !== null && imagePaths !== '') {
+      let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
+      console.log("1111111111111111111111111111111111111111111");
+      console.log(url);
+      this.certificatePathUrls=url;
+    }
+  },
+      againstCardUrls(imagePaths) {
+        if (imagePaths !== null && imagePaths !== '') {
+          let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
+          console.log("1111111111111111111111111111111111111111111");
+          console.log(url);
+          this.againstCardurl=url;
+        }
+      },
       revertingg(){
         this.$router.push({path: '/authValidateManage/authValidateList'});
       },
@@ -287,7 +347,7 @@
     display: block;
   }
   .img_style {
-    width: 300px;
+    width: 200px;
     height: 200px;
   }
 </style>
