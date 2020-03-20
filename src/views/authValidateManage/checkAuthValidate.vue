@@ -247,40 +247,30 @@
       convertUrls(imagePaths) {
         if (imagePaths !== null && imagePaths !== '') {
           let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
-          console.log("1111111111111111111111111111111111111111111");
-          console.log(url);
           this.imageUrls=url;
         }
       },
       twoPractisingCertificatePathUrls(imagePaths) {
         if (imagePaths !== null && imagePaths !== '') {
           let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
-          console.log("1111111111111111111111111111111111111111111");
-          console.log(url);
           this.twoPractisingCertificatePathUrls=url;
         }
       },
       onePractisingCertificatePathUrsl(imagePaths) {
         if (imagePaths !== null && imagePaths !== '') {
           let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
-          console.log("1111111111111111111111111111111111111111111");
-          console.log(url);
           this.onePractisingCertificatePathUrsl=url;
         }
       },
-  certificatePathUrls(imagePaths) {
-    if (imagePaths !== null && imagePaths !== '') {
-      let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
-      console.log("1111111111111111111111111111111111111111111");
-      console.log(url);
-      this.certificatePathUrls=url;
-    }
-  },
+      certificatePathUrls(imagePaths) {
+        if (imagePaths !== null && imagePaths !== '') {
+          let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
+          this.certificatePathUrls=url;
+        }
+      },
       againstCardUrls(imagePaths) {
         if (imagePaths !== null && imagePaths !== '') {
           let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
-          console.log("1111111111111111111111111111111111111111111");
-          console.log(url);
           this.againstCardurl=url;
         }
       },

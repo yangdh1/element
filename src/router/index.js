@@ -43,7 +43,7 @@ export const asyncMenus = [
       { path: 'userAuthValidateInfo/:id', name:'查看用户认证信息', component: _import('user/attestationDetail') ,hidden:true},
       { path: 'editUser/:id', menuId: '0010102', name:'编辑用户信息', component: _import('user/editUser'),hidden:true},
       { path: 'lawyerList', menuId: '00102', name:'律师列表', component: _import('lawyer/lawyerList')},
-      { path: 'lawyerDetail', menuId: '0010201', name:'律师详情', component: _import('lawyer/lawyerDetail'),hidden:true},
+      { path: 'lawyerDetail/:id', menuId: '0010201', name:'律师详情', component: _import('lawyer/lawyerDetail'),hidden:true},
       { path: 'editLawyer', menuId: '0010202', name:'编辑律师信息', component: _import('lawyer/editLawyer'),hidden:true},
     ]
   },
