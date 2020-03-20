@@ -220,6 +220,25 @@ export const asyncMenus = [
       { path: 'lawyerList.vue', menuId: '108003', name:'系统数据', component: _import('config/list')},
     ]
   },
+
+  {
+    path: '/config',
+    component: Layout,
+    name: '信息公告管理',
+    menuId: '113',
+    icon: 'iconfont icon-gupiaohuiyuanchongzhijilu',
+    hasSub: true,
+    children: [
+      { path: 'appLawyerIndex/list',icon: '', menuId: '999004', name: '首页轮播图管理',  component: _import('appLawyerIndex/list'), hidden: true  },
+      { path: 'appLawyerIndex/addImg', name: '新增律师APP轮播', component: _import('appLawyerIndex/addImg'), hidden: true},
+      { path: 'appLawyerIndex/editImg/:id', name: '编辑律师APP轮播', component: _import('appLawyerIndex/editImg'), hidden: true},
+      { path: 'appLawyerIndex/appcarouselFigureDetail/:id', name: '律师APP轮播详情', component: _import('appLawyerIndex/appcarouselFigureDetail'), hidden: true},
+      { path: 'appLawyerIndex/userlist',icon: '', menuId: '999005', name: '普通用户轮播管理',  component: _import('appLawyerIndex/userlist')},
+      { path: 'appLawyerIndex/addUserImg', name: '新增普通用户轮播', component: _import('appLawyerIndex/addUserImg'), hidden: true},
+      { path: 'appLawyerIndex/editUserImg/:id', name: '编辑普通用户轮播', component: _import('appLawyerIndex/editUserImg'), hidden: true},
+      { path: 'appLawyerIndex/appcarouselFigureUserDetail/:id', name: '普通用户轮播详情', component: _import('appLawyerIndex/appcarouselFigureUserDetail'), hidden: true},
+    ]
+  },
   {
     path: '/system',
     component: Layout,
@@ -237,14 +256,14 @@ export const asyncMenus = [
       { path: 'oaIndex/list',icon: '', menuId: '999003', name: 'web轮播管理',  component: _import('oaIndex/list') },
       { path: 'oaIndex/addImg', name: '新增web轮播', component: _import('oaIndex/addImg'), hidden: true},
       { path: 'oaIndex/editImg/:id', name: '编辑web轮播', component: _import('oaIndex/editImg'), hidden: true},
-      { path: 'appLawyerIndex/list',icon: '', menuId: '999004', name: '律师APP轮播管理',  component: _import('appLawyerIndex/list') },
+     /* { path: 'appLawyerIndex/list',icon: '', menuId: '999004', name: '律师APP轮播管理',  component: _import('appLawyerIndex/list') },
       { path: 'appLawyerIndex/addImg', name: '新增律师APP轮播', component: _import('appLawyerIndex/addImg'), hidden: true},
       { path: 'appLawyerIndex/editImg/:id', name: '编辑律师APP轮播', component: _import('appLawyerIndex/editImg'), hidden: true},
       { path: 'appLawyerIndex/appcarouselFigureDetail/:id', name: '律师APP轮播详情', component: _import('appLawyerIndex/appcarouselFigureDetail'), hidden: true},
       { path: 'appGeneralUserIndex/list',icon: '', menuId: '999005', name: '普通用户轮播管理',  component: _import('appGeneralUserIndex/list') },
       { path: 'appGeneralUserIndex/addImg', name: '新增普通用户轮播', component: _import('appGeneralUserIndex/addImg'), hidden: true},
       { path: 'appGeneralUserIndex/editImg/:id', name: '编辑普通用户轮播', component: _import('appGeneralUserIndex/editImg'), hidden: true},
-      { path: 'appGeneralUserIndex/appcarouselFigureDetail/:id', name: '普通用户轮播详情', component: _import('appGeneralUserIndex/appcarouselFigureDetail'), hidden: true},
+      { path: 'appGeneralUserIndex/appcarouselFigureDetail/:id', name: '普通用户轮播详情', component: _import('appGeneralUserIndex/appcarouselFigureDetail'), hidden: true},*/
 
       { path: 'edition/list', menuId: '999006', name: '应用版本管理',  component: _import('edition/list') },
       { path: 'edition/add',  name: '添加应用版本管理',  component: _import('edition/add'),hidden: true },

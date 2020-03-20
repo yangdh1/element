@@ -95,7 +95,6 @@ axios.interceptors.response.use(function (response) {
 
 export const BaseAPI = base;
 export const MultipartAPI = multipartUrl;
-
 export default {
   appVersionManager: {
     list: params => {
@@ -153,6 +152,7 @@ export default {
     listAll	: params => { return axios.post(`${base}/config/listAll`); },
     edit:  params => { return axios.post(`${base}/config/update`, params); },
   },
+
   user:{
     login: params =>{ return axios.post(`${base}/login`, params); },
     logout: params =>{ return axios.post(`${base}/logout`, params); },
@@ -228,5 +228,13 @@ export default {
     platMoneyHistories:params =>  {return axios.post(`${base}/tradeRecord/listPlatMoneyHistories`, params)},
     deleteHistoryTradeRecord:params =>  {return axios.post(`${base}/tradeRecord/deleteHistoryTradeRecord`, params)},
     historyTradeDetail:params =>  {return axios.post(`${base}/tradeRecord/historyTradeDetail`, params)},
+  },
+  carouselFigureManager:{
+    listAppLawyer:params =>  {return axios.post(`${base}/carouselFigureManager/listAppLawyer`, params)},
+    listAppGeneralUser:params =>  {return axios.post(`${base}/carouselFigureManager/listAppGeneralUser`, params)},
+    detail:params =>  {return axios.post(`${base}/carouselFigureManager/detail`, params)},
+    update:params =>  {return axios.post(`${base}/carouselFigureManager/update`, params)},
+    addAppGeneralUser:params =>  {return axios.post(`${base}/carouselFigureManager/addAppGeneralUser`, params)},
+    delete:params =>  {return axios.post(`${base}/carouselFigureManager/delete/` + params.id)},
   }
 }

@@ -100,7 +100,7 @@
         });
       },
       cancelInformation(){
-        this.$router.push({path: '/config/appLawyerIndex/list'});
+        this.$router.push({path: '/config/appLawyerIndex/userlist'});
         this.$message("已返回")
       },
     },

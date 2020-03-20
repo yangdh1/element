@@ -1,7 +1,7 @@
 <template>
   <div class="page-content">
     <div class="bs-header">
-      <div class="bs-title" style="text-align: left">编辑普通用户轮播图</div>
+      <div class="bs-title" style="text-align: left">新建普通用户轮播图</div>
     </div>
     <div id="docDetailShow">
       <el-form  :rules="rules"  ref="ruleForm"  label-width="90px" :model="formData"  @submit.native.prevent>
@@ -15,10 +15,9 @@
             list-type="picture-card"
             :action="uploadObj.action"
             :headers="uploadObj.headers"
-            :on-success="handleAvatarSuccess"
-            :show-file-list="false">
-            <img v-if="imageUrl" :src="imageUrl" class="avatar" style="width: 150px">
-            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            :limit="1"
+            :on-success="handleAvatarSuccess">
+            <i class="el-icon-plus"></i>
           </el-upload>
         </el-form-item>
             <el-form-item label="信息内容" prop="content">
@@ -97,7 +96,7 @@
     computed: {
       uploadObj: function () {
         return {
-          action: MultipartAPI+'/upload/appLawyerIndex',
+          action: MultipartAPI+'/upload/AppIndex',
           headers: {
             'token': this.$store.getters.token
           }
@@ -105,18 +104,9 @@
       }
     },
     mounted(){
-      this.formData.id = this.$route.params.id;
-      this.loadEditData();
     },
 
     methods: {
-      loadEditData(){
-        let obj = {id: this.formData.id};
-        API.carouselFigureManager.detail(obj).then(res=>{
-         this.formData = res;
-         this.imageUrl = res.url;
-        });
-      },
       handleAvatarSuccess(res, file) {
         this.formData.imagePath = res.data;
         this.imageUrl = URL.createObjectURL(file.raw);
@@ -124,10 +114,11 @@
       images_upload_handler:(blobInfo, success, failure)=>{
         this.handleImgUpload()
       },
+
       onSubmit(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            API.carouselFigureManager.update(this.formData).then(res=>{
+            API.carouselFigureManager.addAppGeneralUser(this.formData).then(res=>{
               this.$message({
                 message: '保存成功！',
                 type: 'success'
