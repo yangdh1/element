@@ -75,7 +75,7 @@
           this.pars.total = res.total;
           this.pars.pageNum = res.pageNum;
           this.loading = false;
-          this.tableData = res.lawyerList;
+          this.tableData = res.list;
         });
 
       },

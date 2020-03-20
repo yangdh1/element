@@ -108,7 +108,7 @@
           this.pars.pageSize = res.pageSize;
           this.loading = false;
           console.log(res);
-          this.tableData = res.lawyerList;
+          this.tableData = res.list;
         });
       },
       search(){
