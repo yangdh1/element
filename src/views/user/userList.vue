@@ -4,7 +4,7 @@
       <div class="bs-title">用户列表</div>
     </div>
     <div>
-      <el-form :inline="true" :model="pars" class="demo-form-inline" label-width="150px" size="medium" >
+      <el-form :inline="true" :model="pars" class="demo-form-inline" label-width="100px" size="medium" >
         <el-form-item label="认证状态">
            <el-select v-model="pars.authValidateStatus"  placeholder="请选择认证状态" size="medium">
              <el-option label="全部" value="0"></el-option>
@@ -76,7 +76,7 @@
           <el-table-column  fixed="right"  align="center"  label="操作" min-width="15%">
             <template slot-scope="scope">
               <el-button icon="el-icon-view"  title="查看详情"   size="small"   @click="handleView(scope.$index, scope.row)"></el-button>
-              <el-button icon="el-icon-edit-outline"  title="编辑"  size="small"   @click="handleEdit(scope.$index, scope.row)"></el-button>
+           <!--   <el-button icon="el-icon-edit-outline"  title="编辑"  size="small"   @click="handleEdit(scope.$index, scope.row)"></el-button>-->
          <!--     <el-button icon="el-icon-tickets" size="small" title="交易记录"    @click="handleTradeRecord(scope.$index, scope.row)"></el-button>-->
               <el-button icon="el-icon-delete"  title="冻结" size="small"     @click="handleBlocked(scope.$index, scope.row)"></el-button>
             </template>

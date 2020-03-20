@@ -99,7 +99,7 @@
           <el-table-column  fixed="right"  align="center"  label="操作" min-width="15%">
             <template slot-scope="scope">
               <el-button icon="el-icon-view"  title="查看详情"   size="small"   @click="handleView(scope.$index, scope.row)"></el-button>
-              <el-button icon="el-icon-edit-outline"  title="编辑"  size="small"   @click="handleEdit(scope.$index, scope.row)"></el-button>
+             <!-- <el-button icon="el-icon-edit-outline"  title="编辑"  size="small"   @click="handleEdit(scope.$index, scope.row)"></el-button>-->
               <!--     <el-button icon="el-icon-tickets" size="small" title="交易记录"    @click="handleTradeRecord(scope.$index, scope.row)"></el-button>-->
               <el-button icon="el-icon-delete"  title="冻结" size="small"     @click="handleBlocked(scope.$index, scope.row)"></el-button>
             </template>
@@ -191,7 +191,7 @@
       },
       //导出
       exportFile(){
-        axios.post(BaseAPI + `/userManage/export`, this.pars, {
+        axios.post(BaseAPI + `/lawyer/export`, this.pars, {
           responseType: 'blob'
         }).then(res => {
           if (true) {

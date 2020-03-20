@@ -8,135 +8,222 @@
                 <el-col :span="12">
                   <el-card class="box-card">
                     <div slot="header" class="clearfix">
-                      <span>基本信息</span>
+                      <span>基本信息:</span>
                     </div>
                     <div class="item text">
                       <el-row>
-                           <el-col :span="2">账户:</el-col>
-                           <el-col :span="6">18174403058</el-col>
+                        <el-col :span="5">头像:</el-col>
+                        <el-col :span="16">
+                          <div class="block">
+                            <el-image>
+                              <div slot="error" class="image-slot">
+                                <i class="el-icon-picture-outline"></i>
+                              </div>
+                            </el-image>
+                          </div>
+                        </el-col>
                       </el-row>
+                      <el-row>
+                        <el-col :span="5">昵称:</el-col>
+                        <el-col :span="16">{{lawyerAccountInfo.nickName==null?"---":lawyerAccountInfo.nickName}}</el-col>
+                      </el-row>
+                      <el-row>
+                           <el-col :span="5">电话:</el-col>
+                           <el-col :span="16">{{lawyerAccountInfo.mobile}}</el-col>
+                      </el-row>
+                      <el-row>
+                        <el-col :span="5">性别:</el-col>
+                        <el-col :span="16"><div>{{lawyerAccountInfo.sex==1?"男":"女"}}</div></el-col>
+                      </el-row>
+
+                <!--      <el-row>
+                        <el-col :span="5">执业年数:</el-col>
+                        <el-col :span="16">{{lawyerAccountInfo.practiceNumber==null?"-&#45;&#45;":lawyerAccountInfo.practiceNumber+"年"}}</el-col>
+                      </el-row>-->
+          <!--            <el-row>
+                        <el-col :span="5">自我简介:</el-col>
+                        <el-col :span="16">
+                          <textarea>{{lawyerAccountInfo.introduction}}</textarea>
+                        </el-col>
+                      </el-row>-->
                     </div>
                   </el-card>
                 </el-col>
                 <el-col :span="12">
                   <el-card class="box-card">
                     <div slot="header" class="clearfix">
-                      <span>账户信息</span>
+                      <span>账户信息:</span>
                     </div>
                     <div  class="text item">
-
+                        <el-row>
+                          <el-col :span="5">关注人数:</el-col>
+                          <el-col :span="16"><div>{{lawyerAccountInfo.followNum==null?"---":lawyerAccountInfo.followNum}}</div></el-col>
+                        </el-row>
+                        <el-row>
+                          <el-col :span="5">服务次数:</el-col>
+                          <el-col :span="16"><div>{{lawyerAccountInfo.serviceNum==null?"---":lawyerAccountInfo.serviceNum}}</div></el-col>
+                        </el-row>
+                        <el-row>
+                          <el-col :span="5">账户余额:</el-col>
+                          <el-col :span="16"><div>{{lawyerAccountInfo.lawyerEarningsBalance==null?"---":lawyerAccountInfo.lawyerEarningsBalance}}</div></el-col>
+                        </el-row>
+                        <el-row>
+                          <el-col :span="5">心币余额:</el-col>
+                          <el-col :span="16"><div>{{lawyerAccountInfo.coinBalance==null?"---":lawyerAccountInfo.coinBalance}}</div></el-col>
+                        </el-row>
+                        <el-row>
+                          <el-col :span="5">累计收益:</el-col>
+                          <el-col :span="16"><div>{{lawyerAccountInfo.lawyerEarningsBalance+lawyerAccountInfo.lawyerSumWithdraw}}</div></el-col>
+                        </el-row>
+                        <el-row>
+                          <el-col :span="5">累计提现:</el-col>
+                          <el-col :span="16"><div>{{lawyerAccountInfo.lawyerSumWithdraw==null?"---":lawyerAccountInfo.lawyerSumWithdraw}}</div></el-col>
+                        </el-row>
                     </div>
                   </el-card>
                 </el-col>
           </el-row>
         </el-tab-pane>
         <el-tab-pane label="认证信息" name="1">
-          <div>
-            <el-form   size="medium" style="width: 80%" label-position="left">
-              <!--基本信息-->
-              <el-row>
-                <div><strong>实名认证信息</strong></div>
-                <el-row :gutter="20">
-                  <el-col :span="8">
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                  </el-col>
-                </el-row>
-                <el-row :gutter="10" style="left: 70px">
-                  <el-col :span="7">
-                    真实姓名：{{lawyerAuthValidateInfo.name}}
-                  </el-col>
-                  <el-col :span="7">
-                    身份证号：{{lawyerAuthValidateInfo.idCard}}
-                  </el-col>
-                  <el-col :span="7">
-                    所在地区：{{lawyerAuthValidateInfo.addressName}}
-                  </el-col>
-                </el-row>
-                <el-row :gutter="10"style="left: 140px;width: 900px">
-                  <el-col :span="7">
-                    <el-form-item label="身份证正面: ">
-                      <div>
-                        <img class="img_style" :src="lawyerAuthValidateInfo.idCardFrontImageSrc" alt="身份证正面">
+          <el-row>
+            <el-col :span="12">
+              <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                  <span>实名认证:</span>
+                </div>
+                <div class="item text">
+                  <el-row>
+                    <el-col :span="5">真实姓名:</el-col>
+                    <el-col :span="16">{{lawyerAccountInfo.realName}}</el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="5">身份证:</el-col>
+                    <el-col :span="16">{{lawyerAccountInfo.idCard}}</el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="5">所在地址:</el-col>
+                    <el-col :span="16"><div>{{lawyerAccountInfo.address}}</div></el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="5">身份证正面</el-col>
+                    <el-col :span="16">
+                      <div class="block">
+                        <el-image :src="lawyerAuthValidateInfo.idCardFrontImageSrc">
+                          <div slot="error" class="image-slot">
+                            <i class="el-icon-picture-outline"></i>
+                          </div>
+                        </el-image>
                       </div>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="7">
-                    <el-form-item label="身份证反面: ">
-                      <div >
-                        <img class="img_style" :src="lawyerAuthValidateInfo.idCardBackImageSrc" alt="身份证反面">
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="5">身份证反面</el-col>
+                    <el-col :span="16">
+                      <div class="block">
+                        <el-image :src="lawyerAuthValidateInfo.idCardBackImageSrc">
+                          <div slot="error" class="image-slot">
+                            <i class="el-icon-picture-outline"></i>
+                          </div>
+                        </el-image>
                       </div>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-                <div><strong>律师认证信息</strong></div>
-                <el-row :gutter="20">
-                  <el-col :span="8">
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                  </el-col>
-                </el-row>
-                <el-row :gutter="20" style="left: 70px">
-                  <el-col :span="7" >
-                    单位/律所：{{lawyerAuthValidateInfo.company}}
-                  </el-col>
-                  <el-col :span="7">
-                    学校/专业： {{lawyerAuthValidateInfo.schoolName}}
-                  </el-col>
-                </el-row>
-                <el-row :gutter="10"style="left: 140px">
-                  <el-col :span="7">
-                    <el-form-item label="学位证书副本: ">
-                      <div >
-                        <img class="img_style" :src="lawyerAuthValidateInfo.certificatePathUrls" alt="">
+                    </el-col>
+                  </el-row>
+                </div>
+              </el-card>
+            </el-col>
+            <el-col :span="12">
+              <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                  <span>律师认证:{{lawyerAccountInfo.enterpriseType==1?"[个体户]":"[企业]"}}</span>
+                </div>
+                <div  class="text item">
+                  <el-row>
+                    <el-col :span="5">单位/律所:</el-col>
+                    <el-col :span="16">
+                      <div v-if="lawyerAccountInfo.enterpriseType==1">{{lawyerAccountInfo.company==null?"---":lawyerAccountInfo.company}}</div>
+                      <div v-if="lawyerAccountInfo.enterpriseType==2">{{lawyerAccountInfo.enterpriseName==null?"---":lawyerAccountInfo.enterpriseName}}</div>
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="5">学校/专业:</el-col>
+                    <el-col :span="16">
+                      <div>{{lawyerAuthValidateInfo.schoolName==null?"---":lawyerAuthValidateInfo.schoolName}}</div>
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="5">学位证书:</el-col>
+                    <el-col :span="16">
+                      <div class="block">
+                        <el-image :src="lawyerAuthValidateInfo.certificatePathUrls">
+                          <div slot="error" class="image-slot">
+                            <i class="el-icon-picture-outline"></i>
+                          </div>
+                        </el-image>
                       </div>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="10"style="left: 140px">
-                  业务专长：{{lawyerAuthValidateInfo.userCaseName}}
-                </el-row>
-                <el-row :gutter="20">
-                  <el-col :span="8">
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                  </el-col>
-                </el-row>
-                <el-row :gutter="10"style="left: 140px;width: 600px">
-                  简&nbsp;介：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{lawyerAuthValidateInfo.introduction}}
-                </el-row>
-                <el-row :gutter="10"style="left: 140px">
-                  <el-col :span="7">
-                    <el-form-item label="执业证明: ">
-                      <div >
-                        <img class="img_style" :src="lawyerAuthValidateInfo.onePractisingCertificatePathUrsl" alt="执业证明">
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="5">业务专长:</el-col>
+                    <el-col :span="16"><div>{{lawyerAuthValidateInfo.userCaseName}}</div></el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="5">简介:</el-col>
+                    <el-col :span="16">
+                      <div>{{lawyerAuthValidateInfo.introduction}}</div>
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="5">执业证明:</el-col>
+                    <el-col :span="16">
+                      <div class="block">
+                        <el-image :src="lawyerAuthValidateInfo.onePractisingCertificatePathUrsl">
+                          <div slot="error" class="image-slot">
+                            <i class="el-icon-picture-outline"></i>
+                          </div>
+                        </el-image>
                       </div>
-                    </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                  <el-col :span="5">执业时间:</el-col>
+                  <el-col :span="16">
+                    <div>{{lawyerAuthValidateInfo.OnePracticeTime}}</div>
                   </el-col>
-                  <el-col :span="7">
-                    <el-form-item label="法律执业资格证书: ">
-                      <div>
-                        <img class="img_style" :src="lawyerAuthValidateInfo.twoPractisingCertificatePathUrls" alt="法律执业资格证书">
+                </el-row>
+                  <el-row>
+                    <el-col :span="5">执业证号:</el-col>
+                    <el-col :span="16">
+                      <div>{{lawyerAuthValidateInfo.certificateNumber}}</div>
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="5">法律执业资格证书:</el-col>
+                    <el-col :span="16">
+                      <div class="block">
+                        <el-image :src="lawyerAuthValidateInfo.twoPractisingCertificatePathUrls">
+                          <div slot="error" class="image-slot">
+                            <i class="el-icon-picture-outline"></i>
+                          </div>
+                        </el-image>
                       </div>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="20" style="left: 170px">
-                  <el-col :span="7" >
-                    执业时间： {{lawyerAuthValidateInfo.OnePracticeTime}}
-                  </el-col>
-                  <el-col :span="7">
-                    执业时间： {{lawyerAuthValidateInfo.TwoPracticeTime}}
-                  </el-col>
-                </el-row>
-                <el-row :gutter="20" style="left: 170px">
-                  <el-col :span="7" >
-                    执业证号：{{lawyerAuthValidateInfo.certificateNumber}}
-                  </el-col>
-                  <el-col :span="7">
-                    执业证号： {{lawyerAuthValidateInfo.TwocertificateNumber}}
-                  </el-col>
-                </el-row>
-              </el-row>
-            </el-form>
-          </div>
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="5">执业时间:</el-col>
+                    <el-col :span="16">
+                      <div>{{lawyerAuthValidateInfo.TwoPracticeTime}}</div>
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="5">执业证号:</el-col>
+                    <el-col :span="16">
+                      <div>{{lawyerAuthValidateInfo.TwocertificateNumber}}</div>
+                    </el-col>
+                  </el-row>
+                </div>
+              </el-card>
+            </el-col>
+          </el-row>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -178,6 +265,9 @@
           company:'',
           idCardFrontImageSrc:'',
           idCardBackImageSrc:'',
+          certificatePathUrls:'',
+          onePractisingCertificatePathUrsl:'',
+          twoPractisingCertificatePathUrls:''
         },
       };
     },
@@ -225,6 +315,7 @@
           if (res !== null) {
             this.lawyerAuthValidateInfo.idCardFrontImageSrc=this.convertUrls(res.justCard);
             this.lawyerAuthValidateInfo.idCardBackImageSrc=this.convertUrls(res.againstCard);
+            this.lawyerAuthValidateInfo.certificatePathUrls=this.convertUrls(res.certificatePath);
             this.lawyerAuthValidateInfo.twoPractisingCertificatePathUrls=this.convertUrls(res.twoPractisingCertificatePath);
             this.lawyerAuthValidateInfo.onePractisingCertificatePathUrsl=this.convertUrls(res.onePractisingCertificatePath);
             this.lawyerAuthValidateInfo.name =res.name;
@@ -301,6 +392,7 @@
   }
 
   .box-card {
-    width: 90%
+    width: 90%;
+    height: 800px;
   }
 </style>
