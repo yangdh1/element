@@ -88,6 +88,8 @@
           this.pars.pageNum = res.pageNum;
           this.pars.pageSize = res.pageSize;
           this.loading = false;
+          console.log("----------------------")
+          console.log(res)
           this.tableData = res.list;
 
         });

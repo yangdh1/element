@@ -231,6 +231,7 @@ export default {
   },
   carouselFigureManager:{
     listAppLawyer:params =>  {return axios.post(`${base}/carouselFigureManager/listAppLawyer`, params)},
+    list:params =>  {return axios.post(`${base}/carouselFigureManager/listOA`, params)},
     listAppGeneralUser:params =>  {return axios.post(`${base}/carouselFigureManager/listAppGeneralUser`, params)},
     detail:params =>  {return axios.post(`${base}/carouselFigureManager/detail`, params)},
     update:params =>  {return axios.post(`${base}/carouselFigureManager/update`, params)},
