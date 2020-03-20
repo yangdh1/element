@@ -132,7 +132,7 @@
                 message: '保存成功！',
                 type: 'success'
               });
-              this.$router.push({path: '/system/appLawyerIndex/list'});
+              this.$router.push({path: '/config/appLawyerIndex/list'});
             });
           } else {
             console.log('error submit!!');
@@ -146,7 +146,7 @@
         })
       },
       cancelInformation(){
-        this.$router.push({path: '/system/appLawyerIndex/list'});
+        this.$router.push({path: '/config/appLawyerIndex/list'});
       },
     },
   }

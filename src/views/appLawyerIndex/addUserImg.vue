@@ -1,7 +1,7 @@
 <template>
   <div class="page-content">
     <div class="bs-header">
-      <div class="bs-title" style="text-align: left">新建APP律师轮播图</div>
+      <div class="bs-title" style="text-align: left">新建普通用户轮播图</div>
     </div>
     <div id="docDetailShow">
       <el-form  :rules="rules"  ref="ruleForm"  label-width="90px" :model="formData"  @submit.native.prevent>
@@ -118,12 +118,12 @@
       onSubmit(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            API.carouselFigureManager.addAppLawyer(this.formData).then(res=>{
+            API.carouselFigureManager.addAppGeneralUser(this.formData).then(res=>{
               this.$message({
                 message: '保存成功！',
                 type: 'success'
               });
-              this.$router.push({path: '/config/appLawyerIndex/list'});
+              this.$router.push({path: '/config/appLawyerIndex/userlist'});
             });
           } else {
             console.log('error submit!!');
@@ -137,7 +137,7 @@
         })
       },
       cancelInformation(){
-        this.$router.push({path: '/config/appLawyerIndex/list'});
+        this.$router.push({path: '/config/appLawyerIndex/userlist'});
       },
     },
   }

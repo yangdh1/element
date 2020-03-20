@@ -3,19 +3,20 @@
     <div class="bs-header">
       <div class="bs-title">首页轮播图管理</div>
     </div>
-    <div>
-      <div class="bs-header">
-        <el-row :gutter="20">
-        <el-col :span="2">
-          <el-button type="text"  @click="$router.push({path: 'userlist'})"><span style="color: black">用户首页</span>
-          </el-button>
+    <div class="bs-header">
+      <el-row :gutter="20">
 
+        <el-col :span="2">
+          <el-button type="text" disabled @click="$router.push({path: 'userlist'})"><span style="font-weight:bold;color:blue">用户首页</span>
+          </el-button>
         </el-col>
-          <el-col :span="2">
-            <el-button type="text" disabled @click="$router.push({path: 'list'})"><span
-              style="font-weight:bold;color:blue">律师首页</span></el-button>
-          </el-col></el-row>
-      </div>
+        <el-col :span="2">
+          <el-button type="text"  @click="$router.push({path: 'list'})">
+            <span style="color: black">        律师首页</span></el-button>
+        </el-col>
+      </el-row>
+    </div>
+    <div>
       <el-form :inline="true" :model="pars" class="demo-form-inline"  @submit.native.prevent>
         <el-form-item>
           <el-input v-model="pars.title"  size="small" style="width: 350px" clearable prefix-icon="el-icon-search" placeholder="请输入轮播图标题模糊查询"></el-input>
@@ -55,7 +56,7 @@
                 v-power="'carouselFigureAPP_update'"
                 @click="handleEdit(scope.$index, scope.row)"></el-button>
               <el-button icon="el-icon-error" size="small" title="删除" type="danger"   v-power="'carouselFigureAPP_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>
-            <!--  <el-button icon="el-icon-view" size="small" title="查看详情" @click="handleView(scope.$index, scope.row)"></el-button>-->
+             <!-- <el-button icon="el-icon-view" size="small" title="查看详情" @click="handleView(scope.$index, scope.row)"></el-button>-->
             </template>
           </el-table-column>
         </el-table>
@@ -95,7 +96,7 @@
     methods:{
       loadData(){
         this.loading = true;
-        API.carouselFigureManager.listAppLawyer(this.pars).then(res=> {
+        API.carouselFigureManager.listAppGeneralUser(this.pars).then(res=> {
           this.pars.total = res.total;
           this.pars.pageNum = res.pageNum;
           this.pars.pageSize = res.pageSize;
@@ -108,17 +109,17 @@
         this.loadData();
       },
       addDev(){
-        this.$router.push({path: 'addImg'});
+        this.$router.push({path: 'addUserImg'});
       },
       //编辑
       handleEdit(index, row){
         PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-        this.$router.push({path: 'editImg/' + row.id});
+        this.$router.push({path: 'editUserImg/' + row.id});
       },
       //具体信息
       handleView(index, row){
         PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-        this.$router.push({path: 'appcarouselFigureDetail/' + row.id});
+        this.$router.push({path: 'appcarouselFigureUserDetail/' + row.id});
       },
       //删除该行
       handleDelete(index, row){
