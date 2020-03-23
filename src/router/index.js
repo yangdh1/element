@@ -37,14 +37,14 @@ export const asyncMenus = [
     component:Layout,
     hasSub:true,
     children:[
-      { path: 'addUser', menuId:'00100', name:'添加用户', component: _import('user/addUser') ,hidden:true},
-      { path: 'userList', menuId: '00101', name:'用户列表', component: _import('user/userList')},
-      { path: 'userDetail/:id', menuId: '0010101', name:'用户详情', component: _import('user/userDetail'),hidden:true},
+     /* { path: 'addUser', menuId:'00100', name:'添加用户', component: _import('user/addUser') ,hidden:true},*/
+      { path: 'userList', menuId: '001001', name:'用户列表', component: _import('user/userList')},
+      { path: 'userDetail/:id', name:'用户详情', component: _import('user/userDetail'),hidden:true},
       { path: 'userAuthValidateInfo/:id', name:'查看用户认证信息', component: _import('user/attestationDetail') ,hidden:true},
-      { path: 'editUser/:id', menuId: '0010102', name:'编辑用户信息', component: _import('user/editUser'),hidden:true},
-      { path: 'lawyerList', menuId: '00102', name:'律师列表', component: _import('lawyer/lawyerList')},
-      { path: 'lawyerDetail/:id', menuId: '0010201', name:'律师详情', component: _import('lawyer/lawyerDetail'),hidden:true},
-      { path: 'editLawyer', menuId: '0010202', name:'编辑律师信息', component: _import('lawyer/editLawyer'),hidden:true},
+   /*   { path: 'editUser/:id', menuId: '0010102', name:'编辑用户信息', component: _import('user/editUser'),hidden:true},*/
+      { path: 'lawyerList', menuId: '001002', name:'律师列表', component: _import('lawyer/lawyerList')},
+      { path: 'lawyerDetail/:id', name:'律师详情', component: _import('lawyer/lawyerDetail'),hidden:true},
+    /*  { path: 'editLawyer',name:'编辑律师信息', component: _import('lawyer/editLawyer'),hidden:true},*/
     ]
   },
   {
@@ -55,10 +55,9 @@ export const asyncMenus = [
     component:Layout,
     hasSub:true,
     children:[
-      //审核请求列表
-      { path: 'authValidateList', menuId: '00201', name:'审核列表', component: _import('authValidateManage/authValidateList')},
-      //详情并判定审核
-      { path: 'checkAuthValidate/:id', menuId: '00202', name:'认证审核', component: _import('authValidateManage/checkAuthValidate'),hidden:true},
+          { path: 'authValidateList', menuId: '002001', name:'审核列表', component: _import('authValidateManage/authValidateList'),hidden:false },
+          { path: 'checkAuthValidate/:id', name:'认证审核', component: _import('authValidateManage/checkAuthValidate'),hidden:true},
+
     ]
   },
   {
@@ -69,10 +68,10 @@ export const asyncMenus = [
     icon: 'iconfont icon-vipMemberGuanLi',
     hasSub: true,
     children: [
-      { path: 'ordinaryVipList', menuId: '00301', name:'359会员列表', component: _import('ordinaryVip/ordinaryVipList')},
-      { path: 'ordinaryVipRechargeList', menuId: '0030101', name:'359充值记录', component: _import('ordinaryVip/ordinaryVipHistoryList'),hidden:true},
-      { path: 'stockVipList', menuId: '00302', name:'股票会员列表', component: _import('stockVip/stockVipList')},
-      { path: 'stockVipRechargeList', menuId: '0030201', name:'股票会员充值记录',  component: _import('stockVip/stockVipHistoryList'),hidden:true},
+      { path: 'ordinaryVipList', menuId: '003001', name:'359会员列表', component: _import('ordinaryVip/ordinaryVipList')},
+      { path: 'ordinaryVipRechargeList', name:'359充值记录', component: _import('ordinaryVip/ordinaryVipHistoryList'),hidden:true},
+      { path: 'stockVipList', menuId: '003002', name:'股票会员列表', component: _import('stockVip/stockVipList')},
+      { path: 'stockVipRechargeList', name:'股票会员充值记录',  component: _import('stockVip/stockVipHistoryList'),hidden:true},
     ]
   },
   {
@@ -83,10 +82,10 @@ export const asyncMenus = [
     icon: 'iconfont icon-orderGuanLi',
     hasSub: true,
     children: [
-      { path: 'orderList', menuId: '00401', name:'查询订单列表', component: _import('order/orderList')},
-      { path: 'orderDetail/:orderId', menuId:'0040101',  name:'orderDetail', component: _import('order/orderDetail') ,hidden:true},
-      { path: 'orderEvaluate/orderEvaluate', menuId: '00402', name:'订单评价管理', component: _import('orderEvaluate/orderEvaluate') },
-      { path: 'orderEvaluate/detail/:id', menuId:'0040201', name:'查看详情', component: _import('orderEvaluate/orderEvaluateDetail') ,hidden:true},
+      { path: 'orderList', menuId: '004001', name:'查询订单列表', component: _import('order/orderList')},
+      { path: 'orderDetail/:orderId',  name:'orderDetail', component: _import('order/orderDetail') ,hidden:true},
+      { path: 'orderEvaluate/orderEvaluate', menuId: '004002', name:'订单评价管理', component: _import('orderEvaluate/orderEvaluate') },
+      { path: 'orderEvaluate/detail/:id', name:'查看详情', component: _import('orderEvaluate/orderEvaluateDetail') ,hidden:true},
     ]
   },
   {
@@ -97,10 +96,10 @@ export const asyncMenus = [
     icon: 'iconfont icon-tradeRecord',
     hasSub: true,
     children:[
-      { path: 'userCoinHistories', menuId: '00501', name:'用户心币历史交易', component: _import('tradeRecord/userCoinHistories')},
-      { path: 'userMoneyHistories', menuId: '00502', name:'用户余额历史交易', component: _import('tradeRecord/userMoneyHistories')},
-      { path: 'platMoneyHistories', menuId: '00503', name:'平台余额历史交易', component: _import('tradeRecord/platMoneyHistories')},
-      { path: 'platCoinHistories', menuId: '00504', name:'平台心币历史交易', component: _import('tradeRecord/platCoinHistories')},
+      { path: 'userCoinHistories', menuId: '005001', name:'用户心币历史交易', component: _import('tradeRecord/userCoinHistories')},
+      { path: 'userMoneyHistories', menuId: '005002', name:'用户余额历史交易', component: _import('tradeRecord/userMoneyHistories')},
+      { path: 'platMoneyHistories', menuId: '005003', name:'平台余额历史交易', component: _import('tradeRecord/platMoneyHistories')},
+      { path: 'platCoinHistories', menuId: '005004', name:'平台心币历史交易', component: _import('tradeRecord/platCoinHistories')},
     ]
   },
   {
@@ -111,14 +110,14 @@ export const asyncMenus = [
     icon: 'iconfont icon-tradeRecord',
     hasSub: true,
     children:[
-      { path: 'administratorList', menuId: '00601', name:'管理员维护', component: _import('sysAuthManage/administratorList')},
-      { path: 'addAdministrator', menuId: '00602', name:'新增管理员',hidden:true, component: _import('sysAuthManage/addAdministrator')},
-      { path: 'editSysAuthManage/:id', menuId: '00607', name:'编辑管理员', component: _import('sysAuthManage/editAdministrator'),hidden:true},
+      { path: 'administratorList', menuId: '006001', name:'管理员维护', component: _import('sysAuthManage/administratorList')},
+      { path: 'addAdministrator', name:'新增管理员',hidden:true, component: _import('sysAuthManage/addAdministrator')},
+      { path: 'editSysAuthManage/:id', name:'编辑管理员', component: _import('sysAuthManage/editAdministrator'),hidden:true},
 /*      { path: 'roleList', menuId: '00603', name:'角色权限', component: _import('sysAuthManage/roleList')},
       { path: 'editRole', menuId: '00604', name:'编辑角色', hidden:true, component: _import('sysAuthManage/editRole')},
       { path: 'addRole', menuId: '00605', name:'新增角色',  hidden:true, component: _import('sysAuthManage/addRole')},
       { path: 'privileges', menuId: '00606', name:'分配权限', hidden:true, component: _import('sysAuthManage/privileges')},*/
-      { path: 'role/list', menuId: '999002', name:'角色权限', component: _import('role/roleList') },
+      { path: 'role/list', menuId: '006002', name:'角色权限', component: _import('role/roleList') },
       { path: 'role/add', name:'添加角色', component: _import('role/addRole') ,hidden:true},
       { path: 'role/edit/:id', name:'编辑角色', component: _import('role/editRole') ,hidden:true},
       { path: 'role/roleResource/:id', name:'编辑角色', component: _import('role/roleResource') ,hidden:true},
@@ -233,26 +232,26 @@ export const asyncMenus = [
     path: '/config',
     component: Layout,
     name: '系统数据管理',
-    menuId: '113',
+    menuId: '007',
     icon: 'iconfont icon-gupiaohuiyuanchongzhijilu',
     hasSub: true,
     children: [
-      { path: 'lawyerList.vue', menuId: '108003', name:'系统数据', component: _import('config/list')},
+      { path: 'lawyerList.vue', menuId: '007001', name:'系统数据', component: _import('config/list')},
     ]
   },
   {
     path: '/config',
     component: Layout,
     name: '信息公告管理',
-    menuId: '113',
+    menuId: '008',
     icon: 'iconfont icon-gupiaohuiyuanchongzhijilu',
     hasSub: true,
     children: [
-      { path: 'appLawyerIndex/list',icon: '', menuId: '999004', name: '首页轮播图管理',  component: _import('appLawyerIndex/list'), hidden: true  },
+      { path: 'appLawyerIndex/list',icon: '', name: '首页轮播图管理',  component: _import('appLawyerIndex/list'), hidden: true  },
       { path: 'appLawyerIndex/addImg', name: '新增律师APP轮播', component: _import('appLawyerIndex/addImg'), hidden: true},
       { path: 'appLawyerIndex/editImg/:id', name: '编辑律师APP轮播', component: _import('appLawyerIndex/editImg'), hidden: true},
       { path: 'appLawyerIndex/appcarouselFigureDetail/:id', name: '律师APP轮播详情', component: _import('appLawyerIndex/appcarouselFigureDetail'), hidden: true},
-      { path: 'appLawyerIndex/userlist',icon: '', menuId: '999005', name: '普通用户轮播管理',  component: _import('appLawyerIndex/userlist')},
+      { path: 'appLawyerIndex/userlist',icon: '', menuId: '007001', name: '普通用户轮播管理',  component: _import('appLawyerIndex/userlist')},
       { path: 'appLawyerIndex/addUserImg', name: '新增普通用户轮播', component: _import('appLawyerIndex/addUserImg'), hidden: true},
       { path: 'appLawyerIndex/editUserImg/:id', name: '编辑普通用户轮播', component: _import('appLawyerIndex/editUserImg'), hidden: true},
       { path: 'appLawyerIndex/appcarouselFigureUserDetail/:id', name: '普通用户轮播详情', component: _import('appLawyerIndex/appcarouselFigureUserDetail'), hidden: true},
@@ -262,7 +261,7 @@ export const asyncMenus = [
     path: '/system',
     component: Layout,
     name: '系统管理',
-    menuId: '999',
+    menuId: '009',
     icon: 'iconfont icon-xitongguanli',
     hasSub: true,
     children: [
@@ -272,9 +271,9 @@ export const asyncMenus = [
       { path: 'role/add', name:'添加角色', component: _import('role/addRole') ,hidden:true},
       { path: 'role/edit/:id', name:'编辑角色', component: _import('role/editRole') ,hidden:true},
       { path: 'role/roleResource/:id', name:'编辑角色', component: _import('role/roleResource') ,hidden:true},*/
-      { path: 'oaIndex/list',icon: '', menuId: '999003', name: 'web轮播管理',  component: _import('oaIndex/list') },
+/*      { path: 'oaIndex/list',icon: '', menuId: '999003', name: 'web轮播管理',  component: _import('oaIndex/list') },
       { path: 'oaIndex/addImg', name: '新增web轮播', component: _import('oaIndex/addImg'), hidden: true},
-      { path: 'oaIndex/editImg/:id', name: '编辑web轮播', component: _import('oaIndex/editImg'), hidden: true},
+      { path: 'oaIndex/editImg/:id', name: '编辑web轮播', component: _import('oaIndex/editImg'), hidden: true},*/
      /* { path: 'appLawyerIndex/list',icon: '', menuId: '999004', name: '律师APP轮播管理',  component: _import('appLawyerIndex/list') },
       { path: 'appLawyerIndex/addImg', name: '新增律师APP轮播', component: _import('appLawyerIndex/addImg'), hidden: true},
       { path: 'appLawyerIndex/editImg/:id', name: '编辑律师APP轮播', component: _import('appLawyerIndex/editImg'), hidden: true},
@@ -284,7 +283,7 @@ export const asyncMenus = [
       { path: 'appGeneralUserIndex/editImg/:id', name: '编辑普通用户轮播', component: _import('appGeneralUserIndex/editImg'), hidden: true},
       { path: 'appGeneralUserIndex/appcarouselFigureDetail/:id', name: '普通用户轮播详情', component: _import('appGeneralUserIndex/appcarouselFigureDetail'), hidden: true},*/
 
-      { path: 'edition/list', menuId: '999006', name: '应用版本管理',  component: _import('edition/list') },
+      { path: 'edition/list', menuId: '009001', name: '应用版本管理',  component: _import('edition/list') },
       { path: 'edition/add',  name: '添加应用版本管理',  component: _import('edition/add'),hidden: true },
       { path: 'edition/edit/:id', name: '编辑应用版本管理',  component: _import('edition/edit'),hidden: true },
       { path: 'edition/qrPage', name: '二维码下载链接',  component: _import('edition/qrPage'),hidden: true },

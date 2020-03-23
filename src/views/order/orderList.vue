@@ -99,9 +99,9 @@
             align="center"
             label="操作" min-width="20%">
             <template slot-scope="scope">
-              <el-button   icon="el-icon-view" title="查看详情" size="small" @click="handleView(scope.$index, scope.row)"></el-button>
-              <el-button   icon="el-icon-s-data" title="交易记录" size="small" @click="handleRecordView(scope.$index, scope.row)"></el-button>
-              <el-button icon="el-icon-delete" size="small" title="删除" type="danger" plain  v-power="'orderEvaluate_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>
+              <el-button   icon="el-icon-view" title="查看详情" size="small" v-power="'ddlb_check'" @click="handleView(scope.$index, scope.row)"></el-button>
+              <el-button   icon="el-icon-s-data" title="交易记录" size="small" v-power="'ddjb_update'" @click="handleRecordView(scope.$index, scope.row)"></el-button>
+              <el-button icon="el-icon-delete" size="small" title="删除"  type="danger" plain  v-power="'ddjb_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>
             </template>
           </el-table-column>
         </el-table>

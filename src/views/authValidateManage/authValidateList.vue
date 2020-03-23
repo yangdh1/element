@@ -28,7 +28,7 @@
           </el-table-column>
           <el-table-column label="操作" min-width="20%">
             <template slot-scope="scope">
-              <el-button   size="small" @click="handleEdit(scope.$index, scope.row)" v-power="'role_update'">认证审核</el-button>
+              <el-button   size="small" @click="handleEdit(scope.$index, scope.row)" v-power="'shlb_update'">认证审核</el-button>
 
             </template>
           </el-table-column>

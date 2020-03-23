@@ -87,8 +87,8 @@
           <!--操作8-->
           <el-table-column  align="center"  label="操作" min-width="8%">
             <template slot-scope="scope">
-              <el-button icon="el-icon-view" title="查看详情" size="small"  @click="handleView(scope.$index, scope.row)"></el-button>
-              <el-button icon="el-icon-delete" size="small" title="删除" type="danger" plain  @click="handleDelete(scope.$index, scope.row)"></el-button>
+              <el-button icon="el-icon-view" title="查看详情" v-power="'yhye_check'" size="small"  @click="handleView(scope.$index, scope.row)"></el-button>
+              <el-button icon="el-icon-delete" size="small" v-power="'yhye_delete'" title="删除" type="danger" plain  @click="handleDelete(scope.$index, scope.row)"></el-button>
             </template>
           </el-table-column>
         </el-table>

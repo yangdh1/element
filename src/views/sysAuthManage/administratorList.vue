@@ -15,7 +15,7 @@
             <el-button type="primary" icon="el-icon-search" @click="search" size="small">查询</el-button>
           </el-form-item>
           <el-form-item >
-            <el-button type="success" icon="el-icon-position" @click="addItem" size="small" >新增</el-button>
+            <el-button type="success" icon="el-icon-position" v-power="'gly_add'" @click="addItem" size="small" >新增</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -35,8 +35,8 @@
           </el-table-column>
           <el-table-column align="center" fixed="right"  label="操作" min-width="100">
             <template slot-scope="scope">
-              <el-button @click="handleEdit(scope.row)" type="text" size="small">编辑</el-button>
-              <el-button @click="handleDelete(scope.$index, scope.row)" type="text" size="small">删除</el-button>
+              <el-button @click="handleEdit(scope.row)" v-power="'gly_update'" type="text" size="small">编辑</el-button>
+              <el-button @click="handleDelete(scope.$index, scope.row)" v-power="'glysc_delete'" type="text" size="small">删除</el-button>
             </template>
           </el-table-column>
         </el-table>

@@ -35,7 +35,7 @@
         </el-form-item>
 
         <el-form-item >
-          <el-button type="success" icon="el-icon-position" @click="exportFile" size="small" >导出</el-button>
+          <el-button type="success" icon="el-icon-position" v-power="'yhlb_cnr'" @click="exportFile" size="small" >导出</el-button>
         </el-form-item>
       </el-form>
       <div class="table-wrap" v-loading.body="loading">
@@ -75,10 +75,10 @@
           </el-table-column>
           <el-table-column  fixed="right"  align="center"  label="操作" min-width="15%">
             <template slot-scope="scope">
-              <el-button icon="el-icon-view"  title="查看详情"   size="small"   @click="handleView(scope.$index, scope.row)"></el-button>
+              <el-button icon="el-icon-view"  title="查看详情"   size="small" v-power="'yhlb_check'"   @click="handleView(scope.$index, scope.row)"></el-button>
            <!--   <el-button icon="el-icon-edit-outline"  title="编辑"  size="small"   @click="handleEdit(scope.$index, scope.row)"></el-button>-->
          <!--     <el-button icon="el-icon-tickets" size="small" title="交易记录"    @click="handleTradeRecord(scope.$index, scope.row)"></el-button>-->
-              <el-button icon="el-icon-delete"  title="冻结" size="small"     @click="handleBlocked(scope.$index, scope.row)"></el-button>
+              <el-button icon="el-icon-delete"  title="冻结" size="small"   v-power="'yhlb_delete'"   @click="handleBlocked(scope.$index, scope.row)"></el-button>
             </template>
           </el-table-column>
         </el-table>

@@ -7,11 +7,11 @@
       <el-row :gutter="20">
 
         <el-col :span="2">
-          <el-button type="text" disabled @click="$router.push({path: 'userlist'})"><span style="font-weight:bold;color:blue">用户首页</span>
+          <el-button type="text" disabled @click="$router.push({path: 'userlist'})" v-power="'ptyh_add'"><span style="font-weight:bold;color:blue">用户首页</span>
           </el-button>
         </el-col>
         <el-col :span="2">
-          <el-button type="text"  @click="$router.push({path: 'list'})">
+          <el-button type="text" v-power="'lssy_delete'" @click="$router.push({path: 'list'})">
             <span style="color: black">        律师首页</span></el-button>
         </el-col>
       </el-row>
@@ -25,7 +25,7 @@
           <el-button type="primary" icon="el-icon-search"  @click="search" size="small">查询</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="success" icon="el-icon-plus" @click="addDev" size="small"   v-power="'carouselFigureAPP_add'">新增</el-button>
+          <el-button type="success" icon="el-icon-plus" @click="addDev" size="small" >新增</el-button>
         </el-form-item>
       </el-form>
       <div class="table-wrap" v-loading.body="">
@@ -53,9 +53,8 @@
                 icon="el-icon-edit-outline"
                 title="编辑"
                 size="small"
-                v-power="'carouselFigureAPP_update'"
                 @click="handleEdit(scope.$index, scope.row)"></el-button>
-              <el-button icon="el-icon-error" size="small" title="删除" type="danger"   v-power="'carouselFigureAPP_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>
+              <el-button icon="el-icon-error" size="small" title="删除" type="danger"   @click="handleDelete(scope.$index, scope.row)"></el-button>
              <!-- <el-button icon="el-icon-view" size="small" title="查看详情" @click="handleView(scope.$index, scope.row)"></el-button>-->
             </template>
           </el-table-column>

@@ -12,7 +12,7 @@
           <el-button type="primary" icon="el-icon-search" @click="search" size="small">查询</el-button>
         </el-form-item>
         <el-form-item v-power="'role_add'">
-          <el-button type="success" @click="handleAdd" size="small" icon="el-icon-plus" v-power="'role_add'">新增</el-button>
+          <el-button type="success" @click="handleAdd" size="small" icon="el-icon-plus" v-power="'serviceRole_add'">新增</el-button>
         </el-form-item>
       </el-form>
 
@@ -22,9 +22,9 @@
           <el-table-column prop="description" label="备注" min-width="20%"></el-table-column>
           <el-table-column label="操作" min-width="55%">
             <template slot-scope="scope">
-              <el-button   icon="el-icon-edit-outline" title="编辑" size="small" @click="handleEdit(scope.$index, scope.row)" v-power="'role_update'"></el-button>
-              <el-button size="small" @click="handleGrant(scope.$index, scope.row)" icon="iconfont icon-quanxian" title="权限分配"  v-power="'role_assignResource'"></el-button>
-              <el-button icon="el-icon-delete" plain title="删除" size="small" type="danger" v-power="'role_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>
+              <el-button   icon="el-icon-edit-outline" title="编辑" size="small" @click="handleEdit(scope.$index, scope.row)" v-power="'serviceRole_update'"></el-button>
+              <el-button size="small" @click="handleGrant(scope.$index, scope.row)" icon="iconfont icon-quanxian" title="权限分配"  v-power="'serviceRole_assignResource'"></el-button>
+              <el-button icon="el-icon-delete" plain title="删除" size="small" type="danger" v-power="'serviceRole_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>
             </template>
           </el-table-column>
         </el-table>

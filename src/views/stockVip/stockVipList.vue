@@ -55,6 +55,7 @@
                 icon="el-icon-view"
                 title="查看详情"
                 size="small"
+                v-power="'gphy_check'"
                 @click="handleView(scope.$index, scope.row)"></el-button>
             </template>
           </el-table-column>

@@ -54,6 +54,7 @@
               <el-button
                 icon="el-icon-view"
                 title="查看详情"
+                v-power="'thylb_check'"
                 size="small"
                 @click="handleView(scope.$index, scope.row)"></el-button>
             </template>

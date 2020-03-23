@@ -71,7 +71,7 @@
         });
       },
       recurrence(){
-        this.$router.push({path: '/system/user/list'});
+        this.$router.push({path: '/sysAuthManage/role/add'});
 
 
       }

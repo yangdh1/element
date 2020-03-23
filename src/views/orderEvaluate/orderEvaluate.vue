@@ -83,6 +83,7 @@
               <el-button
                 icon="el-icon-view"
                 title="查看详情"
+                v-power="'ddpl_check'"
                 size="small"
                 @click="handleView(scope.$index, scope.row)"></el-button>
               <el-button icon="el-icon-delete" size="small" title="删除" type="danger" plain  v-power="'orderEvaluate_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>
