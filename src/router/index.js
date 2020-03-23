@@ -103,7 +103,22 @@ export const asyncMenus = [
       { path: 'platCoinHistories', menuId: '00504', name:'平台心币历史交易', component: _import('tradeRecord/platCoinHistories')},
     ]
   },
-
+  {
+    path: '/sysAuthManage',
+    component: Layout,
+    name: '权限管理',
+    menuId: '006',
+    icon: 'iconfont icon-tradeRecord',
+    hasSub: true,
+    children:[
+      { path: 'administratorList', menuId: '00601', name:'管理员维护', component: _import('sysAuthManage/administratorList')},
+      { path: 'addAdministrator', menuId: '00602', name:'新增管理员',hidden:true, component: _import('sysAuthManage/addAdministrator')},
+      { path: 'roleList', menuId: '00603', name:'角色权限', component: _import('sysAuthManage/roleList')},
+      { path: 'editRole', menuId: '00604', name:'编辑角色', hidden:true, component: _import('sysAuthManage/editRole')},
+      { path: 'addRole', menuId: '00605', name:'新增角色',  hidden:true, component: _import('sysAuthManage/addRole')},
+      { path: 'privileges', menuId: '00606', name:'分配权限', hidden:true, component: _import('sysAuthManage/privileges')},
+    ]
+  },
   /*
     {
       path: '/serviceType',
@@ -220,7 +235,6 @@ export const asyncMenus = [
       { path: 'lawyerList.vue', menuId: '108003', name:'系统数据', component: _import('config/list')},
     ]
   },
-
   {
     path: '/config',
     component: Layout,
