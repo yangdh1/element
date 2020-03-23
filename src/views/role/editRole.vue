@@ -52,7 +52,7 @@
                 message: '保存成功！',
                 type: 'success'
               });
-              this.$router.push({path: '/system/role/list'});
+              this.$router.push({path: '/sysAuthManage/role/list'});
             })
           } else {
             console.log('error submit!!');
@@ -61,7 +61,7 @@
         });
       },
       recurrenc(){
-          this.$router.push({path: '/system/role/list'});
+          this.$router.push({path: '/sysAuthManage/role/list'});
 
       }
     }

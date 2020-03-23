@@ -68,7 +68,7 @@
         });
       },
       recurrenc(){
-        this.$router.push({path: '/system/role/list'});
+        this.$router.push({path: '/sysAuthManage/role/list'});
       }
     }
   }
