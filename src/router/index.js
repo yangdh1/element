@@ -113,10 +113,15 @@ export const asyncMenus = [
     children:[
       { path: 'administratorList', menuId: '00601', name:'管理员维护', component: _import('sysAuthManage/administratorList')},
       { path: 'addAdministrator', menuId: '00602', name:'新增管理员',hidden:true, component: _import('sysAuthManage/addAdministrator')},
-      { path: 'roleList', menuId: '00603', name:'角色权限', component: _import('sysAuthManage/roleList')},
+      { path: 'editSysAuthManage/:id', menuId: '00607', name:'编辑管理员', component: _import('sysAuthManage/editAdministrator'),hidden:true},
+/*      { path: 'roleList', menuId: '00603', name:'角色权限', component: _import('sysAuthManage/roleList')},
       { path: 'editRole', menuId: '00604', name:'编辑角色', hidden:true, component: _import('sysAuthManage/editRole')},
       { path: 'addRole', menuId: '00605', name:'新增角色',  hidden:true, component: _import('sysAuthManage/addRole')},
-      { path: 'privileges', menuId: '00606', name:'分配权限', hidden:true, component: _import('sysAuthManage/privileges')},
+      { path: 'privileges', menuId: '00606', name:'分配权限', hidden:true, component: _import('sysAuthManage/privileges')},*/
+      { path: 'role/list', menuId: '999002', name:'角色权限', component: _import('role/roleList') },
+      { path: 'role/add', name:'添加角色', component: _import('role/addRole') ,hidden:true},
+      { path: 'role/edit/:id', name:'编辑角色', component: _import('role/editRole') ,hidden:true},
+      { path: 'role/roleResource/:id', name:'编辑角色', component: _import('role/roleResource') ,hidden:true},
     ]
   },
   /*
@@ -263,10 +268,10 @@ export const asyncMenus = [
     children: [
       { path: 'user/transactionRecord/:id', name:'交易记录', component: _import('user/transactionRecord') ,hidden:true},
 
-      { path: 'role/list', menuId: '999002', name:'角色管理', component: _import('role/roleList') },
+/*      { path: 'role/list', menuId: '999002', name:'角色管理', component: _import('role/roleList') },
       { path: 'role/add', name:'添加角色', component: _import('role/addRole') ,hidden:true},
       { path: 'role/edit/:id', name:'编辑角色', component: _import('role/editRole') ,hidden:true},
-      { path: 'role/roleResource/:id', name:'编辑角色', component: _import('role/roleResource') ,hidden:true},
+      { path: 'role/roleResource/:id', name:'编辑角色', component: _import('role/roleResource') ,hidden:true},*/
       { path: 'oaIndex/list',icon: '', menuId: '999003', name: 'web轮播管理',  component: _import('oaIndex/list') },
       { path: 'oaIndex/addImg', name: '新增web轮播', component: _import('oaIndex/addImg'), hidden: true},
       { path: 'oaIndex/editImg/:id', name: '编辑web轮播', component: _import('oaIndex/editImg'), hidden: true},

@@ -1,24 +1,17 @@
 <template>
   <div class="page-content">
     <div class="bs-header">
-      <div class="bs-title">新增管理员</div>
+      <div class="bs-title">编辑管理员</div>
     </div>
     <div>
       <el-row :gutter="20">
         <el-col :span="16">
           <el-form ref="ruleForm" :model="form" label-width="110px">
-            <el-form-item label="管理员账号" prop="mobile" :rules="commonRule">
+            <el-form-item label="管理员账号" prop="name" :rules="commonRule">
               <el-input v-model="form.mobile" style="width: 300px" size="small"></el-input>
             </el-form-item>
             <el-form-item label="姓名" prop="name" :rules="commonRule">
               <el-input v-model="form.name" style="width: 300px" size="small"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" prop="password" :rules="commonRule">
-              <el-input v-model="form.password" style="width: 300px" size="small"></el-input>
-            </el-form-item>
-
-            <el-form-item label="确认密码" prop="payPassword" :rules="commonRule">
-              <el-input v-model="form.payPassword" style="width: 300px" size="small"></el-input>
             </el-form-item>
             <el-form-item label="邮箱" prop="mailbox">
               <el-input v-model="form.mailbox" style="width: 300px" size="small"></el-input>
@@ -64,7 +57,7 @@
   export default {
     data   : function() {
       return {
-        roleArr: [],
+        roleArr:[],
         deleteFlagAll: [{deleteFlag:false ,name:"禁用"},{deleteFlag:true ,name:"启动"}],
         form: {
           name  : '',
@@ -81,13 +74,18 @@
       API.role.listAll().then(res => {
         this.roleArr = res
       });
+      API.user.userdetail({id:this.$route.params.id}).then(res=>{
+        this.form = res;
+        console.log('error submit!!');
+        console.log(res);
+      });
     },
 
     methods: {
       onSubmit(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            API.user.addUser(this.form).then(res => {
+            API.user.updateupdate(this.form).then(res => {
               this.$message({
                 message: '保存成功！',
                 type: 'success'

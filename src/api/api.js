@@ -160,11 +160,16 @@ export default {
     changePwd:  params => { return axios.post(`${base}/updatePassword/`,params); },
 
     userList: params =>{ return axios.post(`${base}/userManage/userList`, params); },
+    oAlist: params =>{ return axios.post(`${base}/user/oAlist`, params); },
     blockedAccount: params =>{ return axios.post(`${base}/userManage/blockedAccount/`+params.id); },
     detail: params =>{ return axios.post(`${base}/userManage/userDetail/`+params.id); },
+    delete: params =>{ return axios.post(`${base}/user/delete/`+params.id); },
+    userdetail: params =>{ return axios.post(`${base}/user/userDetail/`+params.id); },
     add: params =>{ return axios.post(`${base}/userManage/add`, params); },
     update:params=>{return axios.post(`${base}/userManage/update`,params)},
+    updateupdate:params=>{return axios.post(`${base}/user/update`,params)},
     exports:params=>{return axios.post(`${base}/userManage/export/`,params)},
+    addUser: params =>{ return axios.post(`${base}/user/add`, params); },
   },
   serviceType:{
     list:params => {return axios.post(`${base}/service/listServiceType`, params)},
