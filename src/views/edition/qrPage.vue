@@ -10,26 +10,6 @@
           </div>
         </div>
       </el-tab-pane>
-      <!--<el-tab-pane label="保安端" name="third">
-        <div style="padding-top: 15%;padding-left:35%;">
-          <div style="width: 300px;height: 400px;background: #86DB48">
-            <div style="font-size: 20px;padding-top: 30px;padding-left: 40px;color: white">智慧后勤保安服务端APP</div>
-            &lt;!&ndash; <vue-qr  :logoSrc="config.logo" :text="config.value" :size="200" :margin="0"></vue-qr> &ndash;&gt;
-            <vue-qr style="padding-left: 50px;padding-top: 30px" :text="config.securityUrl" :size="200" :margin="0"></vue-qr>
-            <div style="font-size: 20px;padding-left: 60px;padding-top: 20px;color: white">扫一扫下载最新版本</div>
-          </div>
-        </div>
-      </el-tab-pane>-->
-<!--      <el-tab-pane label="律师用户端" name="first">
-        <div style="padding-top: 15%;padding-left:35%;">
-          <div style="width: 300px;height: 400px;background: #86DB48">
-            <div style="font-size: 20px;padding-top: 30px;padding-left: 40px;color: white">律师用户端APP</div>
-            &lt;!&ndash; <vue-qr  :logoSrc="config.logo" :text="config.value" :size="200" :margin="0"></vue-qr> &ndash;&gt;
-            <vue-qr style="padding-left: 50px;padding-top: 30px" :text="config.logisticsUrl" :size="200" :margin="0"></vue-qr>
-            <div style="font-size: 20px;padding-left: 60px;padding-top: 20px;color: white">扫一扫下载最新版本</div>
-          </div>
-        </div>
-      </el-tab-pane>-->
     </el-tabs>
 </template>
 
