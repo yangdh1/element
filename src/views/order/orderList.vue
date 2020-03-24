@@ -38,7 +38,6 @@
         <el-form-item label="模糊查询">
           <el-input style="width: 300px"  v-model="pars.commonColumn" placeholder="请输入订单号\手机号\用户名模糊查询"></el-input>
         </el-form-item>
-
         <el-form-item>
           <el-button type="primary" icon="el-icon-search" @click="searchOrder" size="small">查询</el-button>
         </el-form-item>
@@ -50,51 +49,15 @@
       <div class="table-wrap" v-loading.body="loading">
 <!--        表格-->
         <el-table highlight-current-row :data="tableData" width="100%" border stripe :header-cell-style="headercellSstyle" :key="$root.$children[0].keyRand">
-          <el-table-column
-            prop="orderCode"
-            label="订单号"
-            align="center"
-            min-width="22%"/>
-          <el-table-column
-            prop="creator"
-            label="下单人"
-            align="center"
-            min-width="15%"/>
-          <el-table-column
-            prop="createTimeStr"
-            label="下单时间"
-            align="center"
-            min-width="15%"/>
-          <el-table-column
-          prop="totalFee"
-          align="center"
-          label="费用(人民币)"
-          min-width="10%"/>
-          <el-table-column
-            prop="coinFee"
-            align="center"
-            label="心币费用"
-            min-width="10%"/>
-          <el-table-column
-            prop="businessTypeName"
-            align="center"
-            label="服务类型"
-            min-width="10%"/>
-          <el-table-column
-            prop="payStatusStr"
-            label="订单状态"
-            align="center"
-            min-width="15%"/>
-          <el-table-column
-            prop="clientIP"
-            label="客户端IP"
-            align="center"
-            min-width="15%"/>
-          <el-table-column
-            prop="orderDesc"
-            label="订单描述"
-            align="center"
-            min-width="20%"/>
+          <el-table-column prop="orderCode"  label="订单号"   align="center"  min-width="22%"/>
+          <el-table-column   prop="creator"  label="下单人"  align="center" min-width="15%"/>
+          <el-table-column  prop="createTimeStr" label="下单时间" align="center"  min-width="15%"/>
+          <el-table-column prop="totalFee" align="center" label="人民币费用" min-width="8%"/>
+          <el-table-column prop="coinFee"  align="center"  label="心币费用"  min-width="8%"/>
+          <el-table-column prop="amountFee" label="订单总金额"  align="center" min-width="8%"/>
+          <el-table-column prop="businessTypeName" align="center" label="服务类型"  min-width="12%"/>
+          <el-table-column prop="payStatusStr"  label="订单状态"   align="center"   min-width="15%"/>
+         <!-- <el-table-column   prop="orderDesc" label="订单描述" align="center" min-width="20%"/>-->
           <el-table-column
             align="center"
             label="操作" min-width="20%">

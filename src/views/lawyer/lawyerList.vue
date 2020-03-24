@@ -12,7 +12,7 @@
             <el-option label="企业" value="2"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="注册日期：">
+        <el-form-item label="认证日期：">
           <div class="block">
             <el-date-picker
               v-model="pars.creatTimeDuring"
