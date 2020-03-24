@@ -79,7 +79,7 @@
             <template slot-scope="scope">
               <el-button icon="el-icon-view"  title="查看详情"   size="small" v-power="'yhlb_check'"   @click="handleView(scope.$index, scope.row)"></el-button>
            <!--   <el-button icon="el-icon-edit-outline"  title="编辑"  size="small"   @click="handleEdit(scope.$index, scope.row)"></el-button>-->
-         <!--     <el-button icon="el-icon-tickets" size="small" title="交易记录"    @click="handleTradeRecord(scope.$index, scope.row)"></el-button>-->
+              <el-button icon="el-icon-tickets" size="small" title="交易记录"    @click="handleTradeRecord(scope.$index, scope.row)"></el-button>
               <el-button icon="el-icon-delete"  title="冻结" size="small"   v-power="'yhlb_delete'"   @click="handleBlocked(scope.$index, scope.row)"></el-button>
             </template>
           </el-table-column>
@@ -214,7 +214,8 @@
       //交易记录
       handleTradeRecord(index, row){
         PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-        this.$router.push({path: 'tradeRecord/' + row.id});
+        this.$router.push({path: 'tradeRecord', query: {userId: row.id,realName:row.name,mobile:row.mobile}});
+       // this.$router.push({path: 'tradeRecord/' + row.id});
       },
       //具体信息
       handleView(index, row){
