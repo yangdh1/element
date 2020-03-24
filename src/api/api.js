@@ -241,6 +241,7 @@ export default {
     detail:params =>  {return axios.post(`${base}/carouselFigureManager/detail`, params)},
     update:params =>  {return axios.post(`${base}/carouselFigureManager/update`, params)},
     addAppGeneralUser:params =>  {return axios.post(`${base}/carouselFigureManager/addAppGeneralUser`, params)},
+    addAppLawyer:params =>  {return axios.post(`${base}/carouselFigureManager/addAppLawyer`, params)},
     delete:params =>  {return axios.post(`${base}/carouselFigureManager/delete/` + params.id)},
   }
 }

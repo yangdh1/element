@@ -102,27 +102,6 @@ export const asyncMenus = [
       { path: 'platCoinHistories', menuId: '005004', name:'平台心币历史交易', component: _import('tradeRecord/platCoinHistories')},
     ]
   },
-  {
-    path: '/sysAuthManage',
-    component: Layout,
-    name: '权限管理',
-    menuId: '006',
-    icon: 'iconfont icon-tradeRecord',
-    hasSub: true,
-    children:[
-      { path: 'administratorList', menuId: '006001', name:'管理员维护', component: _import('sysAuthManage/administratorList')},
-      { path: 'addAdministrator', name:'新增管理员',hidden:true, component: _import('sysAuthManage/addAdministrator')},
-      { path: 'editSysAuthManage/:id', name:'编辑管理员', component: _import('sysAuthManage/editAdministrator'),hidden:true},
-/*      { path: 'roleList', menuId: '00603', name:'角色权限', component: _import('sysAuthManage/roleList')},
-      { path: 'editRole', menuId: '00604', name:'编辑角色', hidden:true, component: _import('sysAuthManage/editRole')},
-      { path: 'addRole', menuId: '00605', name:'新增角色',  hidden:true, component: _import('sysAuthManage/addRole')},
-      { path: 'privileges', menuId: '00606', name:'分配权限', hidden:true, component: _import('sysAuthManage/privileges')},*/
-      { path: 'role/list', menuId: '006002', name:'角色权限', component: _import('role/roleList') },
-      { path: 'role/add', name:'添加角色', component: _import('role/addRole') ,hidden:true},
-      { path: 'role/edit/:id', name:'编辑角色', component: _import('role/editRole') ,hidden:true},
-      { path: 'role/roleResource/:id', name:'编辑角色', component: _import('role/roleResource') ,hidden:true},
-    ]
-  },
   /*
     {
       path: '/serviceType',
@@ -236,7 +215,7 @@ export const asyncMenus = [
     icon: 'iconfont icon-gupiaohuiyuanchongzhijilu',
     hasSub: true,
     children: [
-      { path: 'lawyerList.vue', menuId: '007001', name:'系统数据', component: _import('config/list')},
+      { path: 'lawyerList', menuId: '007001', name:'系统数据', component: _import('config/list')},
     ]
   },
   {
@@ -255,6 +234,28 @@ export const asyncMenus = [
       { path: 'appLawyerIndex/addUserImg', name: '新增普通用户轮播', component: _import('appLawyerIndex/addUserImg'), hidden: true},
       { path: 'appLawyerIndex/editUserImg/:id', name: '编辑普通用户轮播', component: _import('appLawyerIndex/editUserImg'), hidden: true},
       { path: 'appLawyerIndex/appcarouselFigureUserDetail/:id', name: '普通用户轮播详情', component: _import('appLawyerIndex/appcarouselFigureUserDetail'), hidden: true},
+    ]
+  },
+
+  {
+    path: '/sysAuthManage',
+    component: Layout,
+    name: '权限管理',
+    menuId: '006',
+    icon: 'iconfont icon-tradeRecord',
+    hasSub: true,
+    children:[
+      { path: 'administratorList', menuId: '006001', name:'管理员维护', component: _import('sysAuthManage/administratorList')},
+      { path: 'addAdministrator', name:'新增管理员',hidden:true, component: _import('sysAuthManage/addAdministrator')},
+      { path: 'editSysAuthManage/:id', name:'编辑管理员', component: _import('sysAuthManage/editAdministrator'),hidden:true},
+      /*      { path: 'roleList', menuId: '00603', name:'角色权限', component: _import('sysAuthManage/roleList')},
+            { path: 'editRole', menuId: '00604', name:'编辑角色', hidden:true, component: _import('sysAuthManage/editRole')},
+            { path: 'addRole', menuId: '00605', name:'新增角色',  hidden:true, component: _import('sysAuthManage/addRole')},
+            { path: 'privileges', menuId: '00606', name:'分配权限', hidden:true, component: _import('sysAuthManage/privileges')},*/
+      { path: 'role/list', menuId: '006002', name:'角色权限', component: _import('role/roleList') },
+      { path: 'role/add', name:'添加角色', component: _import('role/addRole') ,hidden:true},
+      { path: 'role/edit/:id', name:'编辑角色', component: _import('role/editRole') ,hidden:true},
+      { path: 'role/roleResource/:id', name:'编辑角色', component: _import('role/roleResource') ,hidden:true},
     ]
   },
   {
