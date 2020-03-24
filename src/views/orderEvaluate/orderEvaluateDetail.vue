@@ -142,7 +142,7 @@
     },
     methods: {
       revertingg(){
-        this.$router.push({path: '/order/orderEvaluate/orderEvaluate'});
+        this.$router.push({path: '/evaluate/orderEvaluate/orderEvaluate'});
       },
       loadEditData() {
         this.loading = true;

@@ -89,6 +89,18 @@ export const asyncMenus = [
     ]
   },
   {
+    path: '/evaluate',
+    component: Layout,
+    name: '评论管理',
+    menuId: '010',
+    icon: 'iconfont icon-orderGuanLi',
+    hasSub: true,
+    children: [
+      { path: 'orderEvaluate/orderEvaluate', menuId: '010001', name:'订单评价', component: _import('orderEvaluate/orderEvaluate') },
+      { path: 'orderEvaluate/detail/:id', name:'查看详情', component: _import('orderEvaluate/orderEvaluateDetail') ,hidden:true},
+    ]
+  },
+  {
     path: '/tradeRecord',
     component: Layout,
     name: '交易记录',

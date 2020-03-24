@@ -235,10 +235,6 @@
         });
 
       },
-      // submitUpload() {
-      //   this.$refs.upload.submit();
-      // }
-
     },
 
   }

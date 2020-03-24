@@ -5,7 +5,7 @@
     </div>
     <div>
       <el-form :inline="true" :model="pars" class="demo-form-inline" label-width="100px" size="small" >
-        <el-form-item label="注册日期：">
+        <el-form-item label="认证日期：">
           <div class="block">
             <el-date-picker
               v-model="pars.creatTimeDuring"
