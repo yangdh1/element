@@ -107,7 +107,7 @@
                 <el-input v-model="platformForm.pictureAndTextConsultation" style="width: 80px" size="small"></el-input>
                 <label class="dist">%</label>
               </el-form-item>
-              <el-form-item label="代写文书:" prop="writtenInstruments">
+    <!--          <el-form-item label="代写文书:" prop="writtenInstruments">
                 <el-input v-model="platformForm.writtenInstruments" style="width: 80px" size="small"></el-input>
                 <label class="dist">%</label>
               </el-form-item>
@@ -118,7 +118,7 @@
               <el-form-item label="律师函:" prop="lawyersLetter">
                 <el-input v-model="platformForm.lawyersLetter" style="width: 80px" size="small"></el-input>
                 <label class="dist">%</label>
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item label="预约面谈:" prop="appointmentInterview">
                 <el-input v-model="platformForm.appointmentInterview" style="width: 80px" size="small"></el-input>
                 <label class="dist">%</label>
@@ -127,7 +127,7 @@
                 <el-input v-model="platformForm.litigationAgency" style="width: 80px" size="small"></el-input>
                 <label class="dist">%</label>
               </el-form-item>
-              <el-form-item label="律师协助:" prop="counselAssistance">
+              <el-form-item label="其他委托:" prop="counselAssistance">
                 <el-input v-model="platformForm.counselAssistance" style="width: 80px" size="small"></el-input>
                 <label class="dist">%</label>
               </el-form-item>
@@ -146,7 +146,7 @@
                 <el-input v-model="heartCoinForm.pictureAndTextConsultation" style="width: 80px" size="small"></el-input>
                 <label class="dist">%</label>
               </el-form-item>
-              <el-form-item label="代写文书:" prop="writtenInstruments">
+<!--              <el-form-item label="代写文书:" prop="writtenInstruments">
                 <el-input v-model="heartCoinForm.writtenInstruments" style="width: 80px" size="small"></el-input>
                 <label class="dist">%</label>
               </el-form-item>
@@ -157,7 +157,7 @@
               <el-form-item label="律师函:" prop="lawyersLetter">
                 <el-input v-model="heartCoinForm.lawyersLetter" style="width: 80px" size="small"></el-input>
                 <label class="dist">%</label>
-              </el-form-item>
+              </el-form-item>-->
               <el-form-item label="预约面谈:" prop="appointmentInterview">
                 <el-input v-model="heartCoinForm.appointmentInterview" style="width: 80px" size="small"></el-input>
                 <label class="dist">%</label>
@@ -166,20 +166,20 @@
                 <el-input v-model="heartCoinForm.litigationAgency" style="width: 80px" size="small"></el-input>
                 <label class="dist">%</label>
               </el-form-item>
-              <el-form-item label="律师协助:" prop="counselAssistance">
+              <el-form-item label="其他委托:" prop="counselAssistance">
                 <el-input v-model="heartCoinForm.counselAssistance" style="width: 80px" size="small"></el-input>
                 <label class="dist">%</label>
               </el-form-item>
             </el-form>
           </el-col>
           <el-col :span="6" class="formBorder" style="padding: 0 0">
-            <div style="height: 430px;">
+            <div style="height: 280px;">
               <el-scrollbar style="height: 100%;"><br>
                 <el-form ref="refLawyerForm"  :model="lawyerForm" label-width="130px" size="mini">
                   <el-form-item label="section:" prop="section" v-show="isShow">
                     <el-input v-model="lawyerForm.section" style="width: 80px" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item label="电话咨询:" prop="telephoneConsultation">
+<!--                  <el-form-item label="电话咨询:" prop="telephoneConsultation">
                     <el-input v-model="lawyerForm.telephoneConsultation" style="width: 80px" size="small"></el-input>
                     <label class="dist">元/分钟</label>
                   </el-form-item>
@@ -206,14 +206,14 @@
                   <el-form-item label="预约面谈:" prop="appointmentInterview">
                     <el-input v-model="lawyerForm.appointmentInterview" style="width: 80px" size="small"></el-input>
                     <label class="dist">元/小时</label>
-                  </el-form-item>
+                  </el-form-item>-->
                   <el-form-item label="诉讼代理:" prop="litigationAgency">
                     <el-input v-model="lawyerForm.litigationAgency" style="width: 80px" size="small"></el-input>
                     <label class="dist">元/起</label>
                   </el-form-item>
-                  <el-form-item label="律师协助" prop="" style="font-weight: bold">
-<!--                    <el-input v-model="lawyerForm" style="width: 80px" size="small"></el-input>-->
-<!--                    <label class="dist">元/分钟</label>-->
+      <!--            <el-form-item label="律师协助" prop="" style="font-weight: bold">
+&lt;!&ndash;                    <el-input v-model="lawyerForm" style="width: 80px" size="small"></el-input>&ndash;&gt;
+&lt;!&ndash;                    <label class="dist">元/分钟</label>&ndash;&gt;
                   </el-form-item>
                   <el-form-item label="代为立案:" prop="daiWeiLiAn">
                     <el-input v-model="lawyerForm.daiWeiLiAn" style="width: 80px" size="small"></el-input>
@@ -274,7 +274,7 @@
                   <el-form-item label="其他帮助:" prop="qiTaBangZhu">
                     <el-input v-model="lawyerForm.qiTaBangZhu" style="width: 80px" size="small"></el-input>
                     <label class="dist">元</label>
-                  </el-form-item>
+                  </el-form-item>-->
                 </el-form>
               </el-scrollbar>
             </div>
