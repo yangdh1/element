@@ -40,23 +40,23 @@
             label="被评价律师"
             min-width="8%"/>
          <!--专业评分 6-->
-          <el-table-column
+  <!--        <el-table-column
             prop="professionalGrade"
             label="专业评分"
             align="center"
-            min-width="6%"/>
+            min-width="6%"/>-->
          <!--态度评分 6-->
-          <el-table-column
+        <!--  <el-table-column
             prop="attitudeGrade"
             label="态度评分"
             align="center"
-            min-width="6%"/>
+            min-width="6%"/>-->
          <!--效率评分 6-->
-          <el-table-column
+      <!--    <el-table-column
             prop="efficiencyGrade"
             label="效率评分"
             align="center"
-            min-width="6%"/>
+            min-width="6%"/>-->
 <!--          综合评分 6-->
           <el-table-column
             prop="syntheticalGrade"
