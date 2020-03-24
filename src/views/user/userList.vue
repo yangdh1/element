@@ -219,7 +219,25 @@
       //具体信息
       handleView(index, row){
         PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-        this.$router.push({path: 'userDetail/' + row.id});
+        this.setUserInfoToLocalStorage(row);
+      },
+
+      //将当前律师信息放入缓存
+      setUserInfoToLocalStorage(userInfo){
+       // console.log("---用户信息---",userInfo);
+        if (userInfo!=null&&userInfo.id!=null){
+          let key="userAccount_"+userInfo.id;
+          let storageValue=JSON.stringify(userInfo);
+          localStorage.removeItem(key);
+          localStorage.setItem(key,storageValue);
+          this.$router.push({path: 'userDetail/' + userInfo.id});
+        }else {
+          this.$message({
+            showClose: true,
+            message: '用户信息缓存失败!请刷新列表后查看详情! ',
+            type: 'error',
+          });
+        }
       },
 
       //编辑
