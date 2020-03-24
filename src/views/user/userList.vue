@@ -10,6 +10,7 @@
              <el-option label="全部" value="0"></el-option>
              <el-option label="未实名认证" value="1"></el-option>
              <el-option label="已经实名认证" value="2"></el-option>
+             <el-option label="企业认证" value="3"></el-option>
            </el-select>
        </el-form-item>
         <el-form-item label="注册日期：">
@@ -70,6 +71,7 @@
               <template slot-scope="scope">
                 <p v-if="scope.row.whetherAutonym==1">未实名认证</p>
                 <p v-else-if="scope.row.whetherAutonym==2">已完成实名认证</p>
+                <p v-else-if="scope.row.whetherAutonym==3">企业认证</p>
                 <p v-else>---</p>
               </template>
           </el-table-column>

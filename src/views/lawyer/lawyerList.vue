@@ -5,13 +5,6 @@
     </div>
     <div>
       <el-form :inline="true" :model="pars" class="demo-form-inline" label-width="100px" size="small" >
-        <el-form-item label="类型">
-          <el-select v-model="pars.authValidateStatus"  placeholder="类型" size="medium">
-            <el-option label="全部" value="0"></el-option>
-            <el-option label="个体" value="1"></el-option>
-            <el-option label="企业" value="2"></el-option>
-          </el-select>
-        </el-form-item>
         <el-form-item label="注册日期：">
           <div class="block">
             <el-date-picker
