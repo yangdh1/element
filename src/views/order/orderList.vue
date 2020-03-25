@@ -8,11 +8,12 @@
       <el-form :inline="true" :model="pars" label-width="150px" size="medium"  class="demo-form-inline">
         <el-form-item label="服务类型">
           <el-select v-model="pars.businessTypeCode" placeholder="请选择服务类型">
-            <el-option label="电话咨询" value="100000"></el-option>
-            <el-option label="图文咨询" value="200000"></el-option>
-            <el-option label="预约面谈" value="600000"></el-option>
-            <el-option label="诉讼代理" value="700000"></el-option>
-            <el-option label="其他委托" value="000000"></el-option>
+            <el-option
+              v-for="item in orderTypeOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="订单状态">
@@ -103,6 +104,7 @@
       return {
         tableData:[],
         loading  : true,
+        orderTypeOptions:this.GLOBAL.BUSINESS_TYPE.ORDER_BUSINESS_TYPE,
         pars: {
           pageSize    : this.GLOBAL.PAGE_COG.PAGESIZE,
           pageNum     : this.GLOBAL.PAGE_COG.PAGENUM,

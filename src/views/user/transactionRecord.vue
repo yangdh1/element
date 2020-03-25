@@ -1,38 +1,35 @@
 <template>
   <div class="page-content">
     <div class="bs-header">
-      <el-button  size="small" type="primary"  @click="reverting">返回</el-button>
+      <el-link type="primary" @click="reverting"><span>{{params.roleType==1?"用户":"律师"}}</span>列表</el-link>
       <div class="bs-title">
-        <p><<< 用户<span style="font-weight: bolder">{{userInfo.realName}}</span>的历史交易记录</p>
+        <p>> <span>{{params.roleType==1?"用户":"律师"}}</span>历史交易记录</p>
       </div>
-
     </div>
     <div>
       <!--      搜索查询参数表单-->
-      <el-form :inline="true" :model="params" label-width="100px" size="small"  class="demo-form-inline">
+      <el-form :inline="true" :model="params" label-width="80px" size="small"  class="demo-form-inline">
         <el-form-item label="交易类型">
-          <el-select v-model="params.tradeType" placeholder="请选择交易类型">
-            <el-option label="全部" value="-1"></el-option>
+          <el-select v-model="params.tradeType" placeholder="---请选择交易类型---">
             <el-option label="余额交易记录" value="1"></el-option>
             <el-option label="心币交易记录" value="2"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="收支类型">
-          <el-select v-model="params.paymentType" placeholder="请选择收支类型">
-            <el-option label="全部" value="-1"></el-option>
+          <el-select v-model="params.paymentType">
+            <el-option label="--全部--" value="-1"></el-option>
             <el-option label="收入" value="0"></el-option>
             <el-option label="支出" value="1"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="服务类型">
-          <el-select v-model="params.businessTypeCode" placeholder="请选择服务类型">
-            <el-option label="全部" value="-1"></el-option>
-            <el-option label="电话咨询" value="100000"></el-option>
-            <el-option label="图文咨询" value="200000"></el-option>
-            <el-option label="预约面谈" value="600000"></el-option>
-            <el-option label="诉讼代理" value="700000"></el-option>
-            <el-option label="其他委托" value="000000"></el-option>
-            <el-option label="非业务类型交易" value="0000000"></el-option>
+        <el-form-item label="业务类型">
+          <el-select v-model="params.businessTypeCode" placeholder="请选择业务类型">
+            <el-option
+              v-for="item in tradeTypeOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="起止时间">
@@ -51,7 +48,10 @@
           <el-button type="primary" icon="el-icon-search" @click="searchHistory" size="small">查询</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" icon="el-icon-refresh" @click="resetSearch" size="small">重置</el-button>
+          <el-button type="info" icon="el-icon-refresh"  @click="resetSearch" size="small">重置</el-button>
+        </el-form-item>
+        <el-form-item >
+          <el-button type="success" icon="el-icon-position"  @click="exportFile" size="small" >导出</el-button>
         </el-form-item>
       </el-form>
       <!--查询结果-->
@@ -77,7 +77,14 @@
               </el-popover>
             </template>
           </el-table-column>
-          <el-table-column prop="roleName" align="center" label="用户角色"  min-width="5%"></el-table-column>
+      <!--    <el-table-column prop="roleName" align="center" label="用户角色"  min-width="5%"></el-table-column>-->
+          <el-table-column align="center" label="交易类型"  min-width="5%">
+             <template slot-scope="scope">
+               <p v-if="scope.row.tradeType==1">余额交易</p>
+               <p v-else-if="scope.row.tradeType==2">心币交易</p>
+               <p v-else>---</p>
+             </template>
+          </el-table-column>
           <el-table-column prop="paymentTypeName"  align="center" label="收支类型"  min-width="5%"></el-table-column>
           <el-table-column prop="amount"  align="center" label="交易数量"  min-width="5%"></el-table-column>
           <el-table-column prop="serviceTypeName" align="center"  label="业务类型" min-width="5%"></el-table-column>
@@ -89,12 +96,12 @@
           <el-table-column prop="createTimeStr"   sortable  align="center" label="交易时间" min-width="8%"></el-table-column>
           <el-table-column prop="tradingDescription"  align="center" label="交易描述"  min-width="15%"></el-table-column>
           <!--操作8-->
-          <el-table-column  align="center"  label="操作" min-width="8%">
+      <!--    <el-table-column  align="center"  label="操作" min-width="8%">
             <template slot-scope="scope">
               <el-button icon="el-icon-view" title="查看详情" v-power="'yhye_check'" size="small"  @click="handleView(scope.$index, scope.row)"></el-button>
               <el-button icon="el-icon-delete" size="small" v-power="'yhye_delete'" title="删除" type="danger" plain  @click="handleDelete(scope.$index, scope.row)"></el-button>
             </template>
-          </el-table-column>
+          </el-table-column>-->
         </el-table>
         <!--分页展示-->
         <div class="block pagination">
@@ -128,21 +135,20 @@
     },
     data: function() {
       return {
-        userInfo:{
-          userId:'',
-          realName:''
-        },
         tableData:[],
         loading  : true,
+        tradeTypeOptions:this.GLOBAL.BUSINESS_TYPE.TRADE_BUSINESS_TYPE,
         params: {
-          pageSize    : this.GLOBAL.PAGE_COG.PAGESIZE,
-          pageNum     : this.GLOBAL.PAGE_COG.PAGENUM,
-          total       : this.GLOBAL.PAGE_COG.TOTAL,
-          tradeType    :'-1',   //1用户  2律师
-          paymentType :'-1',   // 0收入  1支出
+          pageSize    : 10,
+          pageNum     : 1,
+          total       : 0,
+          userId :'',
+          realName:'',
+          roleType:1,           //1 用户  2律师
+          tradeType :'1',        //1余额  2心币
+          paymentType :'-1',      // 0收入  1支出
           businessTypeCode:'-1', //业务类型代号
           creatTimeDuring:[],  //起止时间
-          commonColumn:''
         },
         tradeDetailData:{
           isShow:false,
@@ -157,24 +163,31 @@
     },
     mounted(){
       //获取页面缓存
-      this.params = {...this.params, ...PageCache.getPars(this.$route.path)};
-      let userId= this.$route.query.userId;
-      let realName= this.$route.query.realName;
-      let mobile= this.$route.query.mobile;
-      console.log("----userId---"+userId+"----realName----"+realName+"---mobile---"+mobile);
-      this.userInfo.userId=userId;
-      this.userInfo.realName=realName;
+      this.params.userId= this.$route.query.userId;
+      this.params.roleType=this.$route.query.roleType;
+      if (this.params.userId.length<1){
+        console.log("----------用户参数丢失------");
+        this.$message.warning("用户参数丢失");
+        return ;
+      }
       this.loadData();
     },
     methods:{
       loadData(){
         this.loading = true;
-        API.tradeRecord.userMoneyHistories(this.params).then(res=> {
+        console.log("------查询用户交易记录参数----",this.params);
+        API.tradeRecord.userTradingRecordHistories(this.params).then(res=> {
+          console.log("用户交易记录查询结果",res);
           if (res!=null){
             this.params.total = res.total;
             this.params.pageNum = res.pageNum;
             this.params.pageSize = res.pageSize;
             this.tableData = res.list;
+          }else{
+            this.params.total = 0;
+            this.params.pageNum =1;
+            this.params.pageSize = 10;
+            this.tableData=[];
           }
           this.loading = false;
         });
@@ -188,22 +201,25 @@
           this.params.startTime=startTime;
           this.params.endTime=endTime;
         }
-        console.log("--------查询条件------",this.params);
         this.loadData();
       },
       //充值搜索
       resetSearch(){
-        this.params.total =this.GLOBAL.PAGE_COG.TOTAL;
-        this.params.pageNum =this.GLOBAL.PAGE_COG.PAGENUM;
-        this.params.pageSize = this.GLOBAL.PAGE_COG.PAGESIZE;
+        this.params.total =0;
+        this.params.pageNum =1;
+        this.params.pageSize = 10;
         this.params.businessTypeCode="-1";
         this.params.creatTimeDuring=[];
-        this.params.commonColumn="";
-        this.params.tradeType="-1";
+        this.params.tradeType="1";
         this.params.paymentType="-1";
         this.params.startTime="";
         this.params.endTime="";
         this.loadData();
+      },
+
+      //导出记录
+      exportFile(){
+         console.log("---导出记录----");
       },
       //查询交易明细
       handleView(index,row){
@@ -216,7 +232,7 @@
           that.tradeDetailData.isShow=false;
           that.tradeDetailData.tradeData=[];
           that.tradeDetailData.recordId=row.id;
-          let detailParam = {orderCode:row.orderCode,tradeType:0};
+          let detailParam = {orderCode:row.orderCode};
           API.tradeRecord.historyTradeDetail(detailParam).then(res => {
             if (res!=null){
               that.tradeDetailData.isShow=true;
@@ -288,9 +304,13 @@
         });
         return sums;
       },
-
       reverting(){
-        this.$router.push({path: '/userManage/userList'});
+        if (this.params.roleType==1){
+          this.$router.push({path: '/userManage/userList'});
+        }
+        else{
+          this.$router.push({path: '/userManage/lawyerList'});
+        }
       }
     }
   }

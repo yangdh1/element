@@ -158,13 +158,13 @@ export default {
     logout: params =>{ return axios.post(`${base}/logout`, params); },
     loginByToken: params =>{ return axios.post(`${base}/loginByToken`, params); },
     changePwd:  params => { return axios.post(`${base}/updatePassword/`,params); },
-
     userList: params =>{ return axios.post(`${base}/userManage/userList`, params); },
     oAlist: params =>{ return axios.post(`${base}/user/oAlist`, params); },
     blockedAccount: params =>{ return axios.post(`${base}/userManage/blockedAccount/`+params.id); },
     detail: params =>{ return axios.post(`${base}/userManage/userDetail/`+params.id); },
     delete: params =>{ return axios.post(`${base}/user/delete/`+params.id); },
     userdetail: params =>{ return axios.post(`${base}/user/userDetail/`+params.id); },
+    editUserInfo: params =>{ return axios.post(`${base}/userManage/editUserInfo`,params); },
     add: params =>{ return axios.post(`${base}/userManage/add`, params); },
     update:params=>{return axios.post(`${base}/userManage/update`,params)},
     updateupdate:params=>{return axios.post(`${base}/user/update`,params)},
@@ -211,6 +211,7 @@ export default {
   },
   lawyer:{
     list:params => {return axios.post(`${base}/lawyer/list`, params)},
+    editLawyerInfo:params => {return axios.post(`${base}/lawyer/editLawyerInfo`, params)},
     toExamine:params => {return axios.post(`${base}/lawyer/toExamine/`+ params.id)},
     detail:params => {return axios.post(`${base}/lawyer/detail/`+ params.id)},
     updateLawyerStatus:params => {return axios.post(`${base}/lawyer/updateLawyerStatus`, params)},
@@ -233,6 +234,7 @@ export default {
     platMoneyHistories:params =>  {return axios.post(`${base}/tradeRecord/listPlatMoneyHistories`, params)},
     deleteHistoryTradeRecord:params =>  {return axios.post(`${base}/tradeRecord/deleteHistoryTradeRecord`, params)},
     historyTradeDetail:params =>  {return axios.post(`${base}/tradeRecord/historyTradeDetail`, params)},
+    userTradingRecordHistories:params => {return axios.post(`${base}/tradeRecord/userTradingRecordHistories`, params)},
   },
   carouselFigureManager:{
     listAppLawyer:params =>  {return axios.post(`${base}/carouselFigureManager/listAppLawyer`, params)},

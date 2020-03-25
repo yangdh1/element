@@ -75,12 +75,12 @@
                 <p v-else>---</p>
               </template>
           </el-table-column>
-          <el-table-column  fixed="right"  align="center"  label="操作" min-width="15%">
+          <el-table-column  fixed="right"  align="center"  label="操作" min-width="20%">
             <template slot-scope="scope">
-              <el-button icon="el-icon-view"  title="查看详情"   size="small" v-power="'yhlb_check'"   @click="handleView(scope.$index, scope.row)"></el-button>
-           <!--   <el-button icon="el-icon-edit-outline"  title="编辑"  size="small"   @click="handleEdit(scope.$index, scope.row)"></el-button>-->
-              <el-button icon="el-icon-tickets" size="small" title="交易记录"    @click="handleTradeRecord(scope.$index, scope.row)"></el-button>
-              <el-button icon="el-icon-delete"  title="冻结" size="small"   v-power="'yhlb_delete'"   @click="handleBlocked(scope.$index, scope.row)"></el-button>
+              <el-button  type="primary" plain   size="small"   v-power="'yhlb_check'"   @click="handleView(scope.$index, scope.row)">查看</el-button>
+              <el-button  type="primary" plain   size="small"   @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+              <el-button  type="primary" plain   size="small"   @click="handleTradeRecord(scope.$index, scope.row)">交易记录</el-button>
+              <!--<el-button   title="冻结" size="small"   v-power="'yhlb_delete'"   @click="handleBlocked(scope.$index, scope.row)"></el-button>-->
             </template>
           </el-table-column>
         </el-table>
@@ -88,6 +88,35 @@
           <io-pagination :pars="pars" @change="handlePageChange"></io-pagination>
         </div>
       </div>
+
+      <el-dialog title="编辑" :show-close="false" :visible="editDialog.dialogFormVisible" width="40%">
+        <el-form style="width: 50%">
+          <el-form-item label="昵称" :label-width="editDialog.formLabelWidth">
+            <el-input v-model="editDialog.updateObj.nickName" autofocus></el-input>
+          </el-form-item>
+          <el-form-item label="账号" :label-width="editDialog.formLabelWidth">
+            <el-tooltip content="只读,不可编辑" placement="right-start"  effect="light">
+              <el-input v-model="editDialog.updateObj.mobile" readonly></el-input>
+            </el-tooltip>
+          </el-form-item>
+          <el-form-item label="性别" :label-width="editDialog.formLabelWidth">
+            <el-radio-group v-model="editDialog.updateObj.sex" disabled>
+              <el-radio :label=1>男</el-radio>
+              <el-radio :label=2>女</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="地点" :label-width="editDialog.formLabelWidth">
+            <el-tooltip content="只读,不可编辑" placement="right-start"  effect="light">
+              <el-input v-model="editDialog.updateObj.address" readonly></el-input>
+            </el-tooltip>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="cancelEdit()">取 消</el-button>
+          <el-button type="primary" @click="submitEdit">确 定</el-button>
+        </div>
+      </el-dialog>
+
     </div>
   </div>
 </template>
@@ -115,6 +144,13 @@
           startTime: '',
           endTime: ''
         },
+
+        //编辑弹出层
+        editDialog:{
+          dialogFormVisible: false,
+          formLabelWidth: '120px',
+          updateObj:{},
+        }
       }
     },
     mounted(){
@@ -213,8 +249,8 @@
       },
       //交易记录
       handleTradeRecord(index, row){
-        PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-        this.$router.push({path: 'tradeRecord', query: {userId: row.id,realName:row.name,mobile:row.mobile}});
+        //PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
+        this.$router.push({path: 'tradeRecord', query: {userId: row.id,roleType:1}});
        // this.$router.push({path: 'tradeRecord/' + row.id});
       },
       //具体信息
@@ -243,9 +279,46 @@
 
       //编辑
       handleEdit(index, row){
-        PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-        this.$router.push({path: 'editUser/' + row.id});
+        console.log("---编辑用户信息---",row);
+        this.editDialog.dialogFormVisible=true;
+        this.editDialog.updateObj=row;
       },
+
+      //取消编辑
+      cancelEdit(){
+        this.editDialog.dialogFormVisible = false;
+        this.editDialog.updateObj={};
+      },
+
+      //提交编辑
+      submitEdit(){
+        let  updateObj=this.editDialog.updateObj;
+        let  userId=updateObj.id;
+        let accounts=updateObj.accounts;
+        let sex=updateObj.sex;
+        let nickName=updateObj.nickName;
+        let address=updateObj.address;
+        let updateUser={
+          userId:userId,
+          accounts:accounts,
+          sex:sex,
+          nickName:nickName,
+          addressName:address
+        };
+        API.user.editUserInfo(updateUser).then(res=> {
+          console.log("修改用户信息结果",res);
+          if (res!=null){
+            this.reset();
+            this.loadData();
+          }else{
+            this.$message.error('修改失败,请稍后重试!');
+          }
+          //修改成功,需要重新加载律师列表
+          this.editDialog.dialogFormVisible=false;
+          this.editDialog.updateObj={};
+        });
+      },
+
 
       //删除该行
       handleBlocked(index, row){

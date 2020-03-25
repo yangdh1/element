@@ -22,13 +22,12 @@
         </el-form-item>
         <el-form-item label="服务类型">
           <el-select v-model="params.businessTypeCode" placeholder="请选择服务类型">
-            <el-option label="全部" value="-1"></el-option>
-            <el-option label="电话咨询" value="100000"></el-option>
-            <el-option label="图文咨询" value="200000"></el-option>
-            <el-option label="预约面谈" value="600000"></el-option>
-            <el-option label="诉讼代理" value="700000"></el-option>
-            <el-option label="其他委托" value="000000"></el-option>
-            <el-option label="非业务类型交易" value="0000000"></el-option>
+            <el-option
+              v-for="item in tradeTypeOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="起止时间">
@@ -126,6 +125,7 @@
       return {
         tableData:[],
         loading  : true,
+        tradeTypeOptions:this.GLOBAL.BUSINESS_TYPE.TRADE_BUSINESS_TYPE,
         params: {
           pageSize    : this.GLOBAL.PAGE_COG.PAGESIZE,
           pageNum     : this.GLOBAL.PAGE_COG.PAGENUM,
@@ -162,6 +162,11 @@
             this.params.pageNum = res.pageNum;
             this.params.pageSize = res.pageSize;
             this.tableData = res.list;
+          }else{
+            this.params.total = 0;
+            this.params.pageNum =1;
+            this.params.pageSize =10;
+            this.tableData = [];
           }
           this.loading = false;
         });

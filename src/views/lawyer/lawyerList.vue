@@ -67,11 +67,11 @@
               <p>{{scope.row.lawyerSumWithdraw==null?0:scope.row.lawyerSumWithdraw}}</p>
             </template>
           </el-table-column>
-          <el-table-column  sortable   align="center"  label="累计收益"  min-width="8%">
+          <!--<el-table-column  sortable   align="center"  label="累计收益"  min-width="8%">
             <template slot-scope="scope">
               <p>{{scope.row.lawyerEarningsBalance+scope.row.lawyerSumWithdraw}}</p>
             </template>
-          </el-table-column>
+          </el-table-column>-->
           <el-table-column  sortable prop="coinBalance"  align="center"  label="心币余额"  min-width="8%"/>
           <el-table-column  sortable prop="followNum"  align="center"  label="关注人数"  min-width="8%"/>
           <el-table-column  sortable prop=""  align="center"  label="服务次数"  min-width="8%">
@@ -79,22 +79,22 @@
                   <p>{{scope.row.serviceNum==null?0:scope.row.serviceNum}}</p>
               </template>
           </el-table-column>
-          <el-table-column  sortable prop=""  align="center"  label="执业年限"  min-width="8%">
+         <!-- <el-table-column  sortable prop=""  align="center"  label="执业年限"  min-width="6%">
             <template slot-scope="scope">
-              <p>{{scope.row.practiceNumber==null?"---":scope.row.practiceNumber+'年'}}</p>
+              <p>{{scope.row.practiceNumber==null?"-&#45;&#45;":scope.row.practiceNumber+'年'}}</p>
             </template>
-          </el-table-column>
+          </el-table-column>-->
           <el-table-column  sortable  align="center" label="认证日期"  min-width="10%">
               <template slot-scope="scope">
                   <p>{{scope.row.checkTimeStr==null||scope.row.checkTimeStr.length<1?"---":scope.row.checkTimeStr}}</p>
               </template>
           </el-table-column>
-          <el-table-column  fixed="right"  align="center"  label="操作" min-width="15%">
+          <el-table-column  fixed="right"  align="center"  label="操作" min-width="20%">
             <template slot-scope="scope">
-              <el-button icon="el-icon-view"  title="查看详情" v-power="'lslb_check'"  size="small"   @click="handleView(scope.$index, scope.row)"></el-button>
-             <!-- <el-button icon="el-icon-edit-outline"  title="编辑"  size="small"   @click="handleEdit(scope.$index, scope.row)"></el-button>-->
-              <!--     <el-button icon="el-icon-tickets" size="small" title="交易记录"    @click="handleTradeRecord(scope.$index, scope.row)"></el-button>-->
-              <el-button icon="el-icon-delete"  title="冻结" size="small"  v-power="'lslb_delete'"   @click="handleBlocked(scope.$index, scope.row)"></el-button>
+              <el-button  type="primary" plain v-power="'lslb_check'"  size="small"   @click="handleView(scope.$index, scope.row)">查看</el-button>
+              <el-button  type="primary" plain  size="small"   @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+              <el-button type="primary" plain  size="small" title="交易记录"    @click="handleTradeRecord(scope.$index, scope.row)">交易记录</el-button>
+              <!--<el-button icon="el-icon-delete"  title="冻结" size="small"  v-power="'lslb_delete'"   @click="handleBlocked(scope.$index, scope.row)"></el-button>-->
             </template>
           </el-table-column>
         </el-table>
@@ -102,7 +102,45 @@
           <io-pagination :pars="pars" @change="handlePageChange"></io-pagination>
         </div>
       </div>
-    </div>
+
+
+     <el-dialog title="编辑" :show-close="false" :visible="editDialog.dialogFormVisible" width="40%">
+          <el-form style="width: 50%">
+            <el-form-item label="昵称" :label-width="editDialog.formLabelWidth">
+              <el-input v-model="editDialog.updateObj.nickName" autofocus></el-input>
+            </el-form-item>
+            <el-form-item label="账号" :label-width="editDialog.formLabelWidth">
+              <el-tooltip content="只读,不可编辑" placement="right-start"  effect="light">
+                <el-input v-model="editDialog.updateObj.mobile" readonly></el-input>
+              </el-tooltip>
+            </el-form-item>
+            <el-form-item label="性别" :label-width="editDialog.formLabelWidth">
+              <el-radio-group v-model="editDialog.updateObj.sex" disabled>
+                <el-radio :label=1>男</el-radio>
+                <el-radio :label=2>女</el-radio>
+              </el-radio-group>
+            </el-form-item>
+            <el-form-item label="工作地点" :label-width="editDialog.formLabelWidth">
+              <el-tooltip content="只读,不可编辑" placement="right-start"  effect="light">
+              <el-input v-model="editDialog.updateObj.address" readonly></el-input>
+              </el-tooltip>
+            </el-form-item>
+            <el-form-item label="认证日期" :label-width="editDialog.formLabelWidth">
+              <el-tooltip content="只读,不可编辑" placement="right-start"  effect="light">
+              <el-input v-model="editDialog.updateObj.checkTimeStr" readonly></el-input>
+              </el-tooltip>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="cancelEdit()">取 消</el-button>
+            <el-button type="primary" @click="submitEdit">确 定</el-button>
+          </div>
+        </el-dialog>
+
+  </div>
+
+
+
   </div>
 </template>
 <script>
@@ -129,6 +167,12 @@
           startTime: '',
           endTime: ''
         },
+        //编辑弹出层
+        editDialog:{
+          dialogFormVisible: false,
+          formLabelWidth: '120px',
+          updateObj:{},
+        }
       }
     },
     mounted(){
@@ -227,8 +271,8 @@
       },
       //交易记录
       handleTradeRecord(index, row){
-        PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-        this.$router.push({path: 'tradeRecord/' + row.id});
+        console.log("查看律师交易记录",row.userId);
+        this.$router.push({path: 'tradeRecord', query: {userId: row.userId,roleType:2}});
       },
       //具体信息
       handleView(index, row){
@@ -256,10 +300,45 @@
 
       //编辑
       handleEdit(index, row){
-        PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-        this.$router.push({path: 'editUser/' + row.id});
+        console.log("---编辑律师信息---",row);
+        this.editDialog.dialogFormVisible=true;
+        this.editDialog.updateObj=row;
       },
-
+      //取消编辑
+      cancelEdit(){
+       this.editDialog.dialogFormVisible = false;
+       this.editDialog.updateObj={};
+      },
+      //提交编辑
+      submitEdit(){
+          let  updateObj=this.editDialog.updateObj;
+          let id=updateObj.id;
+          let userId=updateObj.userId;
+          let accounts=updateObj.accounts;
+          let sex=updateObj.sex;
+          let nickName=updateObj.nickName;
+          let address=updateObj.address;
+          let lawyer={
+            id:id,
+            userId:userId,
+            accounts:accounts,
+            sex:sex,
+            nickName:nickName,
+            addressName:address
+          };
+          API.lawyer.editLawyerInfo(lawyer).then(res=> {
+              console.log("修改律师信息结果",res);
+              if (res!=null){
+                  this.reset();
+                  this.loadData();
+              }else{
+                this.$message.error('修改失败,请稍后重试!');
+              }
+              //修改成功,需要重新加载律师列表
+              this.editDialog.dialogFormVisible=false;
+              this.editDialog.updateObj={};
+          });
+      },
       //删除该行
       handleBlocked(index, row){
         this.$confirm('确认是否冻结该账户?', '提示', {

@@ -85,8 +85,8 @@ export const asyncMenus = [
     children: [
       { path: 'orderList', menuId: '004001', name:'查询订单列表', component: _import('order/orderList')},
       { path: 'orderDetail/:orderId',  name:'orderDetail', component: _import('order/orderDetail') ,hidden:true},
-      { path: 'orderEvaluate/orderEvaluate', menuId: '004002', name:'订单评价管理', component: _import('orderEvaluate/orderEvaluate') },
-      { path: 'orderEvaluate/detail/:id', name:'查看详情', component: _import('orderEvaluate/orderEvaluateDetail') ,hidden:true},
+  /*    { path: 'orderEvaluate/orderEvaluate', menuId: '004002', name:'订单评价管理', component: _import('orderEvaluate/orderEvaluate') },
+      { path: 'orderEvaluate/detail/:id', name:'查看详情', component: _import('orderEvaluate/orderEvaluateDetail') ,hidden:true},*/
     ]
   },
   {
