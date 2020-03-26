@@ -1,111 +1,115 @@
 <template>
   <div class="page-content">
     <div class="bs-header">
+      <el-link type="primary" @click="reverting">订单列表</el-link>
       <div class="bs-title">
-        <span>订单详情:</span>
-      </div>
-      <div  style="float: right;margin-right: 10px">
-        <i class="el-icon-d-arrow-right"></i>
-        <el-button size="small"  type="primary"  @click="revertingg">返回</el-button>
+        <p>> <span>订单详情</span></p>
       </div>
     </div>
     <!--订单基本信息-->
     <div>
       <el-form ref="ruleForm" :model="orderInfo"
-               size="medium" style="" label-position="left"
-               label-width="200px" v-loading.body="loading">
+               size="medium" label-position="left"
+               label-width="140px" v-loading.body="loading">
       <!--基本信息-->
         <el-row>
-          <el-row :gutter="20">
+          <el-row>
             <!--单号-->
             <el-col :span="8">
-              <el-form-item label="订单号" prop="orderCode" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.orderCode" size="medium" style="width: 350px"></el-input>
+              <el-form-item label="订单号" prop="orderCode">
+                <el-input :readonly="isReadOnly" v-model="orderInfo.orderCode" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
+            <el-col :span="5">&nbsp;</el-col>
             <!--订单类型-->
             <el-col :span="8">
               <el-form-item label="订单类型" prop="serviceType" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.businessTypeName" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.businessTypeName" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
-          <el-row :gutter="20">
+          <el-row>
          <!--支付费用-->
             <el-col :span="8">
               <el-form-item label="订单金额(余额/三方)" prop="totalFee" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.totalFee" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.totalFee" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
+            <el-col :span="5">&nbsp;</el-col>
            <!--心币费用-->
             <el-col :span="8">
               <el-form-item label="心币金额" prop="coinFee" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.coinFee" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.coinFee" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
-          <el-row :gutter="20">
+          <el-row>
             <!--支付方式-->
             <el-col :span="8">
               <el-form-item label="支付方式" prop="paymentWay" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.paymentWay" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.paymentWay" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
+            <el-col :span="5">&nbsp;</el-col>
             <!--订单状态-->
             <el-col :span="8">
               <el-form-item label="订单状态" prop="payStatusStr" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.payStatusStr" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.payStatusStr" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
-          <el-row :gutter="20">
+          <el-row >
             <!--下单人-->
             <el-col :span="8">
               <el-form-item label="下单人" prop="userName" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.userName" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.userName" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
+            <el-col :span="5">&nbsp;</el-col>
             <!--下单人手机-->
             <el-col :span="8">
               <el-form-item label="下单人手机" prop="userMobile" >
-                <el-input :readonly="isReadOnly"  v-model="orderInfo.userMobile" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly"  v-model="orderInfo.userMobile" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
-          <el-row :gutter="20">
+          <el-row >
             <!--接单人-->
             <el-col :span="8">
               <el-form-item label="接单人" prop="lawyerName" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.lawyerName" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.lawyerName" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
+            <el-col :span="5">&nbsp;</el-col>
             <!--接单人手机-->
             <el-col :span="8">
               <el-form-item label="下单人手机" prop="lawyerTel" >
-                <el-input :readonly="isReadOnly"  v-model="orderInfo.lawyerTel" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly"  v-model="orderInfo.lawyerTel" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
-          <el-row :gutter="20">
+          <el-row >
             <!--创建时间-->
             <el-col :span="8">
               <el-form-item label="创建时间" prop="createTimeStr" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.createTimeStr" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.createTimeStr" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
+            <el-col :span="5">&nbsp;</el-col>
             <!--创建终端IP-->
             <el-col :span="8">
               <el-form-item label="下单终端IP" prop="evaluateStatus" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.clientIP" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.clientIP" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
-          <el-row :gutter="20">
+          <el-row >
             <el-col :span="8">
               <el-form-item label="三方交易流水号" prop="outTradeNo" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.outTradeNo" size="medium" style="width: 350px"/>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.outTradeNo" size="medium" style="width: 300px"/>
               </el-form-item>
             </el-col>
+            <el-col :span="5">&nbsp;</el-col>
             <el-col :span="8">
               <el-form-item :readonly="isReadOnly" label="三方交易描述" prop="orderDesc" >
                 <el-input v-model="orderInfo.orderDesc" type="textarea" />
@@ -118,52 +122,55 @@
         </div>
       <!--业务信息-->
         <el-row>
-          <el-row :gutter="20">
+          <el-row >
             <!--案件类型-->
             <el-col :span="8">
               <el-form-item label="案件类型" prop="caseTypeName_business" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.caseTypeName_business==null?'---':orderInfo.caseTypeName_business" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.caseTypeName_business==null?'---':orderInfo.caseTypeName_business" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
             <!--业务状态-->
+            <el-col :span="5">&nbsp;</el-col>
             <el-col :span="8">
               <el-form-item label="业务状态" prop="statusDesc_business" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.statusDesc_business==null?'---':orderInfo.statusDesc_business" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.statusDesc_business==null?'---':orderInfo.statusDesc_business" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
 
-          <el-row :gutter="20">
+          <el-row >
             <!--业务有效期-->
             <el-col :span="8">
               <el-form-item label="有效期(天)" prop="validityLimit_business" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.validityLimit_business==null?'---':orderInfo.validityLimit_business+'天'" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.validityLimit_business==null?'---':orderInfo.validityLimit_business+'天'" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
             <!--服务时长-->
+            <el-col :span="5">&nbsp;</el-col>
             <el-col :span="8">
               <el-form-item label="完成/过期时间" prop="overTime_business" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.overTime_business==null?'---':orderInfo.overTime_business" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.overTime_business==null?'---':orderInfo.overTime_business" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
 
-          <el-row :gutter="20">
+          <el-row >
             <!--业务单价-->
             <el-col :span="8">
               <el-form-item label="单价(每分钟/每次)" prop="price_business" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.price_business==null?'---':'¥'+orderInfo.price_business" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.price_business==null?'---':'¥'+orderInfo.price_business" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
             <!--服务时长-->
+            <el-col :span="5">&nbsp;</el-col>
             <el-col :span="8">
               <el-form-item label="服务时长" prop="durationTime_business" >
-                <el-input :readonly="isReadOnly" v-model="orderInfo.durationTime_business==null?'---':orderInfo.durationTime_business" size="medium" style="width: 350px"></el-input>
+                <el-input :readonly="isReadOnly" v-model="orderInfo.durationTime_business==null?'---':orderInfo.durationTime_business" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <!--业务请求期望-->
-          <el-row :gutter="20">
+          <el-row >
             <el-col :span="16">
               <el-form-item label="请求与期望" prop="expect_business" >
                 <el-input :readonly="isReadOnly" v-model="orderInfo.expect_business==null?'---':orderInfo.expect_business" size="medium" type="textarea"></el-input>
@@ -171,7 +178,7 @@
             </el-col>
           </el-row>
           <!--事实描述-->
-          <el-row :gutter="20">
+          <el-row >
             <el-col :span="16">
               <el-form-item label="事实描述" prop="factDesc_business" >
                 <el-input :readonly="isReadOnly" v-model="orderInfo.factDesc_business==null?'---':orderInfo.factDesc_business" size="medium" type="textarea"></el-input>
@@ -179,7 +186,7 @@
             </el-col>
           </el-row>
           <!--业务描述-->
-          <el-row :gutter="20">
+          <el-row >
             <el-col :span="16">
               <el-form-item label="业务描述" prop="description_business" >
                 <el-input :readonly="isReadOnly" v-model="orderInfo.description_business==null?'---':orderInfo.description_business" size="medium" type="textarea"></el-input>
