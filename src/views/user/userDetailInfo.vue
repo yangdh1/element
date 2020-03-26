@@ -195,11 +195,17 @@
         },
         //用户认证信息
         userAuthValidateInfo:{
+          userId:'',
+          roleType:'',  // 1为普通用户 2 为律师 3为企业4.web用户
+          idCard:'',
+          photo:'',
+          whetherAutonym:'',    // 1 未实名认证 2 已实名认证
           idCardFrontImageSrc:'',
           idCardBackImageSrc:'',
-          companyLicenseImage:'',
           companyName:'',
-          companyCode:''
+          companyCode:'',
+          companyLicenseImage:'',
+          validateType:''   //认证类型
         }
       };
     },
@@ -241,10 +247,32 @@
       loadUserAuthValidateDetail(primaryKey){
         let that=this;
         that.isLoading=true;
-        API.user.detail({id:primaryKey}).then(res => {
-          console.log("---ID["+primaryKey+"]------加载用户认证信息,响应结果------",res);
-          that.userAuthValidateInfo=res;
-          that.isLoading=false;
+        API.user.userValidateInfo({id:primaryKey}).then(res => {
+          if (res!=null){
+            let companyLicenseImage= res.companyLicenseImage;
+            if (companyLicenseImage!=null&&companyLicenseImage.length>0){
+                res.companyLicenseImage=this.convertUrls(companyLicenseImage);
+            }
+            let idCardBackImageSrc=res.idCardBackImageSrc;
+            if (idCardBackImageSrc!=null&&idCardBackImageSrc.length>0){
+              res.idCardBackImageSrc=this.convertUrls(idCardBackImageSrc);
+            }
+            let idCardFrontImageSrc=res.idCardFrontImageSrc;
+            if (idCardFrontImageSrc!=null&&idCardFrontImageSrc.length>0){
+              res.idCardFrontImageSrc=this.convertUrls(idCardFrontImageSrc);
+            }
+            let photo=res.photo;
+            if (photo!=null&&photo.length>0){
+              res.photo=this.convertUrls(photo);
+            }
+            that.userAuthValidateInfo=res;
+            that.isLoading=false;
+          }
+          else{
+            this.$message.warning("用户认证信息加载失败,稍后重试!");
+            that.isLoading=false;
+          }
+          console.log("---ID["+primaryKey+"]------加载用户认证信息,响应结果------",that.userAuthValidateInfo);
           return;
         });
         setTimeout(function () {

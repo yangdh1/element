@@ -91,9 +91,9 @@
           </el-table-column>
           <el-table-column  fixed="right"  align="center"  label="操作" min-width="20%">
             <template slot-scope="scope">
-              <el-button  type="primary" plain v-power="'lslb_check'"  size="small"   @click="handleView(scope.$index, scope.row)">查看</el-button>
-              <el-button  type="primary" plain  size="small"   @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-              <el-button type="primary" plain  size="small" title="交易记录"    @click="handleTradeRecord(scope.$index, scope.row)">交易记录</el-button>
+              <el-button  type="primary" plain    v-power="'lslb_check'"  size="small"      @click="handleView(scope.$index, scope.row)">查看</el-button>
+              <el-button  type="info"    plain    v-power="'lslb_edit'"  size="small"       @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+              <el-button type="success"   plain   v-power="'lslb_record'"   size="small"    @click="handleTradeRecord(scope.$index, scope.row)">交易记录</el-button>
               <!--<el-button icon="el-icon-delete"  title="冻结" size="small"  v-power="'lslb_delete'"   @click="handleBlocked(scope.$index, scope.row)"></el-button>-->
             </template>
           </el-table-column>

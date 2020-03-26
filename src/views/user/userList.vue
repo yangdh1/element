@@ -78,8 +78,8 @@
           <el-table-column  fixed="right"  align="center"  label="操作" min-width="20%">
             <template slot-scope="scope">
               <el-button  type="primary" plain   size="small"   v-power="'yhlb_check'"   @click="handleView(scope.$index, scope.row)">查看</el-button>
-              <el-button  type="primary" plain   size="small"   @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-              <el-button  type="primary" plain   size="small"   @click="handleTradeRecord(scope.$index, scope.row)">交易记录</el-button>
+              <el-button  type="info" plain   size="small"   v-power="'yhlb_edit'"    @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+              <el-button  type="success" plain   size="small"  v-power="'yhlb_record'"  @click="handleTradeRecord(scope.$index, scope.row)">交易记录</el-button>
               <!--<el-button   title="冻结" size="small"   v-power="'yhlb_delete'"   @click="handleBlocked(scope.$index, scope.row)"></el-button>-->
             </template>
           </el-table-column>

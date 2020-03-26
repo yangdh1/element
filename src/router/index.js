@@ -37,15 +37,11 @@ export const asyncMenus = [
     component:Layout,
     hasSub:true,
     children:[
-     /* { path: 'addUser', menuId:'00100', name:'添加用户', component: _import('user/addUser') ,hidden:true},*/
       { path: 'userList', menuId: '001001', name:'用户列表', component: _import('user/userList')},
       { path: 'userDetail/:id', name:'用户详情', component: _import('user/userDetailInfo'),hidden:true},
-      { path: 'userAuthValidateInfo/:id', name:'查看用户认证信息', component: _import('user/attestationDetail') ,hidden:true},
       { path: 'tradeRecord', name:'交易记录', component: _import('user/transactionRecord') ,hidden:true},
-   /*   { path: 'editUser/:id', menuId: '0010102', name:'编辑用户信息', component: _import('user/editUser'),hidden:true},*/
       { path: 'lawyerList', menuId: '001002', name:'律师列表', component: _import('lawyer/lawyerList')},
       { path: 'lawyerDetail/:id', name:'律师详情', component: _import('lawyer/lawyerDetail'),hidden:true},
-    /*  { path: 'editLawyer',name:'编辑律师信息', component: _import('lawyer/editLawyer'),hidden:true},*/
     ]
   },
   {

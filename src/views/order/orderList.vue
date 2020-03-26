@@ -43,7 +43,10 @@
           <el-button type="primary" icon="el-icon-search" @click="searchOrder" size="small">查询</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" icon="el-icon-refresh" @click="reset" size="small">重置</el-button>
+          <el-button type="info" icon="el-icon-refresh" @click="reset" size="small">重置</el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="success" icon="el-icon-position"  size="small"   v-power="'ddlb_export'" @click="exportToExcel">导出</el-button>
         </el-form-item>
       </el-form>
 <!--      搜索列表-->
@@ -63,9 +66,9 @@
             align="center"
             label="操作" min-width="20%">
             <template slot-scope="scope">
-              <el-button   icon="el-icon-view" title="查看详情" size="small" v-power="'ddlb_check'" @click="handleView(scope.$index, scope.row)"></el-button>
-              <el-button   icon="el-icon-s-data" title="交易记录" size="small" v-power="'ddjb_update'" @click="handleRecordView(scope.$index, scope.row)"></el-button>
-              <el-button icon="el-icon-delete" size="small" title="删除"  type="danger" plain  v-power="'ddjb_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>
+              <el-button   type="primary" plain size="small" v-power="'ddlb_check'" @click="handleView(scope.$index, scope.row)">详情</el-button>
+              <el-button   type="success" plain size="small" v-power="'ddjb_update'" @click="handleRecordView(scope.$index, scope.row)">交易流水</el-button>
+         <!--     <el-button   icon="el-icon-delete" size="small" title="删除"  type="danger" plain  v-power="'ddjb_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>-->
             </template>
           </el-table-column>
         </el-table>
@@ -96,6 +99,8 @@
   import API from '../../api'
   import PageCache from '../../utils/pageCache'
   import ioPagination from '../../components/ioPagination.vue'
+  import axios from "axios";
+  import {BaseAPI, MultipartAPI} from '../../api/api';
   export default {
     components: {
       ioPagination
@@ -176,6 +181,25 @@
         this.pars.startTime="";
         this.pars.endTime="";
         this.loadData()
+      },
+      //订单导出
+      exportToExcel(){
+        axios.post(BaseAPI + `/order/exportToExcel`, this.pars, {
+          responseType: 'blob'
+        }).then(res => {
+          if (true) {
+            if ('msSaveBlob' in navigator) { // 对IE和Edge的兼容
+              console.log(res.headers['content-disposition']);
+              window.navigator.msSaveBlob(res.data, decodeURI(res.headers['content-disposition'].split('filename=')[1]))
+            } else {
+              let blob = new Blob([res.data], {type: 'application/x-xls'});
+              let link = document.createElement('a');
+              link.href = window.URL.createObjectURL(blob);
+              link.download = new Date().getTime() + '.xls';
+              link.click();
+            }
+          }
+        });
       },
       //具体信息
       handleView(index, row){

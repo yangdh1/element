@@ -161,7 +161,7 @@ export default {
     userList: params =>{ return axios.post(`${base}/userManage/userList`, params); },
     oAlist: params =>{ return axios.post(`${base}/user/oAlist`, params); },
     blockedAccount: params =>{ return axios.post(`${base}/userManage/blockedAccount/`+params.id); },
-    detail: params =>{ return axios.post(`${base}/userManage/userDetail/`+params.id); },
+    userValidateInfo: params =>{ return axios.post(`${base}/userManage/userValidateInfo/`+params.id); },
     delete: params =>{ return axios.post(`${base}/user/delete/`+params.id); },
     userdetail: params =>{ return axios.post(`${base}/user/userDetail/`+params.id); },
     editUserInfo: params =>{ return axios.post(`${base}/userManage/editUserInfo`,params); },

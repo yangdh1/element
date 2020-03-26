@@ -46,8 +46,11 @@
           <el-button type="primary" icon="el-icon-search" @click="searchHistory" size="small">查询</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" icon="el-icon-refresh" @click="resetSearch" size="small">重置</el-button>
+          <el-button type="info" icon="el-icon-refresh" @click="resetSearch" size="small">重置</el-button>
         </el-form-item>
+     <!--   <el-form-item>
+          <el-button type="success" icon="el-icon-position"  @click="exportToExcel" size="small">导出</el-button>
+        </el-form-item>-->
       </el-form>
     <!--查询结果-->
       <div class="table-wrap" v-loading.body="loading">
@@ -86,8 +89,8 @@
           <!--操作8-->
           <el-table-column  align="center"  label="操作" min-width="8%">
             <template slot-scope="scope">
-              <el-button icon="el-icon-view" title="查看详情" size="small"  v-power="'xbjy_check'" @click="handleView(scope.$index, scope.row)"></el-button>
-              <el-button icon="el-icon-delete" size="small" title="删除" v-power="'xbjy_delete'" type="danger" plain  @click="handleDelete(scope.$index, scope.row)"></el-button>
+              <el-button type="primary" plain size="small"  v-power="'xbjy_check'"    @click="handleView(scope.$index, scope.row)">详情</el-button>
+              <el-button type="danger"  plain size="small"  v-power="'xbjy_delete'"   @click="handleDelete(scope.$index, scope.row)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -198,6 +201,9 @@
         this.loadData();
       },
 
+      exportToExcel(){
+
+      },
       //查询详情
       //查询交易明细
       handleView(index,row){
