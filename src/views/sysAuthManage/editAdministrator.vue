@@ -58,7 +58,7 @@
     data   : function() {
       return {
         roleArr:[],
-        deleteFlagAll: [{deleteFlag:false ,name:"禁用"},{deleteFlag:true ,name:"启动"}],
+        deleteFlagAll: [{deleteFlag:true ,name:"禁用"},{deleteFlag:false ,name:"启动"}],
         form: {
           name  : '',
           description   : ''
