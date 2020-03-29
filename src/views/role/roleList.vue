@@ -6,7 +6,7 @@
     <div>
       <el-form :inline="true" :model="pars" class="demo-form-inline">
         <el-form-item label="">
-          <el-input v-model="pars.name" placeholder="角色名称" size="small" style="width: 350px"  prefix-icon="el-icon-search" clearable></el-input>
+          <el-input v-model="pars.commonColumn" placeholder="角色名称" size="small" style="width: 350px"  prefix-icon="el-icon-search" clearable></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" icon="el-icon-search" @click="search" size="small">查询</el-button>

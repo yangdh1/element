@@ -52,11 +52,11 @@
                </template>
           </el-table-column>
           <el-table-column   prop="mobile"  align="center"    label="电话号码" min-width="10%"/>
-          <el-table-column    prop="name"   align="center"    label="真实姓名"  min-width="10%">
+         <!-- <el-table-column    prop="name"   align="center"    label="真实姓名"  min-width="10%">
             <template slot-scope="scope">
-              <p>{{scope.row.name==null||scope.row.name.length<1?'---':scope.row.name}}</p>
+              <p>{{scope.row.name==null||scope.row.name.length<1?'-&#45;&#45;':scope.row.name}}</p>
             </template>
-          </el-table-column>
+          </el-table-column>-->
           <el-table-column    align="center"    label="性别"  min-width="10%">
             <template slot-scope="scope">
                 <p v-if="scope.row.sex==1">男</p>

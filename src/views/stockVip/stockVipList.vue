@@ -118,7 +118,7 @@
       },
        handleView(index, row){
          PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-         this.$router.push({path: 'details/'+row.userId});
+         this.$router.push({path: 'stockVipHistoryList/'+row.userId});
        },
 
       handleGrant(index, row){

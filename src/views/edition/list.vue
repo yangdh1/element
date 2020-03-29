@@ -15,9 +15,6 @@
         <el-form-item>
           <el-button type="success" @click="addDev" size="small" icon="el-icon-plus"  v-power="'appVersion_add'">新增</el-button>
         </el-form-item>
-        <el-form-item>
-          <el-button type="success" @click="handleQR" size="small" v-power="'appVersion_add'">二维码下载链接</el-button>
-        </el-form-item>
       </el-form>
       <div class="table-wrap" v-loading.body="loading">
         <el-table highlight-current-row :data="tableData" width="100%" border stripe=""  :key="$root.$children[0].keyRand">

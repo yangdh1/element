@@ -37,7 +37,7 @@ export const asyncMenus = [
     component:Layout,
     hasSub:true,
     children:[
-      { path: 'userList', menuId: '001001', name:'用户列表', component: _import('user/userList')},
+      { path: 'userList', menuId: '001001' ,icon: '', name:'用户列表', component: _import('user/userList')},
       { path: 'userDetail/:id', name:'用户详情', component: _import('user/userDetailInfo'),hidden:true},
       { path: 'tradeRecord', name:'交易记录', component: _import('user/transactionRecord') ,hidden:true},
       { path: 'lawyerList', menuId: '001002', name:'律师列表', component: _import('lawyer/lawyerList')},
@@ -68,7 +68,7 @@ export const asyncMenus = [
       { path: 'ordinaryVipList', menuId: '003001', name:'359会员列表', component: _import('ordinaryVip/ordinaryVipList')},
       { path: 'ordinaryVipRechargeList', name:'359充值记录', component: _import('ordinaryVip/ordinaryVipHistoryList'),hidden:true},
       { path: 'stockVipList', menuId: '003002', name:'股票会员列表', component: _import('stockVip/stockVipList')},
-      { path: 'stockVipRechargeList', name:'股票会员充值记录',  component: _import('stockVip/stockVipHistoryList'),hidden:true},
+      { path: 'stockVipHistoryList/:id', name:'股票会员充值记录',  component: _import('stockVip/stockDetails'),hidden:true},
     ]
   },
   {
