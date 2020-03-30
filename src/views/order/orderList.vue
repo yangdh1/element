@@ -66,8 +66,8 @@
             align="center"
             label="操作" min-width="20%">
             <template slot-scope="scope">
-              <el-button   type="primary" plain size="small" v-power="'ddlb_check'" @click="handleView(scope.$index, scope.row)">详情</el-button>
-              <el-button   type="success" plain size="small" v-power="'ddjb_update'" @click="handleRecordView(scope.$index, scope.row)">交易流水</el-button>
+              <el-button   type="primary" plain size="small" v-power="'ddlb_check'" @click="handleView(scope.$index, scope.row)">查看详情</el-button>
+           <!--   <el-button   type="success" plain size="small" v-power="'ddjb_update'" @click="handleRecordView(scope.$index, scope.row)">交易流水</el-button>-->
          <!--     <el-button   icon="el-icon-delete" size="small" title="删除"  type="danger" plain  v-power="'ddjb_delete'" @click="handleDelete(scope.$index, scope.row)"></el-button>-->
             </template>
           </el-table-column>

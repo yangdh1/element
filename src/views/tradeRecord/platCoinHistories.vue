@@ -54,12 +54,10 @@
       </el-form>
       <!--查询结果-->
       <div class="table-wrap" v-loading.body="loading">
-        <!--列表展示-->
+        <!--列表展示          show-summary   :summary-method="getSummaries"-->
         <el-table  highlight-current-row
                    border
                    stripe
-                   show-summary
-                  :summary-method="getSummaries"
                   :data="tableData"
                   :default-sort = "{prop: 'createTimeStr', order: 'descending'}"
                   style="width: 100%">
@@ -87,12 +85,12 @@
           <el-table-column prop="createTimeStr"   sortable  align="center" label="交易时间" min-width="8%"></el-table-column>
           <el-table-column prop="tradingDescription"  align="center" label="交易描述"  min-width="15%"></el-table-column>
           <!--操作8-->
-          <el-table-column  align="center"  label="操作" min-width="8%">
+     <!--     <el-table-column  align="center"  label="操作" min-width="8%">
             <template slot-scope="scope">
               <el-button  type="primary" plain size="small"   v-power="'ptxb_check'" @click="handleView(scope.$index, scope.row)">详情</el-button>
               <el-button  type="danger"  plain size="small"    v-power="'ptxb_delete'"   @click="handleDelete(scope.$index, scope.row)">删除</el-button>
             </template>
-          </el-table-column>
+          </el-table-column>-->
         </el-table>
         <!--分页展示-->
         <div class="block pagination">
