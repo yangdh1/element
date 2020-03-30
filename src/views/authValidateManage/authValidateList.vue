@@ -77,7 +77,7 @@
        */
       loadData() {
         this.loading = true;
-        API.lawyer.list(this.pars).then(res => {
+        API.lawyer.listAuthentication(this.pars).then(res => {
           this.pars.total = res.total;
           this.pars.pageNum = res.pageNum;
           this.loading = false;

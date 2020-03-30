@@ -215,6 +215,7 @@ export default {
     toExamine:params => {return axios.post(`${base}/lawyer/toExamine/`+ params.id)},
     detail:params => {return axios.post(`${base}/lawyer/detail/`+ params.id)},
     updateLawyerStatus:params => {return axios.post(`${base}/lawyer/updateLawyerStatus`, params)},
+    listAuthentication:params => {return axios.post(`${base}/lawyer/listAuthentication`, params)},
   },
   orderEvaluate:{
     list:params => {return axios.post(`${base}/orderEvaluate/list`, params)},
