@@ -38,17 +38,17 @@
                   :default-sort = "{prop: 'createTimeDate', order: 'descending'}">
           <el-table-column  sortable  prop="id"  align="center"    label="序号" min-width="5%"/>
           <el-table-column  prop="mobile"   align="center"    label="账户" min-width="8%"/>
-          <el-table-column   align="nickName"  label="昵称"    min-width="5%">
-           <template slot-scope="scope">
+          <el-table-column  prop="nickName"  align="center"  label="昵称"    min-width="5%">
+          <!-- <template slot-scope="scope">
              <el-popover trigger="hover" placement="top">
                <p v-if="scope.row.enterpriseType" style="color:#3399ff;">类型: {{ scope.row.enterpriseType==1?"个体户":"企业"}}</p>
-               <p v-if="scope.row.realName">昵称: {{ scope.row.realName }}</p>
+               <p v-if="scope.row.realName">真实姓名: {{ scope.row.realName }}</p>
                <p v-if="scope.row.address">地址: {{ scope.row.address }}</p>
                <div slot="reference" class="name-wrapper">
-                 <el-tag size="medium">{{ scope.row.realName}}</el-tag>
+                 <el-tag size="medium">{{ scope.row.nickName}}</el-tag>
                </div>
              </el-popover>
-           </template>
+           </template>-->
           </el-table-column>
           <el-table-column    align="center"    label="性别"  min-width="8%">
             <template slot-scope="scope">
