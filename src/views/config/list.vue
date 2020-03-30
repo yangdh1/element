@@ -20,11 +20,11 @@
                 <el-input v-model="teleConsultForm.chargePerMinute" style="width: 80px" size="small"></el-input>
                 <label class="dist">元/分钟</label>
               </el-form-item>
-              <el-form-item label="呼叫最高时长:" prop="directCall" >
+              <el-form-item label="直接拨出时长:" prop="directCall" >
                 <el-input v-model="teleConsultForm.directCall" style="width: 80px" size="small"></el-input>
                 <label class="dist">分钟</label>
               </el-form-item>
-              <el-form-item label="直接拨出时长:" prop="maxDuration" >
+              <el-form-item label="呼叫最高时长" prop="maxDuration" >
                 <el-input v-model="teleConsultForm.maxDuration" style="width: 80px" size="small"></el-input>
                 <label class="dist">分钟</label>
               </el-form-item>

@@ -15,7 +15,7 @@
                         <el-col :span="5">头像:</el-col>
                         <el-col :span="16">
                           <div class="block">
-                            <el-image>
+                            <el-image :src="lawyerAccountInfo.imageUrls">
                               <div slot="error" class="image-slot">
                                 <i class="el-icon-picture-outline"></i>
                               </div>
@@ -267,7 +267,9 @@
           idCardBackImageSrc:'',
           certificatePathUrls:'',
           onePractisingCertificatePathUrsl:'',
+          imageUrls:'',
           twoPractisingCertificatePathUrls:''
+
         },
       };
     },
@@ -302,7 +304,11 @@
                   },2000);
             }else{
               that.lawyerAccountInfo= JSON.parse(lawyerAccountInfoJsonStr);
-              console.log("--------律师账户本地缓存信息------",this.lawyerAccountInfo);
+              if ( that.lawyerAccountInfo.photo !== null) {
+                console.log("--------用户账户本1111111111111111111地缓存信息------",this.lawyerAccountInfo.photo);
+                this.convertUrls1(that.lawyerAccountInfo.photo);
+              }
+              console.log("--------211212121211------",this.lawyerAccountInfo);
             }
            //加载认证信息
             this.loadLawyerAuthValidateDetail(this.primaryKey);
@@ -340,6 +346,14 @@
           url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(prefixUrl);
         }
         return url;
+      },
+      convertUrls1(imagePaths) {
+        if (imagePaths !== null && imagePaths !== '') {
+          console.log("--------用户账户本地缓存信息------",       imagePaths);
+          let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
+          this.lawyerAccountInfo.imageUrls=url;
+          console.log("--------用----------------222222222222222222222222222------",        this.lawyerAccountInfo.imageUrls);
+        }
       },
       //切换
       handleClick(tab) {

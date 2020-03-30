@@ -15,7 +15,7 @@
                         <el-col :span="5">头像:</el-col>
                         <el-col :span="16">
                           <div class="block">
-                            <el-image :src="userAccountInfo.photoUrl">
+                            <el-image :src="userAccountInfo.imageUrls">
                               <div slot="error" class="image-slot">
                                 <i class="el-icon-picture-outline"></i>
                               </div>
@@ -191,6 +191,7 @@
           addressName:'',
           address:'',
           createTimeDate:'',
+          imageUrls:'',
           whetherAutonym:''
         },
         //用户认证信息
@@ -239,7 +240,12 @@
           },2000);
         }else{
           that.userAccountInfo= JSON.parse(userAccountInfoJsonStr);
-          console.log("--------用户账户本地缓存信息------",this.userAccountInfo);
+          console.log("--------用户账户本1111111111111111111地缓存信息------",this.userAccountInfo);
+          if ( that.userAccountInfo.photo !== null) {
+            console.log("--------用户账户本1111111111111111111地缓存信息------",this.userAccountInfo.photoUrl);
+            this.convertUrls1(that.userAccountInfo.photo);
+          }
+
         }
       },
 
@@ -290,6 +296,14 @@
         this.$router.push({path: '/userManage/userList'});
       },
       //拼接路径
+      convertUrls1(imagePaths) {
+        if (imagePaths !== null && imagePaths !== '') {
+          console.log("--------用户账户本地缓存信息------",       imagePaths);
+          let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
+          this.userAccountInfo.imageUrls=url;
+          console.log("--------用----------------222222222222222222222222222------",        this.userAccountInfo.imageUrls);
+        }
+      },
       convertUrls(prefixUrl){
         let    url ="";
         if (prefixUrl!=null&&prefixUrl!=undefined&&prefixUrl.length>0){
@@ -297,6 +311,7 @@
         }
         return url;
       },
+
       //切换
       handleClick(tab) {
         //返回按钮
