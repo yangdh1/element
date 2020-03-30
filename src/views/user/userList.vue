@@ -45,13 +45,13 @@
                   width="100%"
                   :default-sort = "{prop: 'createTimeDate', order: 'descending'}">
           <el-table-column  sortable  prop="id"  align="center"    label="序号" min-width="5%"/>
-          <el-table-column   align="center"  label="账户昵称"    min-width="10%">
+          <el-table-column   prop="mobile"  align="center"    label="账户" min-width="10%"/>
+          <el-table-column   align="center"  label="昵称"    min-width="10%">
                <template slot-scope="scope">
                     <p v-if="scope.row.nickName!=null&&scope.row.nickName.length>0">{{scope.row.nickName}}</p>
                     <p v-else>---</p>
                </template>
           </el-table-column>
-          <el-table-column   prop="mobile"  align="center"    label="电话号码" min-width="10%"/>
          <!-- <el-table-column    prop="name"   align="center"    label="真实姓名"  min-width="10%">
             <template slot-scope="scope">
               <p>{{scope.row.name==null||scope.row.name.length<1?'-&#45;&#45;':scope.row.name}}</p>
