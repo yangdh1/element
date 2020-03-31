@@ -15,11 +15,9 @@
                         <el-col :span="5">头像:</el-col>
                         <el-col :span="16">
                           <div class="block">
-                            <el-image :src="lawyerAccountInfo.imageUrls">
-                              <div slot="error" class="image-slot">
-                                <i class="el-icon-picture-outline"></i>
-                              </div>
-                            </el-image>
+                            <div >
+                              <img class="img_style" :src="imageUrls" alt="">
+                            </div>
                           </div>
                         </el-col>
                       </el-row>
@@ -246,6 +244,7 @@
       return {
         activeName: '0',
         primaryKey:'',
+        imageUrls:'',
         loading  : false,
         //账户信息
         lawyerAccountInfo:{},
@@ -351,8 +350,8 @@
         if (imagePaths !== null && imagePaths !== '') {
           console.log("--------用户账户本地缓存信息------",       imagePaths);
           let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
-          this.lawyerAccountInfo.imageUrls=url;
-          console.log("--------用----------------222222222222222222222222222------",        this.lawyerAccountInfo.imageUrls);
+          this.imageUrls = url;
+          console.log("--------用----------------222222222222222222222222222------",        this.imageUrls);
         }
       },
       //切换
@@ -392,8 +391,8 @@
     display: block;
   }
   .img_style {
-    width: 200px;
-    height: 200px;
+    width: 130px;
+    height: 130px;
   }
 
   .text {

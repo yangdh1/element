@@ -15,11 +15,9 @@
                         <el-col :span="5">头像:</el-col>
                         <el-col :span="16">
                           <div class="block">
-                            <el-image :src="userAccountInfo.imageUrls">
-                              <div slot="error" class="image-slot">
-                                <i class="el-icon-picture-outline"></i>
-                              </div>
-                            </el-image>
+                            <div >
+                              <img class="img_style" :src="imageUrls" alt="">
+                            </div>
                           </div>
                         </el-col>
                       </el-row>
@@ -181,6 +179,7 @@
       return {
         activeName: '0',
         primaryKey:'',
+        imageUrls:'',
         isLoading:false,
         //用户基本信息
         userAccountInfo:{
@@ -191,7 +190,6 @@
           addressName:'',
           address:'',
           createTimeDate:'',
-          imageUrls:'',
           whetherAutonym:''
         },
         //用户认证信息
@@ -300,8 +298,8 @@
         if (imagePaths !== null && imagePaths !== '') {
           console.log("--------用户账户本地缓存信息------",       imagePaths);
           let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
-          this.userAccountInfo.imageUrls=url;
-          console.log("--------用----------------222222222222222222222222222------",        this.userAccountInfo.imageUrls);
+          this.imageUrls = url;
+          console.log("--------用----------------222222222222222222222222222------",        this.imageUrls);
         }
       },
       convertUrls(prefixUrl){
@@ -353,8 +351,8 @@
     display: block;
   }
   .img_style {
-    width: 200px;
-    height: 200px;
+    width: 130px;
+    height: 130px;
   }
 
   .text {
