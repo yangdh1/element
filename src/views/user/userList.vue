@@ -226,12 +226,18 @@
       //搜索
       search(){
         this.pars.pageNum=1;
-        if (this.pars.creatTimeDuring.length>0){
+        console.log(this.pars.creatTimeDuring );
+        console.log(this.pars.creatTimeDuring );
+        console.log(this.pars.creatTimeDuring );
+        if (this.pars.creatTimeDuring != null &&this.pars.creatTimeDuring.length !=0){
           let  startTime=  this.pars.creatTimeDuring[0].valueOf();
           let  endTime=this.pars.creatTimeDuring[1].valueOf();
           this.pars.startTime=startTime;
           this.pars.endTime=endTime;
           console.log("--------startTime------"+startTime+",---endTime---"+endTime);
+        }else {
+          this.pars.startTime = '',
+            this.pars.endTime = ''
         }
         this.loadData();
       },
