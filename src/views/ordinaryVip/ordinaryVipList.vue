@@ -108,13 +108,15 @@
           this.pars.pageNum = res.pageNum;
           this.pars.pageSize = res.pageSize;
           this.loading = false;
-          console.log(res);
-          this.tableData = res.lawyerList;
+          console.log("111111111111111111111111111111111111111111111111111111");
+          console.log(res.list);
+          this.tableData = res.list;
         });
       },
        handleView(index, row){
+        console.log()
          PageCache.savePars(this.$route.path, this.pars);   //保存页面条件
-         this.$router.push({path: 'details/'+row.userId});
+         this.$router.push({path: 'ordinaryDetails/'+row.userId});
        },
       search(){
         this.pars.pageNum=1;

@@ -52,7 +52,7 @@ export const asyncMenus = [
     component:Layout,
     hasSub:true,
     children:[
-          { path: 'authValidateList', menuId: '002001', name:'审核列表', component: _import('authValidateManage/authValidateList'),hidden:false },
+          { path: 'authValidateList', menuId: '002001', name:'审核列表', component: _import('authValidateManage/authValidateList')},
           { path: 'checkAuthValidate/:id', name:'认证审核', component: _import('authValidateManage/checkAuthValidate'),hidden:true},
 
     ]
@@ -66,7 +66,7 @@ export const asyncMenus = [
     hasSub: true,
     children: [
       { path: 'ordinaryVipList', menuId: '003001', name:'359会员列表', component: _import('ordinaryVip/ordinaryVipList')},
-      { path: 'ordinaryVipRechargeList', name:'359充值记录', component: _import('ordinaryVip/ordinaryVipHistoryList'),hidden:true},
+      { path: 'ordinaryDetails/:id', name:'359充值记录', component: _import('ordinaryVip/ordinaryDetails'),hidden:true},
       { path: 'stockVipList', menuId: '003002', name:'股票会员列表', component: _import('stockVip/stockVipList')},
       { path: 'stockVipHistoryList/:id', name:'股票会员充值记录',  component: _import('stockVip/stockDetails'),hidden:true},
     ]

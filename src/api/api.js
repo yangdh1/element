@@ -198,7 +198,7 @@ export default {
   ordinaryVip:{
     list:params => {return axios.post(`${base}/userOrdinaryHistory/listVipHistory`, params)},
     listVip:params => {return axios.post(`${base}/userAccount/listUserOrdinary`, params)},
-    details:params => {return axios.post(`${base}/userAccount/detail`, params)},
+    details:params => {return axios.post(`${base}/userAccount/detail/`+ params.id)},
   },
   stockVip:{
     list:params => {return axios.post(`${base}/userStockHistory/listVipHistory`, params)},
