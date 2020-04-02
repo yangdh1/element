@@ -192,12 +192,17 @@
       },
       //搜索查询
       searchHistory(){
-        this.params.pageNum=1;
-        if (this.params.creatTimeDuring.length>0){
+        console.log(this.params.creatTimeDuring );
+        console.log(this.params.creatTimeDuring );
+        console.log(this.params.creatTimeDuring );
+        if (this.params.creatTimeDuring != null && this.params.creatTimeDuring.length !=0){
           let  startTime=  this.params.creatTimeDuring[0].valueOf()
           let  endTime=    this.params.creatTimeDuring[1].valueOf();
           this.params.startTime=startTime;
           this.params.endTime=endTime;
+        }else {
+          this.params.startTime='';
+          this.params.endTime=''
         }
         this.loadData();
       },
