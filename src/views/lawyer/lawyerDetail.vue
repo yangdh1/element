@@ -106,11 +106,15 @@
                     <el-col :span="5">身份证正面</el-col>
                     <el-col :span="16">
                       <div class="block">
-                        <el-image :src="lawyerAuthValidateInfo.idCardFrontImageSrc">
-                          <div slot="error" class="image-slot">
+                        <div >
+                          <img class="img_style1" :src="lawyerAuthValidateInfo.idCardFrontImageSrc" alt="">
+                        </div>
+                  <!--      <el-image :src="lawyerAuthValidateInfo.idCardFrontImageSrc">
+                          <div slot="error" class="img_style">
                             <i class="el-icon-picture-outline"></i>
                           </div>
-                        </el-image>
+
+                        </el-image>-->
                       </div>
                     </el-col>
                   </el-row>
@@ -118,11 +122,14 @@
                     <el-col :span="5">身份证反面</el-col>
                     <el-col :span="16">
                       <div class="block">
-                        <el-image :src="lawyerAuthValidateInfo.idCardBackImageSrc">
-                          <div slot="error" class="image-slot">
+                        <div >
+                          <img class="img_style1" :src="lawyerAuthValidateInfo.idCardBackImageSrc" alt="">
+                        </div>
+                     <!--   <el-image :src="lawyerAuthValidateInfo.idCardBackImageSrc">
+                          <div slot="error" class="img_style">
                             <i class="el-icon-picture-outline"></i>
                           </div>
-                        </el-image>
+                        </el-image>-->
                       </div>
                     </el-col>
                   </el-row>
@@ -152,11 +159,14 @@
                     <el-col :span="5">学位证书:</el-col>
                     <el-col :span="16">
                       <div class="block">
-                        <el-image :src="lawyerAuthValidateInfo.certificatePathUrls">
+                        <div >
+                          <img class="img_style2" :src="lawyerAuthValidateInfo.certificatePathUrls" alt="">
+                        </div>
+              <!--          <el-image :src="lawyerAuthValidateInfo.certificatePathUrls">
                           <div slot="error" class="image-slot">
                             <i class="el-icon-picture-outline"></i>
                           </div>
-                        </el-image>
+                        </el-image>-->
                       </div>
                     </el-col>
                   </el-row>
@@ -174,11 +184,14 @@
                     <el-col :span="5">执业证明:</el-col>
                     <el-col :span="16">
                       <div class="block">
-                        <el-image :src="lawyerAuthValidateInfo.onePractisingCertificatePathUrsl">
+                        <div >
+                          <img class="img_style2" :src="lawyerAuthValidateInfo.onePractisingCertificatePathUrsl" alt="">
+                        </div>
+                    <!--    <el-image :src="lawyerAuthValidateInfo.onePractisingCertificatePathUrsl">
                           <div slot="error" class="image-slot">
                             <i class="el-icon-picture-outline"></i>
                           </div>
-                        </el-image>
+                        </el-image>-->
                       </div>
                     </el-col>
                   </el-row>
@@ -198,11 +211,14 @@
                     <el-col :span="5">法律执业资格证书:</el-col>
                     <el-col :span="16">
                       <div class="block">
-                        <el-image :src="lawyerAuthValidateInfo.twoPractisingCertificatePathUrls">
+                        <div >
+                          <img class="img_style2" :src="lawyerAuthValidateInfo.twoPractisingCertificatePathUrls" alt="">
+                        </div>
+                   <!--     <el-image :src="lawyerAuthValidateInfo.twoPractisingCertificatePathUrls">
                           <div slot="error" class="image-slot">
                             <i class="el-icon-picture-outline"></i>
                           </div>
-                        </el-image>
+                        </el-image>-->
                       </div>
                     </el-col>
                   </el-row>
@@ -394,7 +410,14 @@
     width: 130px;
     height: 130px;
   }
-
+  .img_style1 {
+    width: 250px;
+    height: 250px;
+  }
+  .img_style2 {
+    width: 100px;
+    height: 100px;
+  }
   .text {
     font-size: 14px;
   }
