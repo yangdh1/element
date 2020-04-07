@@ -69,9 +69,9 @@
           <el-table-column  sortable prop="createTimeDate"  align="center" label="注册日期"  min-width="10%" />
           <el-table-column    align="center"     label="认证状态"   min-width="10%">
               <template slot-scope="scope">
-                <p v-if="scope.row.whetherAutonym==1">未实名认证</p>
+                <p v-if="scope.row.whetherLawyer==3">企业认证</p>
+                <p v-else-if="scope.row.whetherAutonym==1">未实名认证</p>
                 <p v-else-if="scope.row.whetherAutonym==2">已完成实名认证</p>
-                <p v-else-if="scope.row.whetherAutonym==3">企业认证</p>
                 <p v-else>---</p>
               </template>
           </el-table-column>
@@ -226,7 +226,8 @@
       //搜索
       search(){
         this.pars.pageNum=1;
-        console.log(this.pars.creatTimeDuring );
+        console.log("22222222222222222222222222222222222222222222")
+        console.log(this.pars.authValidateStatus+"2222222222222222222222" );
         console.log(this.pars.creatTimeDuring );
         console.log(this.pars.creatTimeDuring );
         if (this.pars.creatTimeDuring != null &&this.pars.creatTimeDuring.length !=0){
