@@ -14,23 +14,12 @@
                 <el-input v-model="form.name" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="8">
-              <el-form-item label="昵称" prop="nickName">
-                <el-input v-model="form.nickName" size="small" style="width: 250px"></el-input>
-              </el-form-item>
-            </el-col>
+
           </el-row>
           <el-row :gutter="20">
             <el-col :span="8">
-              <el-form-item label="年龄" prop="age">
-                <el-input v-model="form.age" size="small" style="width: 250px"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="性别" prop="sex">
-                <el-input v-if="form.sex == 1" value="男" size="small" style="width: 250px"></el-input>
-                <el-input v-else-if="form.sex == 2" value="女" size="small" style="width: 250px"></el-input>
-                <el-input v-else value="保密" size="small" style="width: 250px"></el-input>
+              <el-form-item label="昵称" prop="nickName">
+                <el-input v-model="form.nickName" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -40,21 +29,11 @@
                 <el-input type="datetime" v-model="form.birthDay" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="8">
-              <el-form-item label="身份证" prop="idCard">
-                <el-input v-model="form.idCard" size="small" style="width: 250px"></el-input>
-              </el-form-item>
-            </el-col>
           </el-row>
           <el-row :gutter="20">
             <el-col :span="8">
               <el-form-item label="加入时间" prop="stockVipJoinTime">
                 <el-input type="datetime" v-model="form.stockVipJoinTime" size="small" style="width: 250px"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="地址" prop="address">
-                <el-input v-model="form.address" size="small" style="width: 250px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -110,11 +89,10 @@
         },
         methods: {
             revertingg() {
-                this.$router.push({path: '/ordinaryVip/listVip'});
+                this.$router.push({path: '/vipMember/ordinaryVipList'});
             },
             loadEditData() {
-                let obj = {id: this.form.id};
-                API.ordinaryVip.details(obj).then(res => {
+                API.ordinaryVip.details({id:this.$route.params.id}).then(res => {
                     this.convertData(res);
                     console.log(res);
                 });

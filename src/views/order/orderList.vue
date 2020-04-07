@@ -45,9 +45,9 @@
         <el-form-item>
           <el-button type="info" icon="el-icon-refresh" @click="reset" size="small">重置</el-button>
         </el-form-item>
-        <el-form-item>
+    <!--    <el-form-item>
           <el-button type="success" icon="el-icon-position"  size="small"   v-power="'ddlb_export'" @click="exportToExcel">导出</el-button>
-        </el-form-item>
+        </el-form-item>-->
       </el-form>
 <!--      搜索列表-->
       <div class="table-wrap" v-loading.body="loading">

@@ -60,8 +60,6 @@
         <el-table  highlight-current-row
                    border
                    stripe
-                   show-summary
-                   :summary-method="getSummaries"
                    :data="tableData"
                    :default-sort = "{prop: 'createTimeStr', order: 'descending'}"
                    style="width: 100%">
@@ -194,12 +192,17 @@
       },
       //搜索查询
       searchHistory(){
-        this.params.pageNum=1;
-        if (this.params.creatTimeDuring.length>0){
+        console.log(this.params.creatTimeDuring );
+        console.log(this.params.creatTimeDuring );
+        console.log(this.params.creatTimeDuring );
+        if (this.params.creatTimeDuring != null && this.params.creatTimeDuring.length !=0){
           let  startTime=  this.params.creatTimeDuring[0].valueOf()
           let  endTime=    this.params.creatTimeDuring[1].valueOf();
           this.params.startTime=startTime;
           this.params.endTime=endTime;
+        }else {
+          this.params.startTime='';
+          this.params.endTime=''
         }
         this.loadData();
       },
@@ -278,7 +281,7 @@
         this.params = newVal;
         this.loadData();
       },
-      //当前页数据统计
+     /* //当前页数据统计
       getSummaries(param) {
         const { columns, data } = param;
         const sums = [];
@@ -303,7 +306,7 @@
           }
         });
         return sums;
-      },
+      },*/
       reverting(){
         if (this.params.roleType==1){
           this.$router.push({path: '/userManage/userList'});

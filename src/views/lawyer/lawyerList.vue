@@ -84,10 +84,7 @@
               <p>{{scope.row.practiceNumber==null?"-&#45;&#45;":scope.row.practiceNumber+'年'}}</p>
             </template>
           </el-table-column>-->
-          <el-table-column  sortable  align="center" label="认证日期"  min-width="10%">
-              <template slot-scope="scope">
-                  <p>{{scope.row.checkTimeStr==null||scope.row.checkTimeStr.length<1?"---":scope.row.checkTimeStr}}</p>
-              </template>
+          <el-table-column  sortable prop="checkTimeStr" align="center" label="认证日期"  min-width="10%">
           </el-table-column>
           <el-table-column  fixed="right"  align="center"  label="操作" min-width="20%">
             <template slot-scope="scope">
@@ -248,12 +245,14 @@
       //搜索
       search(){
         this.pars.pageNum=1;
-        if (this.pars.creatTimeDuring.length>0){
+        if (this.pars.creatTimeDuring != null &&this.pars.creatTimeDuring.length !=0){
           let  startTime=  this.pars.creatTimeDuring[0].valueOf();
           let  endTime=this.pars.creatTimeDuring[1].valueOf();
           this.pars.startTime=startTime;
           this.pars.endTime=endTime;
-          console.log("--------startTime------"+startTime+",---endTime---"+endTime);
+        }else {
+          this.pars.startTime = '',
+            this.pars.endTime = ''
         }
         this.loadData();
       },

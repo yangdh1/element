@@ -15,11 +15,9 @@
                         <el-col :span="5">头像:</el-col>
                         <el-col :span="16">
                           <div class="block">
-                            <el-image :src="userAccountInfo.photoUrl">
-                              <div slot="error" class="image-slot">
-                                <i class="el-icon-picture-outline"></i>
-                              </div>
-                            </el-image>
+                            <div >
+                              <img class="img_style" :src="imageUrls" alt="">
+                            </div>
                           </div>
                         </el-col>
                       </el-row>
@@ -181,6 +179,7 @@
       return {
         activeName: '0',
         primaryKey:'',
+        imageUrls:'',
         isLoading:false,
         //用户基本信息
         userAccountInfo:{
@@ -239,7 +238,12 @@
           },2000);
         }else{
           that.userAccountInfo= JSON.parse(userAccountInfoJsonStr);
-          console.log("--------用户账户本地缓存信息------",this.userAccountInfo);
+          console.log("--------用户账户本1111111111111111111地缓存信息------",this.userAccountInfo);
+          if ( that.userAccountInfo.photo !== null) {
+            console.log("--------用户账户本1111111111111111111地缓存信息------",this.userAccountInfo.photoUrl);
+            this.convertUrls1(that.userAccountInfo.photo);
+          }
+
         }
       },
 
@@ -290,6 +294,14 @@
         this.$router.push({path: '/userManage/userList'});
       },
       //拼接路径
+      convertUrls1(imagePaths) {
+        if (imagePaths !== null && imagePaths !== '') {
+          console.log("--------用户账户本地缓存信息------",       imagePaths);
+          let    url = MultipartAPI+'/getFileFromEncodeParam?encodePath='+base64_encode(imagePaths);
+          this.imageUrls = url;
+          console.log("--------用----------------222222222222222222222222222------",        this.imageUrls);
+        }
+      },
       convertUrls(prefixUrl){
         let    url ="";
         if (prefixUrl!=null&&prefixUrl!=undefined&&prefixUrl.length>0){
@@ -297,6 +309,7 @@
         }
         return url;
       },
+
       //切换
       handleClick(tab) {
         //返回按钮
@@ -338,8 +351,8 @@
     display: block;
   }
   .img_style {
-    width: 200px;
-    height: 200px;
+    width: 130px;
+    height: 130px;
   }
 
   .text {

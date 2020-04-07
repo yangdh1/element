@@ -39,25 +39,34 @@ function getNewSyncMenus(myArr,adminFlag){
 
 //整理从服务端来的数据数据
 function arrangeDate(roleResources,adminFlag){
-	//console.log(roleResources);
+	////console.log(roleResources);
 	//将服务端数据整理
-	var obj = {};
-	for(var i=0; i<roleResources.length; i++) {
-		var _id = roleResources[i].id;
-		if(_id.length == 3){
+  let obj = [];
+	for(let i=0; i<roleResources.length; i++) {
+    let _id = roleResources[i].id;
+		if(_id.length === 3){
 			obj[_id] = '';
 		}
 	}
-	for(var i=0; i<roleResources.length; i++) {
-		var _id = roleResources[i].id;
-		if(_id.length == 6){
-			if(obj[_id] == ''){
-				obj[_id.substring(0,3)] =_id;
+  //console.log('obj');
+  //console.log(obj);
+	for(let i=0; i<roleResources.length; i++) {
+    let _id = roleResources[i].id;
+		if(_id.length === 6){
+		  //console.log('obj[_id.substring(0,3)]');
+		  //console.log(obj[_id.substring(0,3)]);
+			if(obj[_id] === ''){
+			  if (obj[_id.substring(0,3)]!==undefined){
+          obj[_id.substring(0,3)] =_id;
+        }
 			}else{
-				obj[_id.substring(0,3)] += '€'+ _id;
+        if (obj[_id.substring(0,3)]!==undefined){
+          obj[_id.substring(0,3)] += '€'+ _id;
+        }
 			}
 		}
 	}
+  //console.log(obj);
 	//将服务端数据整理成前端需要的格式
 	var myArr = [];
 	for(let key in obj){
@@ -72,7 +81,7 @@ function arrangeDate(roleResources,adminFlag){
 	// 	{pid:'101', cid: '101001'}
 	// ];
 	return getNewSyncMenus(myArr,adminFlag);
-	// console.log(myArr);
+	// //console.log(myArr);
 }
 
 
@@ -131,8 +140,8 @@ const user = {
 						commit('SET_SYNC_MENUS', asyncMenus);		//测试使用 实际需要获取用户信息后赋值
 						commit('SET_ALL_MENUS', [...commonMenus, ...asyncMenus]  );		//实际需要获取用户信息后赋值
 					}else{
-					  console.log("res.roleResources");
-					  console.log(res.roleResources);
+					  //console.log("res.roleResources");
+					  //console.log(res.roleResources);
 						let MyMenu = arrangeDate(res.roleResources,res.userInfo.adminFlag);
 						commit('SET_SYNC_MENUS', MyMenu);
 						commit('SET_ALL_MENUS', [...commonMenus, ...MyMenu]  );
@@ -142,7 +151,7 @@ const user = {
 					commit('SET_ROLE_BTN', res.roleButtons); //store 保存按钮权限信息
 					resolve();
 				},(error)=>{
-					console.log(error);
+					//console.log(error);
 					reject(error);
 				});
 
@@ -159,7 +168,7 @@ const user = {
           removeToken();
           resolve();
         },(error)=>{
-          console.log(error);
+          //console.log(error);
           reject(error);
         });
 			})

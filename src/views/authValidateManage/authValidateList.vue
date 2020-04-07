@@ -6,7 +6,7 @@
     <div>
       <el-form :inline="true" :model="pars" class="demo-form-inline">
         <el-form-item label="">
-          <el-input v-model="pars.searchKeyWords" placeholder="请输入关键字模糊查询" size="small" style="width: 500px"  prefix-icon="el-icon-search" clearable></el-input>
+          <el-input v-model="pars.condition" placeholder="请输入关键字模糊查询" size="small" style="width: 500px"  prefix-icon="el-icon-search" clearable></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" icon="el-icon-search" @click="search" size="small">查询</el-button>
@@ -76,8 +76,10 @@
        *  数据加载
        */
       loadData() {
+        console.log("----------------------111111111111111111------------");
+        console.log(this.pars);
         this.loading = true;
-        API.lawyer.list(this.pars).then(res => {
+        API.lawyer.listAuthentication(this.pars).then(res => {
           this.pars.total = res.total;
           this.pars.pageNum = res.pageNum;
           this.loading = false;
