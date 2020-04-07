@@ -83,7 +83,7 @@
             <el-col :span="5">&nbsp;</el-col>
             <!--接单人手机-->
             <el-col :span="8">
-              <el-form-item label="下单人手机" prop="lawyerTel" >
+              <el-form-item label="接单人手机" prop="lawyerTel" >
                 <el-input :readonly="isReadOnly"  v-model="orderInfo.lawyerTel" size="medium" style="width: 300px"></el-input>
               </el-form-item>
             </el-col>
