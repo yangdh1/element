@@ -22,8 +22,8 @@
                         </el-col>
                       </el-row>
                       <el-row>
-                        <el-col :span="5">昵称:</el-col>
-                        <el-col :span="16">{{lawyerAccountInfo.nickName==null?"---":lawyerAccountInfo.nickName}}</el-col>
+                        <el-col :span="5">真实姓名:</el-col>
+                        <el-col :span="16">{{lawyerAccountInfo.realName==null?"---":lawyerAccountInfo.realName}}</el-col>
                       </el-row>
                       <el-row>
                            <el-col :span="5">电话:</el-col>
@@ -139,7 +139,7 @@
             <el-col :span="12">
               <el-card class="box-card">
                 <div slot="header" class="clearfix">
-                  <span>律师认证:{{lawyerAccountInfo.enterpriseType==1?"[个体户]":"[企业]"}}</span>
+                  <span>律师认证</span>
                 </div>
                 <div  class="text item">
                   <el-row>

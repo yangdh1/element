@@ -34,11 +34,11 @@
       <div class="table-wrap" v-loading.body="loading">
         <el-table highlight-current-row  border stripe
                   :data="tableData"
-                  width="100%"
+                  width="110%"
                   :default-sort = "{prop: 'createTimeDate', order: 'descending'}">
           <el-table-column  sortable  prop="id"  align="center"    label="序号" min-width="5%"/>
           <el-table-column  prop="mobile"   align="center"    label="账户" min-width="8%"/>
-          <el-table-column  prop="nickName"  align="center"  label="昵称"    min-width="5%">
+          <el-table-column  prop="realName"  align="center"  label="真实姓名"    min-width="8%">
           <!-- <template slot-scope="scope">
              <el-popover trigger="hover" placement="top">
                <p v-if="scope.row.enterpriseType" style="color:#3399ff;">类型: {{ scope.row.enterpriseType==1?"个体户":"企业"}}</p>
@@ -50,19 +50,19 @@
              </el-popover>
            </template>-->
           </el-table-column>
-          <el-table-column    align="center"    label="性别"  min-width="8%">
+          <el-table-column    align="center"    label="性别"  min-width="5%">
             <template slot-scope="scope">
               <p v-if="scope.row.sex==1">男</p>
               <p v-else-if="scope.row.sex==2">女</p>
               <p v-else>---</p>
             </template>
           </el-table-column>
-          <el-table-column  sortable   align="center"  label="账户余额"  min-width="8%">
+          <el-table-column  sortable   align="center"  label="账户余额"  min-width="7%">
           <template slot-scope="scope">
             <p>{{scope.row.lawyerEarningsBalance==null?0:scope.row.lawyerEarningsBalance}}</p>
           </template>
         </el-table-column>
-          <el-table-column  sortable   align="center"  label="累计提现"  min-width="8%">
+          <el-table-column  sortable   align="center"  label="累计提现"  min-width="7%">
             <template slot-scope="scope">
               <p>{{scope.row.lawyerSumWithdraw==null?0:scope.row.lawyerSumWithdraw}}</p>
             </template>
@@ -72,8 +72,8 @@
               <p>{{scope.row.lawyerEarningsBalance+scope.row.lawyerSumWithdraw}}</p>
             </template>
           </el-table-column>-->
-          <el-table-column  sortable prop="coinBalance"  align="center"  label="心币余额"  min-width="8%"/>
-          <el-table-column  sortable prop="followNum"  align="center"  label="关注人数"  min-width="8%"/>
+          <el-table-column  sortable prop="coinBalance"  align="center"  label="心币余额"  min-width="7%"/>
+          <el-table-column  sortable prop="followNum"  align="center"  label="关注人数"  min-width="7%"/>
           <el-table-column  sortable prop=""  align="center"  label="服务次数"  min-width="8%">
               <template slot-scope="scope">
                   <p>{{scope.row.serviceNum==null?0:scope.row.serviceNum}}</p>

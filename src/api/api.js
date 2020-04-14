@@ -157,7 +157,7 @@ export default {
     login: params =>{ return axios.post(`${base}/login`, params); },
     logout: params =>{ return axios.post(`${base}/logout`, params); },
     loginByToken: params =>{ return axios.post(`${base}/loginByToken`, params); },
-    changePwd:  params => { return axios.post(`${base}/updatePassword/`,params); },
+    changePwd:  params => { return axios.post(`${base}/user/updatePassword/`,params); },
     userList: params =>{ return axios.post(`${base}/userManage/userList`, params); },
     oAlist: params =>{ return axios.post(`${base}/user/oAlist`, params); },
     blockedAccount: params =>{ return axios.post(`${base}/userManage/blockedAccount/`+params.id); },

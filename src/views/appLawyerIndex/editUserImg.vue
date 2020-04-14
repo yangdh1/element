@@ -17,7 +17,7 @@
             :headers="uploadObj.headers"
             :on-success="handleAvatarSuccess"
             :show-file-list="false">
-            <img v-if="imageUrl" :src="imageUrl" class="avatar" style="width: 150px">
+            <img v-if="imageUrl" :src="imageUrl" class="avatar" style="width: 150px;height: 148px">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
         </el-form-item>
